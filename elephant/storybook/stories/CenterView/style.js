@@ -1,8 +1,17 @@
 export default {
-  main: {
+  wrapper: {
     flex: 1,
+    width: "100%",
+    height: "100%",
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFF'
+  },
+  main: {
+    flex: 1,
+    width: "90%",
+    height: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 };
