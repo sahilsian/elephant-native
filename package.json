@@ -1,0 +1,36 @@
+{
+  "name": "elephant-native",
+  "version": "1.0.0",
+  "description": "Elephant is a mobile application that helps intellectually disabled users learn new skills.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 7007",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahilsian/elephant-native.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sahilsian/elephant-native/issues"
+  },
+  "homepage": "https://github.com/sahilsian/elephant-native#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@storybook/addon-actions": "^5.3.21",
+    "@storybook/addon-knobs": "^5.3.21",
+    "@storybook/addon-links": "^5.3.21",
+    "@storybook/addon-ondevice-actions": "^5.3.23",
+    "@storybook/addon-ondevice-knobs": "^5.3.23",
+    "@storybook/react-native": "^5.3.23",
+    "@storybook/react-native-server": "^5.3.23",
+    "babel-loader": "^8.1.0"
+  },
+  "dependencies": {
+    "react-native-paper": "^4.2.0"
+  }
+}
