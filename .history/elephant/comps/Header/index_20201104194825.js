@@ -1,8 +1,7 @@
-import React from "react";
-import styled from "styled-components/native";
-import { View, Text } from "react-native";
+import React from 'react';
+import styled, {css} from 'styled-components';
 
-const HeadBox = styled.View`
+const HeadBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: left;
@@ -10,7 +9,7 @@ const HeadBox = styled.View`
     max-height: 45px;
 `;
 
-const HeadTitle = styled.Text`
+const HeadTitle = styled.h1`
     font-family: Quicksand;
     font-size: 36px;
     font-weight: bold;
@@ -24,11 +23,9 @@ const HeadTitle = styled.Text`
 `;
 
 const Header = ({color, highlight}) => {
-    return <View>
-        <HeadBox>
-            <HeadTitle color={color} highlight={highlight}>Favourite People</HeadTitle>
-        </HeadBox>
-    </View>
+    return <HeadBox>
+        <HeadTitle color={color} highlight={highlight}>Favourite People</HeadTitle>
+    </HeadBox>
 }
 
 Header.defaultProps = {
