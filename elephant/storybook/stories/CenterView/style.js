@@ -9,7 +9,7 @@ export default {
   },
   main: {
     flex: 1,
-    width: "90%",
+    width: "80%",
     height: "100%",
     justifyContent: 'center',
     alignItems: 'center',

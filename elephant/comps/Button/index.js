@@ -6,32 +6,48 @@ const ButtonContainer = styled.View`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    max-width: 128px;
-    min-height: 47px;  
+    width: 100%;
+    height: 100%;
+    max-height: 45px;
+    max-width: ${props=>props.maxwidth ? props.maxwidth : "150px"};
 `;
 
 const ButtonBox = styled.View`
-    background: ${props=>props.backgroundColor ? props.backgroundColor : "#6C8DC3"};
+    background-color: ${props=>props.backgroundColor};
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 128px;
-    min-height: 47px;  
     border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    
+
+`;
+
+const ButtonText = styled.Text`
+    font-size: 20px;
+    color: #fff;
 `;
 
 
-const Button = ({backgroundColor}) => {
-    return <View>
+const Button = ({BackgroundColor, MaxWidth, onClick, buttonText}) => {
+    return (
        <ButtonContainer>
-            <ButtonBox backgroundColor={backgroundColor}>
+            <ButtonBox
+            backgroundColor={BackgroundColor}
+            maxwidth={MaxWidth}
+            onClick={onClick}
+            >
+            <ButtonText>{buttonText}</ButtonText>
             </ButtonBox>
         </ButtonContainer>
-    </View>
+    )
 }
 
 Button.defaultProps = {
-    bgcolor: null,
+    BackgroundColor: "#5C80BC",
+    MaxWidth: "100px",
+    buttonText: "Button"
 }
 
 export default Button;

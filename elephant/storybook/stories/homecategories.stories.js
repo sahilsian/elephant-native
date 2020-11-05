@@ -1,11 +1,10 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import CenterView from './CenterView';
-import Button from '../../comps/Button';
+import Categories from '../../comps/HomeCategories'
 
-
-storiesOf('Form', module)
+storiesOf('Generic', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add('My Custom Button', () => (
-    <Button></Button>
+  .add('My Custom Home', () => (
+      <Categories></Categories>
   ))
