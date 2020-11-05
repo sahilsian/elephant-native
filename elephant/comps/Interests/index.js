@@ -20,6 +20,7 @@ const Container = styled.View`
   align-items: center;
 `;
 
+
 export const Interests = ({ width, text, bgcolor, color }) => {
   return (
     <Container color={color} width={width} bgcolor={bgcolor}>
