@@ -1,39 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components/native";
-import { View } from "react-native";
-
 
 const MessageContainer = styled.View`
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    max-width: 300px;
-    min-height: 100px;  
+    width: auto;
+    height: auto;
 `;
 
 const MessageBox = styled.View`
-    background: ${props=>props.backgroundColor ? props.backgroundColor : "#3D6FF1"};
+    background-color: ${props=>props.userBool ? "#5C80BC" : "#E1E1E1" };
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 255px;
-    height: 50px;
+    height: auto;
     border-radius: 5px;
     margin-top: 10px;
+    padding: 10px;
+
+`;
+
+//false means message of user chatting
+//true means incoming message
+
+const MessageText = styled.Text`
 `;
 
 
-const Message = ({backgroundColor}) => {
-    return <View>
+const Message = ({UserBool, text}) => {
+
+    const [user, SetUser] = useState(false)
+    return (
         <MessageContainer>
-            <MessageBox backgroundColor={backgroundColor}>
+            <MessageBox userBool={user}>
+                <MessageText textBool={user}>{text}</MessageText>
             </MessageBox>
         </MessageContainer>
-    </View>
+    )
 }
 
 Message.defaultProps = {
-    bgcolor: null,
+    text: "Hello I am an Elephant. I have four legs and"
 }
 
 export default Message;

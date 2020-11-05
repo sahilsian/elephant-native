@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { View, Text } from "react-native";
 
-const ButtonContainer = styled.View`
+const AuthLoginContainer = styled.View`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -14,7 +14,7 @@ const ButtonContainer = styled.View`
     
 `;
 
-const ButtonBox = styled.View`
+const AuthLoginBox = styled.View`
     background-color: ${props=>props.backgroundColor};
     display: flex;
     align-items: center;
@@ -33,31 +33,31 @@ const ButtonBox = styled.View`
 
 `;
 
-const ButtonText = styled.Text`
+const AuthLoginText = styled.Text`
     font-size: 20px;
     color: #fff;
 `;
 
 
-const Button = ({BackgroundColor, MaxWidth, onClick, buttonText, marginTop}) => {
+const AuthLogin = ({BackgroundColor, MaxWidth, onClick, AuthLoginText, marginTop}) => {
     return (
-       <ButtonContainer margintop={marginTop}>
-            <ButtonBox
+       <AuthLoginContainer margintop={marginTop}>
+            <AuthLoginBox
             backgroundColor={BackgroundColor}
             maxwidth={MaxWidth}
             onClick={onClick}
             >
-            <ButtonText>{buttonText}</ButtonText>
-            </ButtonBox>
-        </ButtonContainer>
+            <AuthLoginText>{AuthLoginText}</AuthLoginText>
+            </AuthLoginBox>
+        </AuthLoginContainer>
     )
 }
 
-Button.defaultProps = {
+AuthLogin.defaultProps = {
     BackgroundColor: "#5C80BC",
     MaxWidth: "100px",
-    buttonText: "Button",
+    AuthLoginText: "AuthLogin",
     marginTop: "5px"
 }
 
-export default Button;
+export default AuthLogin;

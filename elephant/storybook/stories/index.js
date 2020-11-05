@@ -5,4 +5,14 @@ import './contactform.stories';
 import './Button.stories';
 import './Divider.stories';
 import './Header.stories';
-import './homecategories.stories'
+import './homecategories.stories';
+import './interest.stories';
+import './Message.stories';
+import './MessageConnected.stories';
+import './navbar.stories';
+import './nextbutton.stories';
+import './samplestartoutpage.stories';
+import './applicantinfo.stories';
+import './customtextinput.stories';
+import './start.stories';
+import './welcome.stories';
