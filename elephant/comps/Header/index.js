@@ -1,35 +1,25 @@
-import React from "react";
-import styled from "styled-components/native";
+import React from 'react'
+import styled, { css } from 'styled-components/native';
 import { View, Text } from "react-native";
 
-const HeadBox = styled.View`
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    height: auto;
-`;
+const Head = styled.Text`
+font-family: Quicksand;
+font-weight: bold;
+font-size: 36px;
+color: black;
+`
 
-const HeadTitle = styled.Text`
-    font-size: 36px;
-    font-weight: bold;
-    color: ${props=>props.color ? props.color : "#000"};
-    ${props=>props.highlight === true && css`
-    background-color: #F5A;
-    `}
-`;
 
-const Header = ({color, highlight, text}) => {
+export const Header = ({text}) => {
     return <View>
-        <HeadBox>
-            <HeadTitle color={color} highlight={highlight}>{text}</HeadTitle>
-        </HeadBox>
+        <Head>
+            {text}
+        </Head>
     </View>
-}
+};
 
 Header.defaultProps = {
-    color: false,
-    highlight: false,
-    text: "Page Title"
+    text: "Header"
 }
 
-export default Header;
+export default Header
