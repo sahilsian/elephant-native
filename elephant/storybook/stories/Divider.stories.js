@@ -1,9 +1,10 @@
+import Divider from '../../comps/Divider';
+import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import Divider from '../comps/Divider';
+import CenterView from './CenterView';
 
-export default {
-    title: 'Example/Divider',
-    component: Divider
-};
-
-export const BasicDivider = () => <Divider text = "or"/>;
+storiesOf('Generic', module)
+  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
+  .add('My Custom Divider', () => (
+    <Divider></Divider>
+  ))

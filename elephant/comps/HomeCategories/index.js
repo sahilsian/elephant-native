@@ -4,33 +4,36 @@ import { View } from "react-native";
 
 const Container = styled.View`
   display: flex;
-  width: ${(props) => (props.width ? "160px" : "125px")};
-  height: 125px;
+  max-width: ${(props) => (props.maxwidth ? "160px" : "125px")};
+  width: 100%;
+  height: 100%;
+  max-height: 125px;
   background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
   border-radius: 10px;
-
-  font-family: Quicksand;
-  font-size: 26px;
-  font-weight: 400;
-  text-align: center;
-  color: ${(props) => (props.color ? "white" : "black")};
-
   justify-content: center;
   align-items: center;
 `;
 
-export const Categories = ({ width, text, bgcolor, color }) => {
+const HomeText = styled.Text`
+  text-align: center;
+  font-size: 26px;
+  font-weight: 400;
+  color: ${(props) => (props.color ? "white" : "black")};
+`;
+
+const Categories = ({ MaxWidth, text, BgColor, Color }) => {
   return (
-    <View>
-      <Container color={color} width={width} bgcolor={bgcolor}>
-        {text}
+      <Container maxwidth={MaxWidth} bgcolor={BgColor}>
+        <HomeText color={Color}>{text}</HomeText>
       </Container>
-    </View>
   );
 };
 
 Categories.defaultProps = {
-  // width: "125px",
+  MaxWidth: false,
+  BgColor: false,
+  Color: true,
+  text: "Interest"
 };
 
 export default Categories;
