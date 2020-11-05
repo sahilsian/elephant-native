@@ -21,6 +21,7 @@ const Container = styled.View`
 `;
 
 
+
 export const Interests = ({ width, text, bgcolor, color }) => {
   return (
     <Container color={color} width={width} bgcolor={bgcolor}>
