@@ -1,9 +1,10 @@
+import MessageConnected from '../../comps/MessageConnected';
 import React from 'react';
-import MessageConnected from '../comps/MessageConnected';
+import { storiesOf } from '@storybook/react-native';
+import CenterView from './CenterView';
 
-export default {
-  title: 'Example/MessageConnected',
-  component: MessageConnected
-};
-
-export const BasicMessageConnected = () => <MessageConnected />;
+storiesOf('Chat', module)
+  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
+  .add('My Custom Message Connected', () => (
+    <MessageConnected></MessageConnected>
+  ))

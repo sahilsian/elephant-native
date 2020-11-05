@@ -3,11 +3,10 @@ import styled, { css } from "styled-components/native";
 import { View } from "react-native";
 
 const Container = styled.View`
-  display: inline-flex;
-  width: 100%;
-  max-width: 200px;
-  padding: 10px;
-  background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
+  width: auto;
+  max-width: ${(props) => (props.maxwidth)};
+  padding: 8px 14px;
+  background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#AFD2E9")};
   border-radius: 10px;
 
   font-family: Quicksand;
@@ -20,18 +19,27 @@ const Container = styled.View`
   align-items: center;
 `;
 
+const InterestText = styled.Text`
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: ${(props) => (props.color ? "white" : "black")};
+`;
 
 
-export const Interests = ({ width, text, bgcolor, color }) => {
+const Interests = ({ maxWidth, text, bgColor, color }) => {
   return (
-    <Container color={color} width={width} bgcolor={bgcolor}>
-      {text}
+    <Container color={color} maxwidth={maxWidth} bgcolor={bgColor}>
+      <InterestText>{text}</InterestText>
     </Container>
   );
 };
 
 Interests.defaultProps = {
-  // width: "125px",
+  maxWidth: "200px",
+  text: "Sample Interest",
+  bgColor: false,
+  color: false
 };
 
 export default Interests;

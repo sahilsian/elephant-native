@@ -1,22 +1,16 @@
 import React from "react";
 import styled from "styled-components/native";
-import { View, Text } from "react-native";
 
-const MsgConnetedContainer = style.View`
+const MsgConnetedContainer = styled.View`
     display: flex;
-    align-items: center;
     max-width: 384px;
     max-height: 69px;
 `;
 
-const MsgConnetedTitle = style.Text`
-    text-align: center;
-    justify-content:center;
-    font-family: Roboto;
+const MsgConnetedTitle = styled.Text`
     font-size: 25px;
     line-height: 29px;
-    letter-spacing: 0.03em;
-    color: #FFFFFF;
+    color: #000000;
 `;
 
 const MsgConnectText = styled.Text`
@@ -26,23 +20,23 @@ const MsgConnectText = styled.Text`
     color: #000000;
 `;
 
-const ProfileIcon = style.View`
+const ProfileIcon = styled.View`
     width:40px;
     height: 40px;
 `;
 
 
-const MessageConnected = (title, text) => {
-    return <View>
+const MessageConnected = ({title, text}) => {
+    return (
         <MsgConnetedContainer>
-            <ProfileIcon src='/ProfileLogo.png' />
+            <ProfileIcon />
             <MsgConnetedTitle>{title}</MsgConnetedTitle>
             <MsgConnectText>{text}</MsgConnectText>
         </MsgConnetedContainer>
-    </View>
+    )
 }
 
-MessageConnected.defaultProps ={
+MessageConnected.defaultProps = {
     title: "Kai Erkle",
     text: "Photoshop Classes"
 }

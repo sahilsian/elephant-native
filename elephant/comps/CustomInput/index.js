@@ -5,10 +5,10 @@ const InputWrapper = styled.View`
   width: 100%;
   height: auto;
   background-color: #F5F5F5;
-  padding: 7px;
+  padding: 5px;
   padding-left: 0px;
   border-radius: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 `;
 
 const CInput = styled.TextInput`
@@ -56,7 +56,7 @@ const InputMiniTitle = styled.Text`
 
 const InputSubTitle = styled.Text`
   color: #b1b1b1;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 10px;
   margin-bottom: ${(props) => (props.subdisplay ? "8px" : "0px")};
   display: ${(props) => (props.subdisplay ? "flex" : "none")};
