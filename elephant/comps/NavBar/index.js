@@ -19,7 +19,7 @@ export const NavBar = ({}) => {
     <View>
       <MainDiv>
         hi
-        <Image src={('./NavBar/Home (2).png')} />
+        <Image source={require('./NavBar/Home (2).png')} />
         {/* <Image src="/Search (1).png"></Image>
         <Image src="/calender (1).png"></Image>
         <Image src="/Chat (1).png"></Image> */}
