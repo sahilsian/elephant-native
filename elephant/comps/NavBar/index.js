@@ -1,28 +1,31 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
-import { View, Image, AppRegistry } from "react-native";
-
-//in codesandbox I added the images to the same folder but still got an error
+import { View, Image } from "react-native";
 
 const MainDiv = styled.View`
   width: 400px;
   background-color: white;
   box-shadow: 2px 2px 5px gray;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 15px 0px 15px;
+  padding: 15px 15px 15px 15px;
+`;
+
+const Images = styled.Image`
+  width: 50;
+  height: 50;
 `;
 
 export const NavBar = ({}) => {
   return (
     <View>
       <MainDiv>
-        hi
-        <Image source={require('./NavBar/Home (2).png')} />
-        {/* <Image src="/Search (1).png"></Image>
-        <Image src="/calender (1).png"></Image>
-        <Image src="/Chat (1).png"></Image> */}
+        <Images source={require("./Home.png")} resizeMode="cover" />
+        <Images source={require("./Search.png")} resizeMode="cover" />
+        <Images source={require("./calender.png")} resizeMode="cover" />
+        <Images source={require("./Chat.png")} resizeMode="cover" />
       </MainDiv>
     </View>
   );
