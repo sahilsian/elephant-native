@@ -1,16 +1,15 @@
-import React from "react";
-import styled from "styled-components/native";
-import { View } from "react-native";
+import React from 'react';
+import styled from 'styled-components';
 
-const ProfileImg = styled.View`
+const ProfileImg = styled.img`
     width: 147px;
     height: 147px;
 `;
 
 const ProfileLogo = () => {
-    return <View>
+    return <div>
         <ProfileImg src="/ProfileLogo.png"></ProfileImg>
-    </View>
+    </div>
 }
 
 ProfileLogo.defaultProps = {

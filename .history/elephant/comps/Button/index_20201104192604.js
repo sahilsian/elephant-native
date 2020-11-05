@@ -1,8 +1,7 @@
-import React from "react";
-import styled from "styled-components/native";
-import { View, Text } from "react-native";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
-const ButtonContainer = styled.View`
+const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -10,7 +9,7 @@ const ButtonContainer = styled.View`
     min-height: 47px;  
 `;
 
-const ButtonBox = styled.View`
+const ButtonBox = styled.div`
     background: ${props=>props.backgroundColor ? props.backgroundColor : "#6C8DC3"};
     display: flex;
     align-items: center;
@@ -22,12 +21,10 @@ const ButtonBox = styled.View`
 
 
 const Button = ({backgroundColor}) => {
-    return <View>
-       <ButtonContainer>
-            <ButtonBox backgroundColor={backgroundColor}>
-            </ButtonBox>
-        </ButtonContainer>
-    </View>
+    return <ButtonContainer>
+        <ButtonBox backgroundColor={backgroundColor}>
+        </ButtonBox>
+    </ButtonContainer>
 }
 
 Button.defaultProps = {
