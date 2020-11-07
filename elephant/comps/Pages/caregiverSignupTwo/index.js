@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native';
 import NextButton from "../../NextButton"
 import CustomTextInput from "../../CustomTextInput"
 import WelcomeComp from "../../Welcome";
+import RadioButtons from "../../radioButtons";
 
 const Frame = styled.View`
   width: 100%;
@@ -36,10 +37,11 @@ const TextWrapper = styled.View`
 `;
 
 const FormWrapper = styled.View`
-  width: 100%;
+  width: 80%;
   flex-direction: column;
   margin-bottom: 10px;
-  align-items: center;
+  height: 70%;
+  justify-content: space-between;
 `;
 
 const TextTitle = styled.View`
@@ -57,14 +59,16 @@ const CaregiverSignupTwo = ({}) => {
                     <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
                 </TextWrapper>
                 <FormWrapper>
-                    <CustomInput 
-                    placeholder={"First Name"}
-                    >
-                    </CustomInput>
-                    <CustomInput 
-                    placeholder={"Last Name"}
-                    >
-                    </CustomInput>
+                <TextComp weight={"bold"} fontSize={"20px"} text={"Type of Disorder"}></TextComp>
+                    {/* map start */}
+                    <RadioButtons text={"Autism"}></RadioButtons>
+                    <RadioButtons text={"Down Syndrome"}></RadioButtons>
+                    <RadioButtons text={"ADD/ADHD"}></RadioButtons>
+                    <RadioButtons text={"Fragile X Syndrome"}></RadioButtons>
+                    <RadioButtons text={"Apert Syndrome"}></RadioButtons>
+                    <RadioButtons text={"Williams Syndrome"}></RadioButtons>
+                    <RadioButtons text={"Developmental Delays"}></RadioButtons>
+                    {/* map end */}
                 </FormWrapper>
               </TitleBody>
 
