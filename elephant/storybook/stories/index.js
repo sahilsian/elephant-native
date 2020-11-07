@@ -16,3 +16,8 @@ import './applicantinfo.stories';
 import './customtextinput.stories';
 import './start.stories';
 import './welcome.stories';
+import './login.stories';
+import './authlogin.stories';
+import './signupchoice.stories';
+import './educatorsignup.stories';
+import './caregiversignup.stories';

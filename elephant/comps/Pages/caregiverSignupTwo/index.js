@@ -5,6 +5,7 @@ import TextComp from "../../Text"
 import { ScrollView } from 'react-native';
 import NextButton from "../../NextButton"
 import CustomTextInput from "../../CustomTextInput"
+import WelcomeComp from "../../Welcome";
 
 const Frame = styled.View`
   width: 100%;
@@ -31,7 +32,7 @@ const TitleBody = styled.View`
 const TextWrapper = styled.View`
   width: 100%;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const FormWrapper = styled.View`
@@ -41,7 +42,12 @@ const FormWrapper = styled.View`
   align-items: center;
 `;
 
-const ApplicantInfo = ({}) => {
+const TextTitle = styled.View`
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+`;
+const CaregiverSignupTwo = ({}) => {
   return (
 
         <Frame>
@@ -51,17 +57,14 @@ const ApplicantInfo = ({}) => {
                     <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
                 </TextWrapper>
                 <FormWrapper>
-                    <CustomTextInput 
-                    MiniTitle={"Tell us about them! "}
-                    MiniSeperation={true}
-                    Seperation={true}
-                    TitleDisplay={true}
-                    SubDisplay={true}
-                    placeholder={"Who are they? what are they like?"}
-                    subtext={"(The more you can tell us the better!)"}
+                    <CustomInput 
+                    placeholder={"First Name"}
                     >
-
-                    </CustomTextInput>
+                    </CustomInput>
+                    <CustomInput 
+                    placeholder={"Last Name"}
+                    >
+                    </CustomInput>
                 </FormWrapper>
               </TitleBody>
 
@@ -73,6 +76,6 @@ const ApplicantInfo = ({}) => {
   );
 };
 
-ApplicantInfo.defaultProps = {};
+CaregiverSignupTwo.defaultProps = {};
 
-export default ApplicantInfo;
+export default CaregiverSignupTwo;

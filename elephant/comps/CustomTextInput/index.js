@@ -7,7 +7,7 @@ const TextyInput = styled.TextInput`
   border: none;
   padding-bottom: 50px;
   color: #000;
-  font-size: 12px;
+  font-size: 16px;
   &:focus {
     outline: none;
     border: none;

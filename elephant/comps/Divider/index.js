@@ -10,8 +10,9 @@ const DividerContainer = styled.View`
     max-height: 20px;
     max-width: ${props=>props.maxwidth};
     flex-direction: row;
-`;
-
+    margin: 15px 0;
+    opacity: 0.3;
+`
 const DividerLine = styled.View`
     border-bottom-width: 1px;
     border-bottom-color: #000000;
