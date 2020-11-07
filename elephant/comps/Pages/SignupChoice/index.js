@@ -21,7 +21,7 @@ const Frame = styled.View`
 const FullWrapper = styled.View`
   width: 80%;
   flex-direction: column;
-  height: 85%;
+  height: 70%;
   align-items: center;
   justify-content: space-between;
 
@@ -30,26 +30,24 @@ const FullWrapper = styled.View`
 const GenericWrapper = styled.View`
   width: 100%;
   align-items: center;
+  height: ${props=>props.height ? props.height: "40%"};
+  justify-content: space-between;
 `;
 
-const Login = ({}) => {
+const SignupChoice = ({}) => {
   return (
 
       <Frame>
         <FullWrapper>
-          <GenericWrapper>
+          <GenericWrapper  height={"auto"}>
             <ElephantLogo Size={"150px"}></ElephantLogo>
-            <WelcomeComp fontSize={"48px"} Display={true} />
+            <WelcomeComp main={"Are you an"} fontSize={"48px"} Display={true} />
           </GenericWrapper>
-          <AuthLogin />
-          <Divider MaxWidth={"138px"} />
-          <GenericWrapper>
-            <CustomInput placeholder={"Username"}/>
-            <CustomInput placeholder={"Password"}/>
+          <GenericWrapper height={"45%"}>
+          <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Educator"} />
+          <TextComp text={"or"} fontSize={"28px"} />
+          <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Caregiver"} />
           </GenericWrapper>
-          <Button buttonText={"Login"} />
-          <TextComp Margin={"20px"} text={"Don’t have an account?"}></TextComp>
-          <Button buttonText={"Sign Up"} />
         </FullWrapper>
       </Frame>
 
@@ -57,6 +55,6 @@ const Login = ({}) => {
   );
 };
 
-Login.defaultProps = {};
+SignupChoice.defaultProps = {};
 
-export default Login;
+export default SignupChoice;

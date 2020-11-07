@@ -9,7 +9,6 @@ const AuthLoginContainer = styled.View`
     width: 100%;
     height: 100%;
     max-height: 45px;
-    max-width: ${props=>props.maxwidth ? props.maxwidth : "150px"};
     margin-top: ${props=>props.margintop};
     
 `;
@@ -30,7 +29,7 @@ const AuthLoginBox = styled.View`
     shadowOpacity: 0.27;
     shadowRadius: 4.65;
     elevation: 6;
-
+    position: relative;
 `;
 
 const AuthLoginText = styled.Text`
@@ -38,8 +37,25 @@ const AuthLoginText = styled.Text`
     color: #fff;
 `;
 
+const GoogleIconWrapper = styled.View`
+    height: 35px;
+    width: 35px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 8;
+    top: 5;
+    background-color: #fff;
+    border-radius: 100px;
+`;
 
-const AuthLogin = ({BackgroundColor, MaxWidth, onClick, AuthLoginText, marginTop}) => {
+const GoogleIcon = styled.Image`
+    width: 20px;
+    height: 20px;
+`;
+
+
+const AuthLogin = ({BackgroundColor, MaxWidth, onClick, LoginText, marginTop}) => {
     return (
        <AuthLoginContainer margintop={marginTop}>
             <AuthLoginBox
@@ -47,16 +63,19 @@ const AuthLogin = ({BackgroundColor, MaxWidth, onClick, AuthLoginText, marginTop
             maxwidth={MaxWidth}
             onClick={onClick}
             >
-            <AuthLoginText>{AuthLoginText}</AuthLoginText>
+            <AuthLoginText>{LoginText}</AuthLoginText>
+            <GoogleIconWrapper>
+                <GoogleIcon source={require("../../assets/googleIcon.png")}></GoogleIcon>
+            </GoogleIconWrapper>
             </AuthLoginBox>
         </AuthLoginContainer>
     )
 }
 
 AuthLogin.defaultProps = {
-    BackgroundColor: "#5C80BC",
+    BackgroundColor: "#4285F4",
     MaxWidth: "100px",
-    AuthLoginText: "AuthLogin",
+    LoginText: "Login with Google",
     marginTop: "5px"
 }
 

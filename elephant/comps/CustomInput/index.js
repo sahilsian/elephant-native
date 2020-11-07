@@ -18,6 +18,7 @@ const CInput = styled.TextInput`
   color: #292c42;
   font-weight: 400;
   font-size: 18px;
+  height: 40px;
   &::placeholder {
     font-weight: 500;
     color: #dce0fb;

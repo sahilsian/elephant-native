@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import FullView from './FullView';
-import Login from '../../comps/Pages/Login';
+import CaregiverSignupTwo from '../../comps/Pages/caregiverSignupTwo';
 
 storiesOf('Pages', module)
   .addDecorator((getStory) => <FullView>{getStory()}</FullView>)
-  .add('My Custom Login', () => (
-    <Login></Login>
+  .add('My Custom Caregiver Signup 2', () => (
+    <CaregiverSignupTwo></CaregiverSignupTwo>
   ))

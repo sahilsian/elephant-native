@@ -8,7 +8,7 @@ const ButtonContainer = styled.View`
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
-    max-height: 45px;
+    max-height: ${props=>props.maxheight ? props.maxheight : "45px"};
     max-width: ${props=>props.maxwidth ? props.maxwidth : "150px"};
     margin-top: ${props=>props.margintop};
     
@@ -34,20 +34,21 @@ const ButtonBox = styled.View`
 `;
 
 const ButtonText = styled.Text`
-    font-size: 20px;
+    font-size: ${props=>props.textsize ? props.textsize : "20px"};
     color: #fff;
 `;
 
 
-const Button = ({BackgroundColor, MaxWidth, onClick, buttonText, marginTop}) => {
+const Button = ({BackgroundColor, maxHeight, MaxWidth, onClick, buttonText, marginTop, fontSize}) => {
     return (
-       <ButtonContainer margintop={marginTop}>
+       <ButtonContainer margintop={marginTop} 
+       maxheight={maxHeight} maxwidth={MaxWidth}>
             <ButtonBox
             backgroundColor={BackgroundColor}
-            maxwidth={MaxWidth}
+           
             onClick={onClick}
             >
-            <ButtonText>{buttonText}</ButtonText>
+            <ButtonText textsize={fontSize}>{buttonText}</ButtonText>
             </ButtonBox>
         </ButtonContainer>
     )
@@ -57,7 +58,8 @@ Button.defaultProps = {
     BackgroundColor: "#5C80BC",
     MaxWidth: "100px",
     buttonText: "Button",
-    marginTop: "5px"
+    marginTop: "5px",
+    fontSize: "20px"
 }
 
 export default Button;

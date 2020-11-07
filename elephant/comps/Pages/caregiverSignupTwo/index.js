@@ -5,6 +5,8 @@ import TextComp from "../../Text"
 import { ScrollView } from 'react-native';
 import NextButton from "../../NextButton"
 import CustomTextInput from "../../CustomTextInput"
+import WelcomeComp from "../../Welcome";
+import RadioButtons from "../../radioButtons";
 
 const Frame = styled.View`
   width: 100%;
@@ -31,17 +33,23 @@ const TitleBody = styled.View`
 const TextWrapper = styled.View`
   width: 100%;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const FormWrapper = styled.View`
-  width: 100%;
+  width: 80%;
   flex-direction: column;
   margin-bottom: 10px;
-  align-items: center;
+  height: 70%;
+  justify-content: space-between;
 `;
 
-const ApplicantInfo = ({}) => {
+const TextTitle = styled.View`
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+`;
+const CaregiverSignupTwo = ({}) => {
   return (
 
         <Frame>
@@ -51,17 +59,16 @@ const ApplicantInfo = ({}) => {
                     <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
                 </TextWrapper>
                 <FormWrapper>
-                    <CustomTextInput 
-                    MiniTitle={"Tell us about them! "}
-                    MiniSeperation={true}
-                    Seperation={true}
-                    TitleDisplay={true}
-                    SubDisplay={true}
-                    placeholder={"Who are they? what are they like?"}
-                    subtext={"(The more you can tell us the better!)"}
-                    >
-
-                    </CustomTextInput>
+                <TextComp weight={"bold"} fontSize={"20px"} text={"Type of Disorder"}></TextComp>
+                    {/* map start */}
+                    <RadioButtons text={"Autism"}></RadioButtons>
+                    <RadioButtons text={"Down Syndrome"}></RadioButtons>
+                    <RadioButtons text={"ADD/ADHD"}></RadioButtons>
+                    <RadioButtons text={"Fragile X Syndrome"}></RadioButtons>
+                    <RadioButtons text={"Apert Syndrome"}></RadioButtons>
+                    <RadioButtons text={"Williams Syndrome"}></RadioButtons>
+                    <RadioButtons text={"Developmental Delays"}></RadioButtons>
+                    {/* map end */}
                 </FormWrapper>
               </TitleBody>
 
@@ -73,6 +80,6 @@ const ApplicantInfo = ({}) => {
   );
 };
 
-ApplicantInfo.defaultProps = {};
+CaregiverSignupTwo.defaultProps = {};
 
-export default ApplicantInfo;
+export default CaregiverSignupTwo;

@@ -3,42 +3,40 @@ import styled from "styled-components/native";
 import Button from '../../Button'
 import WelcomeComp from "../../Welcome";
 import { Image } from "react-native";
+import ElephantLogo from "../../Logo";
 
 const Frame = styled.View`
   width: 100%;
+  height: 100%;
+  justify-content: center;
   align-items: center;
-  padding-bottom: 50px;
-  padding-top: 50px;
+
 `;
 
 const FullWrapper = styled.View`
   width: 90%;
-  height: 60%;
-  justify-content: space-between;
-  align-items: center;
   flex-direction: column;
+  height: 70%;
+  align-items: center;
+  justify-content: space-between;
+
 `;
 
-const TextWrapper = styled.View`
+const TitleBody = styled.View`
+  align-items: center;
   width: 100%;
-  justify-content: flex-end;
-  margin-bottom: 20px;
-`;
-
-const Elephant = styled.Image`
-    width: 100%;
-    height: 100%;
-    max-width: 200px;
-    max-height: 200px;
 `;
 
 const Start = ({}) => {
   return (
       <Frame>
       <FullWrapper>
-          <Elephant source={require("../../../assets/elephant.png")}></Elephant>
+          <TitleBody>
+          <ElephantLogo></ElephantLogo>
           <WelcomeComp></WelcomeComp>
+          </TitleBody>
           <Button marginTop={"40px"} buttonText={"Start"}></Button>
+          
       </FullWrapper>
       </Frame>
 
