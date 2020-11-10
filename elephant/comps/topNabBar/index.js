@@ -7,7 +7,7 @@ const MainDiv = styled.View`
   width: 100%;
   height: 100%;
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   max-height: 68px;
@@ -23,18 +23,20 @@ const MainDiv = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
-const NavBar = ({}) => {
+const Img = styled.Image`
+  margin: 0px 20px;
+`;
+
+const TopNavBar = ({}) => {
   return (
       <MainDiv>
-        <Image source={require('../../assets/Home.png')} />
-        <Image source={require('../../assets/Search.png')}></Image>
-        <Image source={require('../../assets/calender.png')}></Image>
-        <Image source={require('../../assets/Chat.png')}></Image>
+        <Img source={require('../../assets/settings.png')} />
+        <Img source={require('../../assets/User.png')} />
       </MainDiv>
   );
 };
 
-export default NavBar;
+export default TopNavBar;
