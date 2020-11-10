@@ -8,8 +8,10 @@ const ButtonContainer = styled.View`
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
-    max-height: 45px;
+    max-height: ${props=>props.maxheight ? props.maxheight : "45px"};
     max-width: ${props=>props.maxwidth ? props.maxwidth : "150px"};
+    margin-top: ${props=>props.margintop};
+    
 `;
 
 const ButtonBox = styled.View`
@@ -20,25 +22,33 @@ const ButtonBox = styled.View`
     border-radius: 5px;
     width: 100%;
     height: 100%;
-    
+    shadowColor: #000;
+    shadowOffset: {
+        width: 0;
+        height: 3;
+    }
+    shadowOpacity: 0.27;
+    shadowRadius: 4.65;
+    elevation: 6;
 
 `;
 
 const ButtonText = styled.Text`
-    font-size: 20px;
+    font-size: ${props=>props.textsize ? props.textsize : "20px"};
     color: #fff;
 `;
 
 
-const Button = ({BackgroundColor, MaxWidth, onClick, buttonText}) => {
+const Button = ({BackgroundColor, maxHeight, MaxWidth, onClick, buttonText, marginTop, fontSize}) => {
     return (
-       <ButtonContainer>
+       <ButtonContainer margintop={marginTop} 
+       maxheight={maxHeight} maxwidth={MaxWidth}>
             <ButtonBox
             backgroundColor={BackgroundColor}
-            maxwidth={MaxWidth}
+           
             onClick={onClick}
             >
-            <ButtonText>{buttonText}</ButtonText>
+            <ButtonText textsize={fontSize}>{buttonText}</ButtonText>
             </ButtonBox>
         </ButtonContainer>
     )
@@ -47,7 +57,9 @@ const Button = ({BackgroundColor, MaxWidth, onClick, buttonText}) => {
 Button.defaultProps = {
     BackgroundColor: "#5C80BC",
     MaxWidth: "100px",
-    buttonText: "Button"
+    buttonText: "Button",
+    marginTop: "5px",
+    fontSize: "20px"
 }
 
 export default Button;

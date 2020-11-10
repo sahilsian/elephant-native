@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import CenterView from './CenterView';
-import Categories from '../../comps/Categories'
+import CustomTextInput from '../../comps/CustomTextInput'
 
-storiesOf('Generic', module)
+storiesOf('Form', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add('My Custom Home', () => (
-      <Categories></Categories>
+  .add('My Custom TextInput', () => (
+    <CustomTextInput></CustomTextInput>
   ))

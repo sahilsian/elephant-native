@@ -3,22 +3,24 @@ import styled, { css } from "styled-components/native";
 import { View, Text } from "react-native";
 
 const P = styled.Text`
-  font-family: Quicksand;
-  font-weight: lighter;
-  font-size: 18px;
-  colour: black;
+  font-size: ${props=>props.fontsize ? props.fontsize : "16px"};
+  color: #000;
+  margin-top: ${props=>props.textmargin};
+  font-weight: ${props=>props.fontweight ? props.fontweight : "normal"};
 `;
 
-export const Bio = ({ text }) => {
+const TextComp = ({ text, fontSize, Margin, weight }) => {
   return (
     <View>
-      <P>{text}</P>
+      <P textmargin={Margin} fontweight={weight} fontsize={fontSize}>{text}</P>
     </View>
   );
 };
 
-Bio.defaultProps = {
-  text: "bio"
+TextComp.defaultProps = {
+  text: "This is a Sample Text Paragraph.",
+  Margin: "0px",
+  weight: false
 };
 
-export default Bio;
+export default TextComp;
