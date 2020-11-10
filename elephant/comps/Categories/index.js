@@ -19,10 +19,11 @@ const Container = styled.View`
   height: 100%;
   max-height: 125px;
   background-color: ${(props) => props.theme.bgcolor}; 
-  // background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
+  background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
   border-radius: 10px;
   justify-content: center;
   align-items: center;
+  margin: 10px 0px;
 `;
 
 //default color of container
@@ -49,8 +50,7 @@ Categories.defaultProps = {
   MaxWidth: false,
   BgColor: false,
   Color: true,
-  text: "Interest",
-  theme
+  text: "Interest"
 
 };
 
