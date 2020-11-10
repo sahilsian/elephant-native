@@ -18,7 +18,7 @@ const MainDiv = styled.View`
   }
   shadowOpacity: 0.58;
   shadowRadius: 16.00;
-  elevation: 24;
+  elevation: ${props=>props.shadow ? "24" : "0"};
   background-color: #fff;
   display: flex;
   flex-direction: row;
@@ -30,9 +30,9 @@ const Img = styled.Image`
   margin: 0px 20px;
 `;
 
-const TopNavBar = ({}) => {
+const TopNavBar = ({Shadow}) => {
   return (
-      <MainDiv>
+      <MainDiv shadow={Shadow}>
         <Img source={require('../../assets/settings.png')} />
         <Img source={require('../../assets/User.png')} />
       </MainDiv>

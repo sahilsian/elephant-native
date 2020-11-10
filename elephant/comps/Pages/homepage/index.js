@@ -6,6 +6,7 @@ import { ScrollView, View } from 'react-native';
 import NextButton from "../../NextButton"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
+import Categories from "../../Categories";
 
 const Frame = styled.View`
   width: 100%;
@@ -20,28 +21,35 @@ const Content = styled.View`
     height: 82%;
 `;
 
-const Test = styled.View`
-    width: 60px;
-    height: 60px;
-    background-color: #fad;
-    margin: 2px;
-`;
-
 const ScrollDiv = styled.ScrollView`
     width: 100%;
     height: 100%;
+    flex: 1;
+
 `;
 
 const ScrollContainer = styled.View`
     width: 100%;
     height: 100%;
     align-items: center;
+    justify-content: center;
+
 `;
 
+const HomeCategories = styled.View`
+    width: 80%;
+    height: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+`;
 
-const MainTemplate = ({}) => {
+const HomePage = ({}) => {
 
     const [shadow, setShadow] = useState(false)
+
+    //setup rendering here, only one cube will be visible. When array for interests
+    // in api is mapped, more items will be shown.
 
   return (
     <Frame>
@@ -49,9 +57,17 @@ const MainTemplate = ({}) => {
     <NavBar></NavBar>   
 
         <Content>
-            <ScrollDiv contentContainerStyle={{flexGrow: 1}} style={{width: "100%", height: "100%"}}>
-                <ScrollContainer>
-    
+            <ScrollDiv  contentContainerStyle={{flexGrow: 1}} style={{width: "100%", height: "100%"}}>
+                <ScrollContainer >
+                    <HomeCategories>
+                        <Categories></Categories>
+                        <Categories></Categories>
+                        <Categories></Categories>
+                        <Categories></Categories>
+                        <Categories></Categories>
+                        <Categories></Categories>
+
+                    </HomeCategories>
                 </ScrollContainer>
             </ScrollDiv>
         </Content>
@@ -63,6 +79,6 @@ const MainTemplate = ({}) => {
   );
 };
 
-MainTemplate.defaultProps = {};
+HomePage.defaultProps = {};
 
-export default MainTemplate;
+export default HomePage;
