@@ -23,3 +23,5 @@ import './educatorsignup.stories';
 import './caregiversignup.stories';
 import './radiobuttons.stories';
 import './caregiversignuptwo.stories';
+import './topnavbar.stories';
+import './maintemplate.stories';
