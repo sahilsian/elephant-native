@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
-
 import { View, Text, Image} from "react-native";
 
 
@@ -8,7 +7,7 @@ const MainDiv = styled.View`
   width: 100%;
   height: 100%;
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   max-height: 68px;
@@ -19,25 +18,27 @@ const MainDiv = styled.View`
   }
   shadowOpacity: 0.58;
   shadowRadius: 16.00;
-  elevation: 24;
+  elevation: ${props=>props.shadow ? "24" : "0"};
   background-color: #fff;
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  justify-content: space-around;
+  justify-content: space-between;
+  border-bottom-width: 1px;
+  border-bottom-color: #eee;
 `;
 
-const NavBar = ({}) => {
-  return (
-      <MainDiv>
+const Img = styled.Image`
+  margin: 0px 20px;
+`;
 
-        <Image source={require('../../assets/Home.png')} />
-        <Image source={require('../../assets/Search.png')}></Image>
-        <Image source={require('../../assets/calender.png')}></Image>
-        <Image source={require('../../assets/Chat.png')}></Image>
+const TopNavBar = ({Shadow}) => {
+  return (
+      <MainDiv shadow={Shadow}>
+        <Img source={require('../../assets/settings.png')} />
+        <Img source={require('../../assets/User.png')} />
       </MainDiv>
   );
 };
 
-export default NavBar;
+export default TopNavBar;

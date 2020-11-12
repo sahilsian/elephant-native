@@ -20,6 +20,20 @@ const DividerLine = styled.View`
     margin-bottom: 6.5px;
 `;
 
+<<<<<<< HEAD
+const DividerLine = styled.View`
+    text-align: center;
+    width: 208px;
+    border: 1px solid #000000;
+`;
+
+const Divider = ({ title }) => {
+    return <View>
+        <DividerContainer>
+            <DividerLine></DividerLine>
+        </DividerContainer>
+    </View>
+=======
 const MiddleText = styled.Text`
     margin: 0px 10px;
     font-size: 16px;
@@ -35,6 +49,7 @@ const Divider = ({ title, MaxWidth }) => {
             <DividerLine></DividerLine>
         </DividerContainer>
     )
+>>>>>>> 54e9e328cecf5dfd47ffab279cafce6deda02757
 }
 
 Divider.defaultProps = {
