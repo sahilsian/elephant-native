@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
+
 import { View, Text, Image} from "react-native";
 
 
@@ -23,12 +24,14 @@ const MainDiv = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
+
   justify-content: space-around;
 `;
 
 const NavBar = ({}) => {
   return (
       <MainDiv>
+
         <Image source={require('../../assets/Home.png')} />
         <Image source={require('../../assets/Search.png')}></Image>
         <Image source={require('../../assets/calender.png')}></Image>
