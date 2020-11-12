@@ -1,10 +1,10 @@
 import React from 'react';
-import Message from '../comps/Message';
+import Message from '../../comps/Message';
+import { storiesOf } from '@storybook/react-native';
+import CenterView from './CenterView';
 
-export default {
-  title: 'Example/Message',
-  component: Message
-};
-
-export const Message1 = () => <Message backgroundColor={'#5C80BC'} />;
-export const Message2 = () => <Message backgroundColor={'#E1E1E1'} />;
+storiesOf('Chat', module)
+  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
+  .add('My Custom Message', () => (
+    <Message></Message>
+  ))

@@ -1,9 +1,11 @@
+import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import Button from '../comps/Button';
+import CenterView from './CenterView';
+import Button from '../../comps/Button';
 
-export default {
-  title: 'Example/Button',
-  component: Button
-};
 
-export const BasicButton = () => <Button backgroundColor={'#6C8DC3'}/>;
+storiesOf('Form', module)
+  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
+  .add('My Custom Button', () => (
+    <Button></Button>
+  ))

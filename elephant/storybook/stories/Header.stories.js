@@ -1,9 +1,10 @@
+import { storiesOf } from '@storybook/react-native';
 import React from 'react';
-import Header from '../comps/Header';
+import CenterView from './CenterView';
+import Header from '../../comps/Header';
 
-export default {
-  title: 'Example/Header',
-  component: Header
-};
-
-export const BasicHeader = () => <Header />; 
+storiesOf('Text', module)
+  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
+  .add('My Custom Header', () => (
+    <Header></Header>
+  ))

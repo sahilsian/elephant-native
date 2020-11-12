@@ -12,6 +12,8 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@react-navigation/native": "^5.8.6",
+    "@react-navigation/stack": "^5.12.3",
     "react": "16.13.1",
     "react-native": "0.63.3",
     "styled-components": "^5.2.0"
