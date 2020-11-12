@@ -8,40 +8,26 @@ import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
 import Categories from "../../Categories";
 
-const Frame = styled.View`
-  width: 100%;
-  align-items: center;
-  position: relative;
-  height: 100%;
-  justify-content: center;
-`;
-
-const Content = styled.View`
+const Container = styled.View`
     width: 100%;
-    height: 82%;
-`;
-
-const ScrollDiv = styled.ScrollView`
-    width: 100%;
-    height: 100%;
-    flex: 1;
-
-`;
-
-const ScrollContainer = styled.View`
-    width: 100%;
-    height: 100%;
     align-items: center;
     justify-content: center;
-
+    position: relative;
+    flex: 1;
 `;
 
-const HomeCategories = styled.View`
+const AdjustedWidth = styled.View`
+    width: 100%;
+    flex: 0.81;
+`;
+
+const ItemContainer = styled.View`
     width: 80%;
-    height: 100%;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
+    flex: 1;
+    alignItems: center;
+    flexDirection: row;
+    flexWrap: wrap;
+    justifyContent: space-around;
 `;
 
 const HomePage = ({}) => {
@@ -52,30 +38,36 @@ const HomePage = ({}) => {
     // in api is mapped, more items will be shown.
 
   return (
-    <Frame>
-    <TopNavBar Shadow={shadow}></TopNavBar>
-    <NavBar></NavBar>   
+    <Container>
+        <TopNavBar Shadow={shadow}></TopNavBar>
+        <NavBar></NavBar>   
 
-        <Content>
-            <ScrollDiv  contentContainerStyle={{flexGrow: 1}} style={{width: "100%", height: "100%"}}>
-                <ScrollContainer >
-                    <HomeCategories>
-                        <Categories></Categories>
-                        <Categories></Categories>
-                        <Categories></Categories>
-                        <Categories></Categories>
-                        <Categories></Categories>
-                        <Categories></Categories>
+        <AdjustedWidth >
+            <ScrollView
+                contentContainerStyle={{
+                    alignItems:"center"
+                }}
+                style={{
+                    width: "100%",
+                }}
+                >
+                
+                <ItemContainer>
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                </ItemContainer>
+            </ScrollView>
+        </AdjustedWidth>
 
-                    </HomeCategories>
-                </ScrollContainer>
-            </ScrollDiv>
-        </Content>
-
-    </Frame>
-
-
-
+    </Container>
   );
 };
 

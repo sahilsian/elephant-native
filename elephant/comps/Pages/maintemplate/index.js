@@ -7,56 +7,53 @@ import NextButton from "../../NextButton"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
 
-const Frame = styled.View`
-  width: 100%;
-  align-items: center;
-  position: relative;
-  height: 100%;
-  justify-content: center;
-`;
-
-const Content = styled.View`
+const Container = styled.View`
     width: 100%;
-    height: 82%;
-`;
-
-const Test = styled.View`
-    width: 60px;
-    height: 60px;
-    background-color: #fad;
-    margin: 2px;
-`;
-
-const ScrollDiv = styled.ScrollView`
-    width: 100%;
-    height: 100%;
-`;
-
-const ScrollContainer = styled.View`
-    width: 100%;
-    height: 100%;
     align-items: center;
+    justify-content: center;
+    position: relative;
+    flex: 1;
 `;
 
+const AdjustedWidth = styled.View`
+    width: 100%;
+    flex: 0.81;
+`;
+
+const ItemContainer = styled.View`
+    width: 80%;
+    flex: 1;
+    alignItems: center;
+    flexDirection: row;
+    flexWrap: wrap;
+    justifyContent: space-around;
+`;
 
 const MainTemplate = ({}) => {
 
     const [shadow, setShadow] = useState(false)
 
   return (
-    <Frame>
-    <TopNavBar Shadow={shadow}></TopNavBar>
-    <NavBar></NavBar>   
+    <Container>
+        <TopNavBar Shadow={shadow}></TopNavBar>
+        <NavBar></NavBar>   
 
-        <Content>
-            <ScrollDiv contentContainerStyle={{flexGrow: 1}} style={{width: "100%", height: "100%"}}>
-                <ScrollContainer>
-    
-                </ScrollContainer>
-            </ScrollDiv>
-        </Content>
+        <AdjustedWidth >
+            <ScrollView
+                contentContainerStyle={{
+                    alignItems:"center"
+                }}
+                style={{
+                    width: "100%",
+                }}
+                >
+                
+                <ItemContainer>
+                </ItemContainer>
+            </ScrollView>
+        </AdjustedWidth>
 
-    </Frame>
+    </Container>
 
 
 

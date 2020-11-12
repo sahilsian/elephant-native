@@ -24,6 +24,8 @@ const MainDiv = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  border-bottom-width: 1px;
+  border-bottom-color: #eee;
 `;
 
 const Img = styled.Image`
