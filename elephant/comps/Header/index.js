@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import styled from "styled-components/native";
 import { View, Text } from "react-native";
@@ -31,27 +30,6 @@ const Header = ({color, highlight}) => {
         </HeadBox>
     </View>
 }
-=======
-import React from 'react'
-import styled, { css } from 'styled-components/native';
-import { View, Text } from "react-native";
-
-const Head = styled.Text`
-font-family: Quicksand;
-font-weight: bold;
-font-size: 36px;
-color: black;
-`
-
-
-export const Header = ({text}) => {
-    return <View>
-        <Head>
-            {text}
-        </Head>
-    </View>
-};
->>>>>>> 54e9e328cecf5dfd47ffab279cafce6deda02757
 
 Header.defaultProps = {
     text: "Header"
