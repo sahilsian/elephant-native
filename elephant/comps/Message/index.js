@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-import React from "react";
-import styled from "styled-components/native";
 import { View } from "react-native";
-
-
-=======
 import React, {useState} from "react";
 import styled from "styled-components/native";
 
->>>>>>> 54e9e328cecf5dfd47ffab279cafce6deda02757
 const MessageContainer = styled.View`
     display: flex;
     flex-direction: column;
@@ -17,11 +10,7 @@ const MessageContainer = styled.View`
 `;
 
 const MessageBox = styled.View`
-<<<<<<< HEAD
-    background: ${props=>props.backgroundColor ? props.backgroundColor : "#3D6FF1"};
-=======
     background-color: ${props=>props.userBool ? "#5C80BC" : "#E1E1E1" };
->>>>>>> 54e9e328cecf5dfd47ffab279cafce6deda02757
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,15 +28,6 @@ const MessageText = styled.Text`
 `;
 
 
-<<<<<<< HEAD
-const Message = ({backgroundColor}) => {
-    return <View>
-        <MessageContainer>
-            <MessageBox backgroundColor={backgroundColor}>
-            </MessageBox>
-        </MessageContainer>
-    </View>
-=======
 const Message = ({UserBool, text}) => {
 
     const [user, SetUser] = useState(false)
@@ -58,7 +38,6 @@ const Message = ({UserBool, text}) => {
             </MessageBox>
         </MessageContainer>
     )
->>>>>>> 54e9e328cecf5dfd47ffab279cafce6deda02757
 }
 
 Message.defaultProps = {

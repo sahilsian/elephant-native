@@ -15,11 +15,7 @@ const ButtonContainer = styled.View`
 `;
 
 const ButtonBox = styled.View`
-<<<<<<< HEAD
     background: ${props=>props.backgroundColor ? props.backgroundColor : "#6C8DC3"};
-=======
-    background-color: ${props=>props.backgroundColor};
->>>>>>> 54e9e328cecf5dfd47ffab279cafce6deda02757
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,15 +39,7 @@ const ButtonText = styled.Text`
 `;
 
 
-<<<<<<< HEAD
-const Button = ({backgroundColor}) => {
-    return <View>
-       <ButtonContainer>
-            <ButtonBox backgroundColor={backgroundColor}>
-            </ButtonBox>
-        </ButtonContainer>
-    </View>
-=======
+
 const Button = ({BackgroundColor, maxHeight, MaxWidth, onClick, buttonText, marginTop, fontSize}) => {
     return (
        <ButtonContainer margintop={marginTop} 
@@ -65,7 +53,6 @@ const Button = ({BackgroundColor, maxHeight, MaxWidth, onClick, buttonText, marg
             </ButtonBox>
         </ButtonContainer>
     )
->>>>>>> 54e9e328cecf5dfd47ffab279cafce6deda02757
 }
 
 Button.defaultProps = {
