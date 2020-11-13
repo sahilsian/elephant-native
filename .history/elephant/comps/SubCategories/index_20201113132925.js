@@ -46,19 +46,8 @@ const theme = {
 export const SubCategories = ({ text, theme, color }) => {
   return (
     <View>
-      <Head>Outdoor Activities</Head>
       <Container color={color} theme={theme}>
-        <Interests>Fishing</Interests>
-        <Interests>Kayaking</Interests>
-        <Interests>Biking</Interests>
-        <Interests>Hiking</Interests>
-        <Interests>Paddling</Interests>
-        <Interests>Camping</Interests>
-        <Interests>Beach Combing</Interests>
-        <Interests>Nature Walks</Interests>
-        <Interests>Gardening</Interests>
-        <Interests>Geocaching</Interests>
-        <Interests>Hunting</Interests>
+        <Head>Outdoor Activities</Head>
         {text}
       </Container>
     </View>

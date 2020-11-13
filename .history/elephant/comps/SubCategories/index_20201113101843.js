@@ -30,14 +30,6 @@ const Container = styled.View`
   padding-bottom: 10px;
 `;
 
-const Head = styled.Text`
-/* font-family: Quicksand; */
-padding-top: 93px;
-font-style: normal;
-font-weight: normal;
-font-size: 45px;
-`;
-
 //default color of container
 const theme = {
   bgcolor: "#5C80BC"
@@ -46,19 +38,7 @@ const theme = {
 export const SubCategories = ({ text, theme, color }) => {
   return (
     <View>
-      <Head>Outdoor Activities</Head>
       <Container color={color} theme={theme}>
-        <Interests>Fishing</Interests>
-        <Interests>Kayaking</Interests>
-        <Interests>Biking</Interests>
-        <Interests>Hiking</Interests>
-        <Interests>Paddling</Interests>
-        <Interests>Camping</Interests>
-        <Interests>Beach Combing</Interests>
-        <Interests>Nature Walks</Interests>
-        <Interests>Gardening</Interests>
-        <Interests>Geocaching</Interests>
-        <Interests>Hunting</Interests>
         {text}
       </Container>
     </View>
