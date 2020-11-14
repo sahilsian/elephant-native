@@ -12,17 +12,17 @@ const HeadBox = styled.View`
 
 const HeadTitle = styled.Text`
     font-size: 36px;
-    font-weight: bold;
+    font-weight: ${props=>props.fontweight ? "normal" : "bold"};
     line-height: 45px;
     color: ${props=>props.color ? props.color : "#000"};
     padding: 5px;
     margin-bottom: ${props=>props.marginBottom ? props.marginBottom : "5px"};
 `;
 
-const Header = ({color, margin, text, marginBottom, height}) => {
+const Header = ({color, margin, text, marginBottom, height, fontweight}) => {
     return <View>
         <HeadBox height={height}>
-            <HeadTitle marginBottom={marginBottom} color={color}>{text}</HeadTitle>
+            <HeadTitle marginBottom={marginBottom} fontweight={fontweight} color={color}>{text}</HeadTitle>
         </HeadBox>
     </View>
 }

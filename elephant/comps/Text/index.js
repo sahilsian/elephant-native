@@ -4,16 +4,16 @@ import { View, Text } from "react-native";
 
 const P = styled.Text`
   font-size: ${props=>props.fontsize ? props.fontsize : "16px"};
-  color: #000;
+  color: ${props=>props.color ? props.color : "#000"};
   margin-top: ${props=>props.textmargin};
   font-weight: ${props=>props.fontweight ? props.fontweight : "normal"};
+  text-decoration: ${props=>props.decoration ? props.decoration : "none"}
+
 `;
 
-const TextComp = ({ text, fontSize, Margin, weight }) => {
+const TextComp = ({ text, fontSize, Margin, weight, color, decoration }) => {
   return (
-    <View>
-      <P textmargin={Margin} fontweight={weight} fontsize={fontSize}>{text}</P>
-    </View>
+      <P textmargin={Margin} decoration={decoration} color={color} fontweight={weight} fontsize={fontSize}>{text}</P>
   );
 };
 

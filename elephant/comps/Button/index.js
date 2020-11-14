@@ -35,12 +35,12 @@ const ButtonBox = styled.View`
 
 const ButtonText = styled.Text`
     font-size: ${props=>props.textsize ? props.textsize : "20px"};
-    color: #fff;
+    color: ${props=>props.color ? props.color : "#fff"};
 `;
 
 
 
-const Button = ({BackgroundColor, maxHeight, MaxWidth, onClick, buttonText, marginTop, fontSize}) => {
+const Button = ({BackgroundColor, decoration, color, maxHeight, MaxWidth, onClick, buttonText, marginTop, fontSize}) => {
     return (
        <ButtonContainer margintop={marginTop} 
        maxheight={maxHeight} maxwidth={MaxWidth}>
@@ -49,7 +49,7 @@ const Button = ({BackgroundColor, maxHeight, MaxWidth, onClick, buttonText, marg
            
             onClick={onClick}
             >
-            <ButtonText textsize={fontSize}>{buttonText}</ButtonText>
+            <ButtonText color={color} textsize={fontSize}>{buttonText}</ButtonText>
             </ButtonBox>
         </ButtonContainer>
     )

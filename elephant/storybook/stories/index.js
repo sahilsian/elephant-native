@@ -29,3 +29,4 @@ import './homepage.stories';
 import './subcategoriespage.stories';
 import './profilepage.stories';
 import './backbutton.stories';
+import './profilelogo.stories';
