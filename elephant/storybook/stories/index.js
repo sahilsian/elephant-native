@@ -26,3 +26,4 @@ import './caregiversignuptwo.stories';
 import './topnavbar.stories';
 import './maintemplate.stories';
 import './homepage.stories';
+import './subcategoriespage.stories';

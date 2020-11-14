@@ -6,7 +6,9 @@ import { ScrollView, View } from 'react-native';
 import NextButton from "../../NextButton"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
-import Categories from "../../Categories";
+import SubCategories from "../../SubCategories";
+import Header from "../../Header"
+
 
 const Container = styled.View`
     width: 100%;
@@ -22,20 +24,15 @@ const AdjustedWidth = styled.View`
 `;
 
 const ItemContainer = styled.View`
-    width: 80%;
+    width: 95%;
     flex: 1;
-    alignItems: center;
     flexDirection: row;
     flexWrap: wrap;
-    justifyContent: space-around;
 `;
 
-const HomePage = ({}) => {
+const SubCategoryPage = ({}) => {
 
     const [shadow, setShadow] = useState(false)
-
-    //setup rendering here, only one cube will be visible. When array for interests
-    // in api is mapped, more items will be shown.
 
   return (
     <Container>
@@ -45,23 +42,32 @@ const HomePage = ({}) => {
         <AdjustedWidth >
             <ScrollView
                 contentContainerStyle={{
-                    alignItems:"center"
+                    alignItems:"flex-start"
                 }}
                 style={{
                     width: "100%",
                 }}
                 >
+
+                <Header
+                    text="Sub Categories"
+                    height="70px"
+                >
+                </Header>
                 
                 <ItemContainer>
-                    
+                    <SubCategories></SubCategories>
                 </ItemContainer>
             </ScrollView>
         </AdjustedWidth>
 
     </Container>
+
+
+
   );
 };
 
-HomePage.defaultProps = {};
+SubCategoryPage.defaultProps = {};
 
-export default HomePage;
+export default SubCategoryPage;
