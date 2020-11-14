@@ -53,18 +53,16 @@ const HomePage = ({}) => {
                 >
                 
                 <ItemContainer>
-
-                    <Categories text="Outdoor Activities"/>
-                    <Categories text="Math"/>
-                    <Categories text="Sports"/>
-                    <Categories text="Video Games"/>
-                    <Categories text="Socializing" />
-                    <Categories text="Art"/>
-                    <Categories text="Spelling"/>
-                    <Categories text="Language"/>
-                    {/* <Categories />
-                    <Categories /> */}
-
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
+                    <Categories />
                 </ItemContainer>
             </ScrollView>
         </AdjustedWidth>

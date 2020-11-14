@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 //list of colors for easy implementation
 var bgcolor = [
@@ -16,18 +16,18 @@ const Container = styled.View`
   display: flex;
   width: 95px;
   height: 85px;
-  background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
+  background-color: ${(props) => props.theme.bgcolor}; 
+  // background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
   border-radius: 10px;
+
+  font-family: Quicksand;
   font-size: 16px;
   font-weight: 400;
-  align-items: center;
+  text-align: center;
+  color: ${(props) => (props.color ? "white" : "black")};
+
   justify-content: flex-end;
   padding-bottom: 10px;
-  margin: 10px 14px;
-`;
-
-const TextStyle = styled.Text`
-  color: #fff;
 `;
 
 const Head = styled.Text`
@@ -46,8 +46,8 @@ const theme = {
 export const SubCategories = ({ text, theme, color }) => {
   return (
     <View>
-      <Head>Outdoor Activities</Head>
       <Container color={color} theme={theme}>
+        <Head>Outdoor Activities</Head>
         <Interests>Fishing</Interests>
         <Interests>Kayaking</Interests>
         <Interests>Biking</Interests>
@@ -66,7 +66,8 @@ export const SubCategories = ({ text, theme, color }) => {
 };
 
 SubCategories.defaultProps = {
-  text: "Test"
+  // width: "125px",
+  theme
 };
 
 export default SubCategories;

@@ -53,7 +53,6 @@ const HomePage = ({}) => {
                 >
                 
                 <ItemContainer>
-
                     <Categories text="Outdoor Activities"/>
                     <Categories text="Math"/>
                     <Categories text="Sports"/>
@@ -64,7 +63,6 @@ const HomePage = ({}) => {
                     <Categories text="Language"/>
                     {/* <Categories />
                     <Categories /> */}
-
                 </ItemContainer>
             </ScrollView>
         </AdjustedWidth>
