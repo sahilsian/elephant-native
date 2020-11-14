@@ -4,35 +4,31 @@ import { View, Text } from "react-native";
 
 const HeadBox = styled.View`
     display: flex;
-    align-items: center;
-    justify-content: left;
-    max-width: 292px;
-    max-height: 45px;
+    width: 100%;
+    height: 100%;
+    max-height: ${props=>props.height ? props.height : "50px"};
+    justify-content: center;
 `;
 
 const HeadTitle = styled.Text`
-    font-family: Quicksand;
     font-size: 36px;
     font-weight: bold;
     line-height: 45px;
     color: ${props=>props.color ? props.color : "#000"};
     padding: 5px;
-    ${props=>props.highlight === true && css`
-    background-color: #F5A;
-    margin: 5px;
-    `}
+    margin-bottom: ${props=>props.marginBottom ? props.marginBottom : "5px"};
 `;
 
-const Header = ({color, highlight}) => {
+const Header = ({color, margin, text, marginBottom, height}) => {
     return <View>
-        <HeadBox>
-            <HeadTitle color={color} highlight={highlight}>Favourite People</HeadTitle>
+        <HeadBox height={height}>
+            <HeadTitle marginBottom={marginBottom} color={color}>{text}</HeadTitle>
         </HeadBox>
     </View>
 }
 
 Header.defaultProps = {
-    text: "Header"
+    text: "Header",
 }
 
 export default Header
