@@ -37,8 +37,8 @@ const SubCategoryPage = ({}) => {
   return (
     <Container>
         <TopNavBar Shadow={shadow}></TopNavBar>
-        {/* <NavBar></NavBar>    */}
-     
+        <NavBar></NavBar>   
+
         <AdjustedWidth >
             <ScrollView
                 contentContainerStyle={{
@@ -56,52 +56,14 @@ const SubCategoryPage = ({}) => {
                 </Header>
                 
                 <ItemContainer>
-                <View style={{
-                    flex: 1,
-                    width: 500,
-                    height: 500,
-                    justifyContent: 'center',
-                    alignItems: 'flex-start',
-                    paddingVertical: 0,
-                    borderTopWidth: 50,
-                    borderLeftWidth: 0,
-                    borderBottomWidth: 50,
-                }}>
-                    <View style={{
-                    flex: 1,
-                    width: 100,
-                    height: 100,
-                    paddingHorizontal: 0,
-                    paddingBottom: 0,
-                    marginVertical: 10,
-                    borderTopWidth: 0,
-                    }} />
-                    <View style={{
-                    flex: 1,
-                    width: 100,
-                    height: 100,
-                    marginVertical: 10,
-                    borderBottomWidth: 10,
-                    }} />
-                    <View style={{
-                    flex: 1,
-                    width: 100,
-                    height: 100,
-                    marginVertical: 10,
-                    }} />
-                    <View style={{
-                    flex: 1,
-                    width: 100,
-                    height: 100,
-                    marginVertical: 10,
-                    }} />
-                </View>
-                );
+                    <SubCategories></SubCategories>
                 </ItemContainer>
             </ScrollView>
         </AdjustedWidth>
 
     </Container>
+
+
 
   );
 };

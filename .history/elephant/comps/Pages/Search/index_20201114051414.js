@@ -21,6 +21,7 @@ const FullWrapper = styled.View`
 
 `;
 
+
 const Search = ({}) => {
     return ( <View style={{padding: 10}}>
         <Frame>
