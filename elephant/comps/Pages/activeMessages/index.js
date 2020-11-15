@@ -42,21 +42,19 @@ color: #191716
 `
 
 const Profile = styled.View`
-width: 100%;
-display: flex; 
+width: 80%;
+display: flex;  
 marginBottom: 10px;
-`
-
-const Img = styled.Image`
-display: flex;
-marginRight: 10px;
 `
 
 const Back = styled.Image`
 display: flex;
 alignSelf: flex-end;
 `
+const Img = styled.Image`
+alignSelf: flex-start;
 
+`
 const MainTemplate = ({}) => {
 
     const [shadow, setShadow] = useState(false)
@@ -78,9 +76,17 @@ const MainTemplate = ({}) => {
                 >
                 
                 <ItemContainer>
-                   <Head>Active Messages</Head>
+                   <Head>Active Messages</Head> 
+        
+                    <Profile>
+                        <Head>
+                        <Img source={require('../../../assets/photo.png')}></Img>                 
+                            Kai Erfle</Head>
+                        <Sub>Photoshop Classes</Sub>
+                        <Back source={require('../../../assets/Back.png')}></Back>
+                   </Profile>
 
-                   <Profile>
+                   {/* <Profile>
                    <Img source={require('../../../assets/photo.png')}></Img>
                         <Head>Kai Erfle</Head>
                         <Sub>Photoshop Classes</Sub>
@@ -93,14 +99,7 @@ const MainTemplate = ({}) => {
                         <Sub>Photoshop Classes</Sub>
                         <Back source={require('../../../assets/Back.png')}></Back>
                    </Profile>
-
-                   <Profile>
-                   <Img source={require('../../../assets/photo.png')}></Img>
-                        <Head>Kai Erfle</Head>
-                        <Sub>Photoshop Classes</Sub>
-                        <Back source={require('../../../assets/Back.png')}></Back>
-                   </Profile>
-                
+                 */}
                 </ItemContainer>
             </ScrollView>
         </AdjustedWidth>
