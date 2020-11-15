@@ -8,16 +8,19 @@
 
 import React from 'react';
 import MyTestComp from './comps/Test';
+// import Active from './comps/Pages/activeMessages'
 import {View} from 'react-native';
+import MainTemplate from './comps/Pages/activeMessages';
 
 const App = () => {
   return (
     <View>
-      <MyTestComp />
+      <MainTemplate />
+      {/* <MyTestComp /> */}
     </View>
   )
 }
 
-//export default App;
+// export default App;
 
 export { default } from './storybook';
