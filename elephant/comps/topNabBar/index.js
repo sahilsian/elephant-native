@@ -26,6 +26,7 @@ const MainDiv = styled.View`
   justify-content: space-between;
   border-bottom-width: 1px;
   border-bottom-color: #eee;
+  z-index: 2;
 `;
 
 const Img = styled.Image`

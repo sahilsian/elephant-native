@@ -207,6 +207,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    ...
+    implementation project(':react-native-linear-gradient')
 }
 
 // Run this once to be able to run the application with BUCK
@@ -216,4 +218,10 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
+project.ext.vectoricons = [
+    iconFontNames: [ 'FontAwesome.ttf' ] // Name of the font files you want to copy
+]
+
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

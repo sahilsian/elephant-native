@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 //list of colors for easy implementation
 var bgcolor = [
@@ -16,18 +16,18 @@ const Container = styled.View`
   display: flex;
   width: 95px;
   height: 85px;
-  background-color: ${(props) => props.theme.bgcolor}; 
-  // background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
+  background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
   border-radius: 10px;
-
-  font-family: Quicksand;
   font-size: 16px;
   font-weight: 400;
-  text-align: center;
-  color: ${(props) => (props.color ? "white" : "black")};
-
+  align-items: center;
   justify-content: flex-end;
   padding-bottom: 10px;
+  margin: 10px 14px;
+`;
+
+const TextStyle = styled.Text`
+  color: #fff;
 `;
 
 const Head = styled.Text`
@@ -66,8 +66,7 @@ export const SubCategories = ({ text, theme, color }) => {
 };
 
 SubCategories.defaultProps = {
-  // width: "125px",
-  theme
+  text: "Test"
 };
 
 export default SubCategories;
