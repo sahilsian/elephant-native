@@ -53,7 +53,8 @@ alignSelf: flex-end;
 `
 const Img = styled.Image`
 alignSelf: flex-start;
-
+paddingEnd: 60%;
+display:flex;
 `
 const MainTemplate = ({}) => {
 
