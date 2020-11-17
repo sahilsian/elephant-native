@@ -8,6 +8,8 @@ import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
 import { Header } from "react-native/Libraries/NewAppScreen";
 
+import ProfileName from '../../ProfileName';
+
 
 const Container = styled.View`
     width: 100%;
@@ -36,26 +38,21 @@ fontSize: 26px;
 color: #191716;
 fontWeight: 500;
 `
-const Sub = styled.Text`
-fontSize: 16px;
-color: #191716
-`
+
 
 const Profile = styled.View`
-width: 80%;
-display: flex;  
-marginBottom: 10px;
+width: 70%;
+display: flex;
+ 
 `
 
 const Back = styled.Image`
 display: flex;
 alignSelf: flex-end;
+bottom: 8%; 
+left: 15%;
 `
-const Img = styled.Image`
-alignSelf: flex-start;
-paddingEnd: 60%;
-display:flex;
-`
+
 const MainTemplate = ({}) => {
 
     const [shadow, setShadow] = useState(false)
@@ -80,27 +77,25 @@ const MainTemplate = ({}) => {
                    <Head>Active Messages</Head> 
         
                     <Profile>
-                        <Head>
-                        <Img source={require('../../../assets/photo.png')}></Img>                 
-                            Kai Erfle</Head>
-                        <Sub>Photoshop Classes</Sub>
-                        <Back source={require('../../../assets/Back.png')}></Back>
-                   </Profile>
-
-                   {/* <Profile>
-                   <Img source={require('../../../assets/photo.png')}></Img>
-                        <Head>Kai Erfle</Head>
-                        <Sub>Photoshop Classes</Sub>
+                         <ProfileName text="Kai Erfle" subText="Designer"></ProfileName>
                         <Back source={require('../../../assets/Back.png')}></Back>
                    </Profile>
 
                    <Profile>
-                   <Img source={require('../../../assets/photo.png')}></Img>
-                        <Head>Kai Erfle</Head>
-                        <Sub>Photoshop Classes</Sub>
+                         <ProfileName text="Emmy Wong" subText="Back-End Programer"></ProfileName>
                         <Back source={require('../../../assets/Back.png')}></Back>
                    </Profile>
-                 */}
+
+                   <Profile>
+                         <ProfileName text="GaEun Park" subText="Project/Team Manager"></ProfileName>
+                        <Back source={require('../../../assets/Back.png')}></Back>
+                   </Profile>
+                   
+                   <Profile>
+                         <ProfileName text="Sahil Sian" subText="Front-End Programer"></ProfileName>
+                        <Back source={require('../../../assets/Back.png')}></Back>
+                   </Profile>
+
                 </ItemContainer>
             </ScrollView>
         </AdjustedWidth>
