@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { View, Text } from "react-native";
 
 const Container = styled.View`
@@ -21,7 +21,8 @@ const Texty = styled.Text`
 const BackButton = ({}) => {
     return (
        <Container>
-           <Arrow source={require("../../assets/Back.png")}></Arrow>
+           <Arrow
+           source={require("../../assets/Back.png")}></Arrow>
             <Texty>Back</Texty>
        </Container>
     )
@@ -32,7 +33,7 @@ BackButton.defaultProps = {
     MaxWidth: "100px",
     buttonText: "Button",
     marginTop: "5px",
-    fontSize: "20px"
+    fontSize: "20px",
 }
 
 export default BackButton;

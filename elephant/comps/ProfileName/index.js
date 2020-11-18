@@ -11,6 +11,8 @@ fontWeight: 500;
 
 const Contain = styled.View`
 display: flex;
+justifyContent: flex-start;
+bottom: 25% ;
 `
 
 const ProfileImg = styled.Image`
