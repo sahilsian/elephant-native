@@ -117,10 +117,11 @@ const Messages = ({}) => {
 
                         <MessageReceive>
                             <Box>
-                                <Text1>Hello World!</Text1>
+                                <Text1>Hello User!</Text1>
                             </Box>
                         </MessageReceive>
                     </MessagesCont>
+                    
                 </ItemContainer>
             </ScrollView>
         </AdjustedWidth>
