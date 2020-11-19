@@ -9,18 +9,45 @@
 import React from 'react';
 import MyTestComp from './comps/Test';
 // import Active from './comps/Pages/activeMessages'
-import {View} from 'react-native';
-import MainTemplate from './comps/Pages/activeMessages';
+import {StyleSheet, View} from 'react-native';
+import { NativeRouter, Switch, Route } from 'react-router-native'
+import Start from './comps/Pages/Start';
+import Login from './comps/Pages/Login';
+import SignupChoice from './comps/Pages/SignupChoice';
+import HomePage from './comps/Pages/homepage';
+import MyProvider from './comps/context'
 
 const App = () => {
   return (
-    <View>
-      <MainTemplate />
-      {/* <MyTestComp /> */}
-    </View>
+    <MyProvider>
+
+    <NativeRouter>
+      <View style={styles.container}>
+        <Switch>
+        <Route exact path="/" component={Start}></Route>
+        <Route exact path="/login" component={Login}></Route>
+        <Route exact path="/signup" component={SignupChoice}></Route>
+        <Route exact path="/home" component={HomePage}></Route>
+        </Switch>
+        {/* <Login></Login> */}
+        {/* <SignupChoice></SignupChoice> */}
+      </View>
+    </NativeRouter>
+
+    </MyProvider>
+
   )
 }
 
-// export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  }
+})
 
-export { default } from './storybook';
+ export default App;
+
+//export { default } from './storybook';

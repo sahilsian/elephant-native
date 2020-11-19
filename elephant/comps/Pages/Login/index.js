@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useEffect, useState, useContext} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView } from 'react-native';
-import NextButton from "../../NextButton";
 import Button from '../../Button';
 import Divider from '../../Divider'
+import { Alert } from "react-native";
 import AuthLogin from "../../authLogin"
 import WelcomeComp from '../../Welcome'
 import ElephantLogo from "../../Logo";
+import axios from 'axios';
+import { MyContext } from "../../context"
+import { Router } from "react-router-native";
+import LottieView from 'lottie-react-native';
 
 const Frame = styled.View`
   width: 100%;
@@ -24,7 +27,14 @@ const FullWrapper = styled.View`
   height: 85%;
   align-items: center;
   justify-content: space-between;
+`;
 
+const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #fad;
 `;
 
 const GenericWrapper = styled.View`
@@ -32,10 +42,74 @@ const GenericWrapper = styled.View`
   align-items: center;
 `;
 
-const Login = ({}) => {
+const Login = ({ history }) => {
+
+  const [ani, setAnimation] = useState(true)
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const context = useContext(MyContext);
+  
+
+  const HandleLogin = async(username, password) => {
+
+
+    axios.post(`http://elephantidsp.herokuapp.com/auth/login`, {
+      username : username,
+      password : password,
+      headers:{'content-type': 'application/json'}
+    })
+
+    .then(response => {
+      // await AsyncStorage.setItem('token', response.token);
+      context.setToken(response.data.access_token)
+      console.log(context.token)
+
+      useEffect(()=>{
+        setTimeout(()=> {
+
+        }, 1000)
+
+        history.push("/home")
+      }, [])
+    })
+
+    .catch(error => {
+      console.log(error, "this is an error")
+      console.log(username, password)
+
+      Alert.alert(
+        'Elephant',
+        'Username or Password is Incorrect',
+        [
+          {
+            text: 'Okay',
+            onPress: () => console.log('Ok Pressed')
+          }
+        ],
+        { cancelable: false }
+      );
+
+    })
+
+    
+
+  }
+
   return (
 
       <Frame>
+        {ani ?
+        <AnimationWrapper>
+          <LottieView
+            source={require('../../../assets/loading.json')}
+            style={{
+              flex: 1
+            }}
+            autoPlay loop
+        />
+        </AnimationWrapper>
+        
+        :
         <FullWrapper>
           <GenericWrapper>
             <ElephantLogo Size={"150px"}></ElephantLogo>
@@ -44,14 +118,22 @@ const Login = ({}) => {
           <AuthLogin />
           <Divider MaxWidth={"138px"} />
           <GenericWrapper>
-            <CustomInput placeholder={"Username"}/>
-            <CustomInput placeholder={"Password"}/>
+            <CustomInput placeholder={"Username"}
+            onChange={username => setUsername(username)}
+            />
+            <CustomInput placeholder={"Password"}
+            onChange={password => setPassword(password)}
+            />
           </GenericWrapper>
-          <Button buttonText={"Login"} />
+          <Button buttonText={"Login"} onPress={() => HandleLogin(username, password)}/>
           <TextComp Margin={"20px"} text={"Don’t have an account?"}></TextComp>
-          <Button buttonText={"Sign Up"} />
+          <Button buttonText={"Sign Up"} onPress={() => history.push("/signup")} />
+          
         </FullWrapper>
+        
+        }
       </Frame>
+
 
 
   );

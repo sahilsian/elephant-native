@@ -1,9 +1,10 @@
-import React, {useState} from "./node_modules/react";
-import styled from "./node_modules/styled-components/native";
+import React, {useState} from "react";
+import styled from "styled-components/native"
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
 import { ScrollView, View } from 'react-native';
 import NextButton from "../../NextButton"
+import Header from "../../Header"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
 import Categories from "../../Categories";
@@ -22,24 +23,31 @@ const AdjustedWidth = styled.View`
 `;
 
 const ItemContainer = styled.View`
-    width: 80%;
+    width: 90%;
     flex: 1;
-    alignItems: center;
+    align-items: center;
     flexDirection: row;
-    flexWrap: wrap;
-    justifyContent: space-around;
+    flex-wrap: wrap;
+    justify-content: space-around;
 `;
 
 const InterestContainer = styled.View`
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingTop: 50,
-    justifyContent: 'space-evenly'  
+    flex: 1;
+    flexDirection: row;
+    justify-content: center;
+    padding-top: 50;
+    justify-content: space-evenly;
 `;
 
+var bgcolor = [
+    "#5C80BC", //dark blue
+    "#4D5061", //black
+    "#AFD2E9", //light blue
+    "#EBC1AD" //sand
+  ];
 
-const HomePage = ({}) => {
+
+const HomePage = ({ history }) => {
 
     const [shadow, setShadow] = useState(false)
 
@@ -48,7 +56,7 @@ const HomePage = ({}) => {
 
   return (
     <Container>
-        <TopNavBar Shadow={shadow}></TopNavBar>
+        <TopNavBar onPressLeft={() => history.push("/")}></TopNavBar>
         <NavBar></NavBar>   
 
         <AdjustedWidth >
@@ -63,25 +71,18 @@ const HomePage = ({}) => {
                 
                 <ItemContainer>
 
-                <InterestContainer>
-                    <Categories text="Outdoor Activities"/>
-                    <Categories text="Math"/>
-                </InterestContainer>
+                    <Categories bgColor={bgcolor[0]} MaxWidth text="Outdoor Activities"/>
+                    <Categories bgColor={bgcolor[2]} Color={false} text="Math"/>
 
-                <InterestContainer>
-                    <Categories text="Sports"/>
-                    <Categories text="Video Games"/>
-                </InterestContainer>
+                    <Categories bgColor={bgcolor[3]} Color={false} text="Sports"/>
+                    <Categories MaxWidth text="Video Games"/>
 
-                <InterestContainer>
-                    <Categories text="Socializing" />
-                    <Categories text="Art"/>
-                </InterestContainer>
+                    <Categories bgColor={bgcolor[0]} MaxWidth text="Socializing" />
+                    <Categories bgColor={bgcolor[2]} Color={false} text="Art"/>
 
-                <InterestContainer>
-                    <Categories text="Spelling"/>
-                    <Categories text="Language"/>
-                </InterestContainer>
+                    <Categories  bgColor={bgcolor[3]} Color={false} text="Spelling"/>
+                    <Categories MaxWidth text="Language"/>
+                    
 
                 </ItemContainer>
                 
