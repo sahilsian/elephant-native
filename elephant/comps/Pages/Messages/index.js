@@ -73,7 +73,6 @@ font-size: 20px;
 `
 
 const MessagesCont = styled.View`
-
 display: flex;
 flexDirection: row;
 justifyContent: space-around;
