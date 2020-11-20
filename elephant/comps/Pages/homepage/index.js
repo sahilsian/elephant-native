@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import styled from "styled-components/native"
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
@@ -8,6 +8,8 @@ import Header from "../../Header"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
 import Categories from "../../Categories";
+import axios from 'axios';
+import { MyContext } from "../../context"
 
 const Container = styled.View`
     width: 100%;
@@ -39,6 +41,11 @@ const InterestContainer = styled.View`
     justify-content: space-evenly;
 `;
 
+const HeaderContainer = styled.View`
+    width: 90%;
+    flex: 1;
+`;
+
 var bgcolor = [
     "#5C80BC", //dark blue
     "#4D5061", //black
@@ -50,9 +57,27 @@ var bgcolor = [
 const HomePage = ({ history }) => {
 
     const [shadow, setShadow] = useState(false)
-
+    const context = useContext(MyContext);
     //setup rendering here, only one cube will be visible. When array for interests
     // in api is mapped, more items will be shown.
+
+    useEffect(() => {
+        axios.post(`http://elephantidsp.herokuapp.com/category/create-category`, {
+            headers: {
+            'Token': `Bearer ${context.token}`,
+            'content-type': 'application/json',
+
+            }
+        })
+
+        .then(response => {
+            console.log(response, "Woah heres a cool response")
+        })
+
+        .catch(error => {
+            console.log(error, "bruh what happened ",  context.token)
+        })
+    }, [])
 
   return (
     <Container>
@@ -66,8 +91,13 @@ const HomePage = ({ history }) => {
                 }}
                 style={{
                     width: "100%",
+                    flex: 1
                 }}
                 >
+                <HeaderContainer>
+                    <Header text={"Home"}>
+                    </Header>
+                </HeaderContainer>
                 
                 <ItemContainer>
 
