@@ -62,21 +62,26 @@ const HomePage = ({ history }) => {
     // in api is mapped, more items will be shown.
 
     useEffect(() => {
-        axios.post(`http://elephantidsp.herokuapp.com/category/create-category`, {
-            headers: {
-            'Token': `Bearer ${context.token}`,
-            'content-type': 'application/json',
+        var data = JSON.stringify({"name":"art","description":"creative","is_active":true});
 
-            }
-        })
+        var config = {
+        method: 'post',
+        url: 'http://elephantidsp.herokuapp.com/category/create-category',
+        headers: { 
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${context.token}`
+        },
+        data : data
+        };
 
-        .then(response => {
-            console.log(response, "Woah heres a cool response")
+        axios(config)
+        .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        console.log("works")
         })
-
-        .catch(error => {
-            console.log(error, "bruh what happened ",  context.token)
-        })
+        .catch(function (error) {
+        console.log(error);
+        });
     }, [])
 
   return (
