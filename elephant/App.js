@@ -15,7 +15,9 @@ import Start from './comps/Pages/Start';
 import Login from './comps/Pages/Login';
 import SignupChoice from './comps/Pages/SignupChoice';
 import HomePage from './comps/Pages/homepage';
-import MyProvider from './comps/context'
+import MyProvider from './comps/context';
+import SubCategoryPage from './comps/Pages/subcategories'
+
 
 const App = () => {
   return (
@@ -25,9 +27,10 @@ const App = () => {
       <View style={styles.container}>
         <Switch>
         <Route exact path="/" component={Start}></Route>
-        <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/signup" component={SignupChoice}></Route>
-        <Route exact path="/home" component={HomePage}></Route>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/signup" component={SignupChoice}></Route>
+        <Route path="/home" component={HomePage}></Route>
+        <Route path={"/category/:name"} component={SubCategoryPage}></Route>
         </Switch>
         {/* <Login></Login> */}
         {/* <SignupChoice></SignupChoice> */}
