@@ -17,7 +17,8 @@ import SignupChoice from './comps/Pages/SignupChoice';
 import HomePage from './comps/Pages/homepage';
 import MyProvider from './comps/context';
 import SubCategoryPage from './comps/Pages/subcategories'
-
+import Search from './comps/Pages/Search';
+import ProfilePage from './comps/Pages/profilepage';
 
 const App = () => {
   return (
@@ -31,6 +32,8 @@ const App = () => {
         <Route path="/signup" component={SignupChoice}></Route>
         <Route path="/home" component={HomePage}></Route>
         <Route path={"/category/:name"} component={SubCategoryPage}></Route>
+        <Route path={"/search/:subname"} component={Search}></Route>
+        <Route path={"/profile/:user"} component={ProfilePage}></Route>
         </Switch>
         {/* <Login></Login> */}
         {/* <SignupChoice></SignupChoice> */}
