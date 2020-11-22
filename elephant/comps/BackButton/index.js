@@ -1,29 +1,34 @@
 import React from "react";
-import styled, { css } from "styled-components/native";
+import styled from "styled-components/native";
 import { View, Text } from "react-native";
 
 const Container = styled.View`
-    width: 100%;
+    width: ${props=>props.headerJoin ? "60px" : "100%"};
     flex-direction: row;
     align-items: flex-start;
 `;
 
-const Arrow = styled.Image`
+const Touch = styled.TouchableOpacity`
+    flex-direction: row;
+`;
 
+const Arrow = styled.Image`
 `;
 
 const Texty = styled.Text`
     font-size: 20px;
     margin: 0px 8px;
+    display: ${props=>props.display ? "none" : "flex"};
 `;
 
 
-const BackButton = ({}) => {
+const BackButton = ({ onPress, headerJoin }) => {
     return (
-       <Container>
-           <Arrow
-           source={require("../../assets/Back.png")}></Arrow>
-            <Texty>Back</Texty>
+       <Container headerJoin={headerJoin}>
+           <Touch onPress={onPress}>
+            <Arrow source={require("../../assets/back2.png")}></Arrow>
+                <Texty display={headerJoin}>Back</Texty>
+           </Touch>
        </Container>
     )
 }
@@ -33,7 +38,7 @@ BackButton.defaultProps = {
     MaxWidth: "100px",
     buttonText: "Button",
     marginTop: "5px",
-    fontSize: "20px",
+    fontSize: "20px"
 }
 
 export default BackButton;

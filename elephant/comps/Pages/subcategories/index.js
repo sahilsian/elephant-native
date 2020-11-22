@@ -1,13 +1,15 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import NextButton from "../../NextButton"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
 import SubCategories from "../../SubCategories";
-import Header from "../../Header"
+import Header from "../../Header";
+import {MyContext} from '../../context'
+import axios from 'axios';
 
 
 const Container = styled.View`
@@ -24,80 +26,77 @@ const AdjustedWidth = styled.View`
 `;
 
 const ItemContainer = styled.View`
-    width: 95%;
+    width: 90%;
     flex: 1;
     flexDirection: row;
     flexWrap: wrap;
 `;
 
-const SubCategoryPage = ({}) => {
+const HeaderContainer = styled.View`
+    width: 90%;
+    flex: 1;
+`;
 
-    const [shadow, setShadow] = useState(false)
+const SubCategoryPage = ({match}) => {
+    const [data, setData] = useState([]);
+    const [child, setChild] = useState([]);
+    const context = useContext(MyContext);
+    //setup rendering here, only one cube will be visible. When array for interests
+    // in api is mapped, more items will be shown.
+
+    useEffect(() => {
+
+        var config = {
+            method: 'get',
+            url: `http://elephantidsp.herokuapp.com/category/findone/${match.params.name}`,
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${context.token}`
+            }
+        };
+
+        axios(config)
+
+        .then(function (response) {
+            console.log();
+            console.log("works")
+            setData([response.data])
+            console.log(response.data)
+            setChild([response.data.children])
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }, [])
 
   return (
     <Container>
-        <TopNavBar Shadow={shadow}></TopNavBar>
+        <TopNavBar></TopNavBar>
         {/* <NavBar></NavBar>    */}
      
         <AdjustedWidth >
             <ScrollView
                 contentContainerStyle={{
-                    alignItems:"flex-start"
+                    alignItems:"center"
                 }}
                 style={{
                     width: "100%",
                 }}
                 >
+                <HeaderContainer>
+                    <Header
+                        text={match.params.name}
+                        height="70px"
+                    >
+                    </Header>
+                </HeaderContainer>
 
-                <Header
-                    text="Sub Categories"
-                    height="70px"
-                >
-                </Header>
-                
                 <ItemContainer>
-                <View style={{
-                    flex: 1,
-                    width: 500,
-                    height: 500,
-                    justifyContent: 'center',
-                    alignItems: 'flex-start',
-                    paddingVertical: 0,
-                    borderTopWidth: 50,
-                    borderLeftWidth: 0,
-                    borderBottomWidth: 50,
-                }}>
-                    <View style={{
-                    flex: 1,
-                    width: 100,
-                    height: 100,
-                    paddingHorizontal: 0,
-                    paddingBottom: 0,
-                    marginVertical: 10,
-                    borderTopWidth: 0,
-                    }} />
-                    <View style={{
-                    flex: 1,
-                    width: 100,
-                    height: 100,
-                    marginVertical: 10,
-                    borderBottomWidth: 10,
-                    }} />
-                    <View style={{
-                    flex: 1,
-                    width: 100,
-                    height: 100,
-                    marginVertical: 10,
-                    }} />
-                    <View style={{
-                    flex: 1,
-                    width: 100,
-                    height: 100,
-                    marginVertical: 10,
-                    }} />
-                </View>
-                );
+                {child && child.map((o,i)=>{
+                    <SubCategories text={o.name}/>
+                })}
                 </ItemContainer>
+
             </ScrollView>
         </AdjustedWidth>
 

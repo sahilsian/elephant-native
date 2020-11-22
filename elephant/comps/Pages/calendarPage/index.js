@@ -2,12 +2,10 @@ import React, {useState} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import NextButton from "../../NextButton"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
-
-import ProfileName from '../../ProfileName';
 
 const Container = styled.View`
     width: 100%;
@@ -31,7 +29,7 @@ const ItemContainer = styled.View`
     justifyContent: space-around;
 `;
 
-const Messages = ({}) => {
+const CalendarPage = ({}) => {
 
     const [shadow, setShadow] = useState(false)
 
@@ -51,7 +49,6 @@ const Messages = ({}) => {
                 >
                 
                 <ItemContainer>
-                    <ProfileName text="Kai Erfle"></ProfileName>
                 </ItemContainer>
             </ScrollView>
         </AdjustedWidth>
@@ -63,6 +60,6 @@ const Messages = ({}) => {
   );
 };
 
-Messages.defaultProps = {};
+CalendarPage.defaultProps = {};
 
-export default Messages;
+export default CalendarPage;

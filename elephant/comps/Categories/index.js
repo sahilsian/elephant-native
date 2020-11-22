@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
-import { View } from "react-native";
+import { TouchableHighlight, TouchableOpacity, View } from "react-native";
 
 //list of colors for easy implementation
 var bgcolor = [
@@ -17,11 +17,12 @@ const Container = styled.View`
   max-width: ${(props) => (props.maxwidth ? "160px" : "125px")};
   width: 100%;
   min-height: 125px;
-  background-color: ${(props) => props.theme.bgcolor}; 
-  background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
+  max-height: 125px;
+  background-color: ${(props) => (props.bgcolor ? props.bgcolor : "#4D5061")};
   border-radius: 10px;
   justify-content: center;
   align-items: center;
+  padding: 10px;
   margin: 10px 0;
 `;
 
@@ -37,11 +38,23 @@ const HomeText = styled.Text`
   color: ${(props) => (props.color ? "white" : "black")};
 `;
 
-const Categories = ({ MaxWidth, text, theme, Color }) => {
+const Click = styled.TouchableOpacity`
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;  
+`;
+
+const Categories = ({ MaxWidth, text, theme, Color, bgColor, onPress }) => {
   return (
-      <Container maxwidth={MaxWidth} theme={theme}>
-        <HomeText color={Color}>{text}</HomeText>
+
+      <Container maxwidth={MaxWidth} bgcolor={bgColor}>
+        <Click onPress={onPress}>
+          <HomeText color={Color}>{text}</HomeText>
+        </Click>
       </Container>
+
+
   );
 };
 

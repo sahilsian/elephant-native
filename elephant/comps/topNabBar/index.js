@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
-import { View, Text, Image} from "react-native";
+import { View, Text, Image, TouchableHighlight, TouchableOpacity} from "react-native";
 
 
 const MainDiv = styled.View`
@@ -33,11 +33,15 @@ const Img = styled.Image`
   margin: 0px 20px;
 `;
 
-const TopNavBar = ({Shadow}) => {
+const TopNavBar = ({Shadow, history, onPressLeft}) => {
   return (
       <MainDiv shadow={Shadow}>
-        <Img source={require('../../assets/settings.png')} />
-        <Img source={require('../../assets/User.png')} />
+        <TouchableOpacity onPress={onPressLeft}>
+          <Img source={require('../../assets/settings.png')} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Img source={require('../../assets/User.png')} />
+        </TouchableOpacity>
       </MainDiv>
   );
 };

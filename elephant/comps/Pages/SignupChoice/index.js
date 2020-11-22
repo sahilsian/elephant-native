@@ -9,6 +9,7 @@ import Divider from '../../Divider'
 import AuthLogin from "../../authLogin"
 import WelcomeComp from '../../Welcome'
 import ElephantLogo from "../../Logo";
+import BackButton from "../../BackButton";
 
 const Frame = styled.View`
   width: 100%;
@@ -21,7 +22,7 @@ const Frame = styled.View`
 const FullWrapper = styled.View`
   width: 80%;
   flex-direction: column;
-  height: 70%;
+  height: 80%;
   align-items: center;
   justify-content: space-between;
 
@@ -30,15 +31,18 @@ const FullWrapper = styled.View`
 const GenericWrapper = styled.View`
   width: 100%;
   align-items: center;
-  height: ${props=>props.height ? props.height: "40%"};
-  justify-content: space-between;
+  height: ${props=>props.height ? props.height: "20%"};
+  justify-content: space-around;
 `;
 
-const SignupChoice = ({}) => {
+const SignupChoice = ({ history }) => {
   return (
 
       <Frame>
+
         <FullWrapper>
+          <BackButton onPress={() => history.push("/login")}></BackButton>
+
           <GenericWrapper  height={"auto"}>
             <ElephantLogo Size={"150px"}></ElephantLogo>
             <WelcomeComp main={"Are you an"} fontSize={"48px"} Display={true} />
