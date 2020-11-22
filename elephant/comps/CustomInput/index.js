@@ -73,7 +73,8 @@ const CustomInput = ({
   TitleDisplay,
   MiniTitle,
   Seperation,
-  MiniSeperation
+  MiniSeperation,
+  onChange
 }) => {
   return (
     <FullWrapper>
@@ -96,6 +97,7 @@ const CustomInput = ({
         <CInput
           id="searchinput"
           type="text"
+          onChangeText={onChange}
           placeholder={placeholder}
           onFocus={() => {}}
           onBlur={() => {}}

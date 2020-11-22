@@ -27,7 +27,7 @@ const TitleBody = styled.View`
   width: 100%;
 `;
 
-const Start = ({}) => {
+const Start = ({ history }) => {
   return (
       <Frame>
       <FullWrapper>
@@ -35,7 +35,7 @@ const Start = ({}) => {
           <ElephantLogo></ElephantLogo>
           <WelcomeComp></WelcomeComp>
           </TitleBody>
-          <Button marginTop={"40px"} buttonText={"Start"}></Button>
+          <Button marginTop={"40px"} buttonText={"Start"}  onPress={() => history.push("/login")}></Button>
           
       </FullWrapper>
       </Frame>

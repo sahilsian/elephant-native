@@ -14,7 +14,7 @@ const ButtonContainer = styled.View`
     
 `;
 
-const ButtonBox = styled.View`
+const ButtonBox = styled.TouchableOpacity`
     background: ${props=>props.backgroundColor ? props.backgroundColor : "#6C8DC3"};
     display: flex;
     align-items: center;
@@ -40,14 +40,13 @@ const ButtonText = styled.Text`
 
 
 
-const Button = ({BackgroundColor, decoration, color, maxHeight, MaxWidth, onClick, buttonText, marginTop, fontSize}) => {
+const Button = ({BackgroundColor, decoration, color, maxHeight, MaxWidth, buttonText, marginTop, fontSize, onPress}) => {
     return (
        <ButtonContainer margintop={marginTop} 
        maxheight={maxHeight} maxwidth={MaxWidth}>
             <ButtonBox
             backgroundColor={BackgroundColor}
-           
-            onClick={onClick}
+            onPress={onPress}
             >
             <ButtonText color={color} textsize={fontSize}>{buttonText}</ButtonText>
             </ButtonBox>
