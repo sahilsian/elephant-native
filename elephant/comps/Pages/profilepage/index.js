@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet, Text } from 'react-native';
 import NextButton from "../../NextButton"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
@@ -11,7 +11,9 @@ import Header from "../../Header";
 import ProfileLogo from "../../ProfileLogo";
 import Button from "../../Button";
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import {MyContext} from '../../context'
+import axios from 'axios';
+import SubCategories from "../../SubCategories";
 // import LinearGradient from 'react-native-linear-gradient'
 
 const Container = styled.View`
@@ -85,14 +87,13 @@ const Hours = styled.View`
 const AttachedFiles = styled.View`
     width: 100%;
     margin-top: 15px;
-    margin-bottom: 15px;
 `;
 
 const Attached = styled.View`
     width: 55%;
     flex-direction: row;
     justify-content: space-around;
-    margin: 15px;
+    margin: 15px 15px;
 `;
 
 const AttachedWrapper = styled.View`
@@ -100,21 +101,79 @@ const AttachedWrapper = styled.View`
     align-items: center;
 `;
 
-const Paperclip = styled.Image`
-
+const ImgIcon = styled.Image`
+    margin-right: ${props=>props.marginright ? "20px" : "0px"}
 `;
 
 const About = styled.View`
-
+    width: 100%;
+    margin-bottom: 15px;
 `;
 
-const ProfilePage = ({}) => {
+const EducatorInfo = styled.View`
+    width: 100%;
+    margin-bottom: 15px;
+`;
+
+const ContactWrapper = styled.View`
+    width: 100%;
+    flex-direction: row;
+    margin: 15px 0px;
+`;
+
+const InterestsWrapper = styled.View`
+    width: 100%;
+`;
+
+const ProfilePage = ({match}) => {
+
 
     const [shadow, setShadow] = useState(false)
     const [open, setOpen] = useState(false);
+    const [firstname, setFirstname] = useState("")
+    const [interests, setInterests] = useState([])
+    const [connect, setConnect] = useState(false)
     const handleClick = () => {
         setOpen(!open);
       };
+
+    const handleConnect = () => {
+
+    };
+
+      const [data, setData] = useState([]);
+      const context = useContext(MyContext);
+      //setup rendering here, only one cube will be visible. When array for interests
+      // in api is mapped, more items will be shown.
+  
+      useEffect(() => {
+  
+          var config = {
+              method: 'get',
+              url: `http://elephantidsp.herokuapp.com/user/findone/${match.params.user}`,
+              headers: { 
+                  'Content-Type': 'application/json', 
+                  'Authorization': `Bearer ${context.token}`
+              }
+          };  
+  
+          axios(config)
+  
+          .then(function (response) {
+              console.log(response.data)
+              setData(response.data)
+              setInterests(response.data.interests)
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+
+
+          
+      }, [])
+
+        //name splitting
+        //.split(' ').slice(0, -1).join('')
 
   return (
     <Container>
@@ -141,7 +200,7 @@ const ProfilePage = ({}) => {
                         </Back>
                         <Title>
                             <ProfileLogo></ProfileLogo>
-                            <Header fontweight={true} text={"John Doe"}></Header>
+                            <Header display fontweight={true} text={data.name}></Header>
                         </Title>
                         <RowContainer>
                             <Row marginRight={"10px"}>
@@ -150,29 +209,85 @@ const ProfilePage = ({}) => {
                                     text={"Age: "}
                                     fontSize={"24px"} 
                                     /><TextComp 
-                                    text={"20"}
+                                    text={data.age}
                                     fontSize={"24px"} 
                                     />
                                 </RowView>
                                 <RowView >
                                     <TextComp 
-                                    text={"Student At: "}
+                                    text={data.is_educator ? "Occupation" : "Location:"}
                                     fontSize={"24px"} 
                                     />
                                 </RowView>
                                 <RowView>
                                         <TextComp 
-                                        text={"BCIT"}
+
+                                        
+                                        text={data.is_educator ? "" : "In Dev"}
                                         fontSize={"24px"} 
                                         /> 
                                 </RowView>
                             </Row>
                             <Row align="flex-end" marginLeft={"10px"}>
                                 <RowView justifyContent={"flex-end"}>
-                                    <Button BackgroundColor={"#CED9EB"} color={"#000"} fontSize={"16px"} marginTop={"0px"} buttonText={"Connect"} maxHeight={"35px"} MaxWidth={"120px"}></Button>
+                                    
+                                    <Button 
+                                    BackgroundColor={"#CED9EB"} 
+                                    color={"#000"} 
+                                    fontSize={"16px"} 
+                                    marginTop={"0px"} 
+                                    buttonText={"Connect"} 
+                                    maxHeight={"35px"} 
+                                    MaxWidth={"120px"}
+                                    onPress={()=> {
+                                        
+                                    }}
+                                    >
+
+                                    </Button>
+                                    
                                 </RowView>
                             </Row>
                         </RowContainer>
+
+                        <EducatorInfo>
+                            <TextComp 
+                            fontSize={"20px"}
+                            color={"#5C80BC"}
+                            text={`${data.name}'s Contact Info`}
+                            />
+                            {data.is_educator
+                            
+                                ?
+                                <TextComp 
+                                text={`Sensitive Information to know when contacting this person`}
+                                color={"#4D5061"}
+                                />
+
+                                :
+
+                                null
+
+                            }
+                        </EducatorInfo>
+                        <ContactWrapper>
+                            <ImgIcon marginright source={require("../../../assets/phone.png")}>
+                            </ImgIcon>
+                            <TextComp
+                                fontSize={"20px"}
+                                text={data.phone_number}
+                                decoration={"underline"}
+                            />
+                        </ContactWrapper>
+                        <ContactWrapper>
+                            <ImgIcon marginright source={require("../../../assets/mail.png")}>
+                            </ImgIcon>
+                            <TextComp
+                                fontSize={"20px"}
+                                text={data.email}
+                                decoration={"underline"}
+                            />
+                        </ContactWrapper>
                         
                         <LookingFor>
                             <TextComp 
@@ -181,7 +296,7 @@ const ProfilePage = ({}) => {
                             text={"Looking For:"}
                             />
                             <TextComp 
-                            fontSize={"20px"}
+                            fontSize={"18px"}
                             text={"Part Time"}
                             />
                         </LookingFor>
@@ -212,74 +327,74 @@ const ProfilePage = ({}) => {
                             <Row marginRight={"10px"} justifyContent={"flex-end"}>
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"Monday: "}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"Tuesday: "}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"Wednesday: "}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"Thursday: "}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"Friday: "}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"Saturday: "}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"Sunday: "}
                                 />
                             </Row>
                             <Row align="flex-end"  marginLeft={"10px"}>
                             <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"X"}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"X"}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"X"}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"X"}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"X"}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"X"}
                                 />
                                 <TextComp
                                 Margin={"3px"}
-                                fontSize={"20px"}
+                                fontSize={"18px"}
                                 text={"X"}
                                 />
                             </Row >
@@ -292,11 +407,11 @@ const ProfilePage = ({}) => {
                             />
                             <AttachedWrapper>
                                 <Attached>
-                                    <Paperclip source={require("../../../assets/paperclip.png")}>
-                                    </Paperclip>
+                                    <ImgIcon source={require("../../../assets/paperclip.png")}>
+                                    </ImgIcon>
                                     <TextComp
                                         fontSize={"20px"}
-                                        text={"Attached File"}
+                                        text={"AttachedFile.PDF"}
                                         decoration={"underline"}
                                 />
                                 </Attached>
@@ -304,8 +419,28 @@ const ProfilePage = ({}) => {
                         </AttachedFiles>
 
                         <About>
-                            
+                        <TextComp
+                            fontSize={"20px"}
+                            color={"#5C80BC"}
+                            text={"About"}
+                        />
+
+                        <TextComp
+                            fontSize={"18px"}
+                            text={"This is a sample text, this section is currently in development"}
+                        />
                         </About>
+
+                        <InterestsWrapper>
+                            <TextComp
+                                fontSize={"20px"}
+                                color={"#5C80BC"}
+                                text={"Interests"}
+                            />
+                            { interests.map((o, i)=> {
+                                <SubCategories></SubCategories>
+                            })}
+                        </InterestsWrapper>
                     </ItemContainer>
                 </ScrollView>
             </AdjustedWidth>

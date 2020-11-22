@@ -28,18 +28,23 @@ const AdjustedWidth = styled.View`
 const ItemContainer = styled.View`
     width: 90%;
     flex: 1;
+    align-items: center;
     flexDirection: row;
     flexWrap: wrap;
+    justify-content: space-around;
 `;
 
 const HeaderContainer = styled.View`
     width: 90%;
     flex: 1;
+    height: 100px;
+    justify-content: center;
+    margin-top: 10px;
 `;
 
-const SubCategoryPage = ({match}) => {
+const SubCategoryPage = ({match, history}) => {
     const [data, setData] = useState([]);
-    const [child, setChild] = useState([]);
+    const [children, setChildren] = useState([]);
     const context = useContext(MyContext);
     //setup rendering here, only one cube will be visible. When array for interests
     // in api is mapped, more items will be shown.
@@ -59,10 +64,9 @@ const SubCategoryPage = ({match}) => {
 
         .then(function (response) {
             console.log();
-            console.log("works")
-            setData([response.data])
-            console.log(response.data)
-            setChild([response.data.children])
+            setData(response.data)
+            setChildren(response.data.children)
+            console.log(children)
         })
         .catch(function (error) {
             console.log(error);
@@ -72,7 +76,7 @@ const SubCategoryPage = ({match}) => {
   return (
     <Container>
         <TopNavBar></TopNavBar>
-        {/* <NavBar></NavBar>    */}
+        <NavBar></NavBar>
      
         <AdjustedWidth >
             <ScrollView
@@ -86,14 +90,21 @@ const SubCategoryPage = ({match}) => {
                 <HeaderContainer>
                     <Header
                         text={match.params.name}
-                        height="70px"
+                        padding
+                        marginBottom={"0px"}
+                        onPress={() => history.push(`/home`)}
                     >
                     </Header>
                 </HeaderContainer>
 
                 <ItemContainer>
-                {child && child.map((o,i)=>{
-                    <SubCategories text={o.name}/>
+                {children.map((o,i)=>{
+                    return <SubCategories text={o.name} onPress={() => {
+                        history.push(`/search/${o.name}`, {
+                            category: match.params.name
+                        })
+                    }
+                    }/>
                 })}
                 </ItemContainer>
 

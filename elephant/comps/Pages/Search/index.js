@@ -1,48 +1,125 @@
-import { ScrollView, View, TextInput, Text } from 'react-native';
-import NavBar from 'react-native';
-import TextComp from "../../Text"
+import React, {useState, useEffect, useContext} from "react";
+import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
-import CustomTextInput from "../../CustomTextInput"
+import TextComp from "../../Text"
+import { ScrollView, View, Text } from 'react-native';
+import NextButton from "../../NextButton"
+import TopNavBar from "../../topNabBar";
+import NavBar from "../../NavBar";
+import Header from "../../Header";
+import {MyContext} from '../../context'
+import axios from 'axios';
+import SearchResult from "../../searchResult";
 
-const Frame = styled.View`
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
 
+const Container = styled.View`
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex: 1;
 `;
 
-const FullWrapper = styled.View`
-  width: 90%;
-  flex-direction: column;
-  height: 80%;
-  align-items: center;
-  justify-content: space-between;
-
+const AdjustedWidth = styled.View`
+    width: 100%;
+    flex: 0.81;
 `;
 
-const Search = ({}) => {
-    return ( <View style={{padding: 10}}>
-        <Frame>
-        <NavBar></NavBar>
-        <FullWrapper>
-            <TextInput
-              style={{height: 40}}
-              placeholder="Search for other services"
-              onChangeText={(text) => this.setState({text})}
-              value={this.state.text}
-            />
-            {/* <TextComp>Nothing here yet</TextComp> */}
-            <Text style={{padding: 10, fontSize: 42}}>
-              {this.state.text.split(' ').map((word) => word && '').join(' ')}
-            </Text>
-        </FullWrapper>
-        </Frame>
-      </View> 
-    );
-  };
-  
-  Search.defaultProps = {};
-  
-  export default Search;
-  
+const ItemContainer = styled.View`
+    width: 80%;
+    flex: 1;
+    align-items: center;
+`;
+
+const HeaderContainer = styled.View`
+    width: 90%;
+    flex: 1;
+    height: 100px;
+    justify-content: center;
+    margin-top: 10px;
+`;
+
+const Search = ({match, history, location}) => {
+
+  const [data, setData] = useState([]);
+    const [children, setChildren] = useState([]);
+    const context = useContext(MyContext);
+    //setup rendering here, only one cube will be visible. When array for interests
+    // in api is mapped, more items will be shown.
+
+    useEffect(() => {
+
+        var config = {
+            method: 'get',
+            url: `http://elephantidsp.herokuapp.com/user/educators`,
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${context.token}`
+            }
+        };  
+
+        axios(config)
+
+        .then(function (response) {
+            console.log(response.data)
+            setData(response.data)
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }, [])
+
+  return (
+    <Container>
+        <TopNavBar ></TopNavBar>
+        <NavBar></NavBar>   
+
+        <AdjustedWidth >
+            <ScrollView
+                contentContainerStyle={{
+                    alignItems:"center"
+                }}
+                style={{
+                    width: "100%",
+                }}
+                >
+
+                <HeaderContainer>
+                    <Header
+                        text={match.params.subname}
+                        padding
+                        marginBottom={"0px"}
+                        onPress={()=> {
+                            history.push(`/category/${location.state.category}`)
+                        }}
+                    > 
+                    </Header>
+                </HeaderContainer>
+                
+                <ItemContainer>
+
+                
+                {data && data.map((o, i)=> {
+                    return <SearchResult
+                    name={o.name}
+                    description={o.description}
+                    onPress={() => {
+                        history.push(`/profile/${o._id}`)
+                    }}               
+                    />
+                })}
+
+                </ItemContainer>
+            </ScrollView>
+        </AdjustedWidth>
+
+    </Container>
+
+
+
+  );
+};
+
+Search.defaultProps = {};
+
+export default Search;
