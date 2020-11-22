@@ -44,7 +44,7 @@ const GenericWrapper = styled.View`
 
 const Login = ({ history }) => {
 
-  const [ani, setAnimation] = useState(true)
+  const [ani, setAnimation] = useState(false)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const context = useContext(MyContext);
@@ -63,14 +63,7 @@ const Login = ({ history }) => {
       // await AsyncStorage.setItem('token', response.token);
       context.setToken(response.data.access_token)
       console.log(context.token)
-
-      useEffect(()=>{
-        setTimeout(()=> {
-
-        }, 1000)
-
-        history.push("/home")
-      }, [])
+      history.push('/home')
     })
 
     .catch(error => {
@@ -94,17 +87,16 @@ const Login = ({ history }) => {
     
 
   }
-
   return (
 
       <Frame>
         {ani ?
         <AnimationWrapper>
           <LottieView
-            source={require('../../../assets/loading.json')}
-            style={{
-              flex: 1
+            ref={animation => {
+              this.animation = animation;
             }}
+            source={require('../../../assets/loading.json')}
             autoPlay loop
         />
         </AnimationWrapper>

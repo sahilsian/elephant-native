@@ -11,31 +11,17 @@ var bgcolor = [
 ];
 
 // to change bgcolor of container, use theme={{ bgcolor: "color-name" }}, when implementing 
-
 const Container = styled.View`
   display: flex;
-  width: 95px;
-  height: 85px;
-  background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#4D5061")};
+  max-width: ${(props) => (props.maxwidth ? "160px" : "125px")};
+  width: 100%;
+  min-height: 125px;
+  background-color: ${(props) => (props.bgcolor ? props.bgcolor : "#4D5061")};
   border-radius: 10px;
-  font-size: 16px;
-  font-weight: 400;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 10px;
-  margin: 10px 14px;
-`;
-
-const TextStyle = styled.Text`
-  color: #fff;
-`;
-
-const Head = styled.Text`
-/* font-family: Quicksand; */
-padding-top: 93px;
-font-style: normal;
-font-weight: normal;
-font-size: 45px;
+  padding: 10px;
+  margin: 10px 0;
 `;
 
 //default color of container
@@ -43,30 +29,35 @@ const theme = {
   bgcolor: "#5C80BC"
 };
 
-export const SubCategories = ({ text, theme, color }) => {
+const HomeText = styled.Text`
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  color: ${(props) => (props.color ? "white" : "black")};
+`;
+
+const Click = styled.TouchableOpacity`
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;  
+`;
+
+export const SubCategories = ({ MaxWidth, text, theme, Color, bgColor, onPress }) => {
   return (
-    <View>
-      <Head>Outdoor Activities</Head>
-      <Container color={color} theme={theme}>
-        <Interests>Fishing</Interests>
-        <Interests>Kayaking</Interests>
-        <Interests>Biking</Interests>
-        <Interests>Hiking</Interests>
-        <Interests>Paddling</Interests>
-        <Interests>Camping</Interests>
-        <Interests>Beach Combing</Interests>
-        <Interests>Nature Walks</Interests>
-        <Interests>Gardening</Interests>
-        <Interests>Geocaching</Interests>
-        <Interests>Hunting</Interests>
-        {text}
+    
+    <Container maxwidth={MaxWidth} bgcolor={bgColor}>
+        <Click onPress={onPress}>
+          <HomeText color={Color}>{text}</HomeText>
+        </Click>
       </Container>
-    </View>
+
   );
 };
 
 SubCategories.defaultProps = {
-  text: "Test"
+  text: "Test",
+  Color: true
 };
 
 export default SubCategories;

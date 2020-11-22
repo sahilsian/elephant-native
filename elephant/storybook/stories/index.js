@@ -32,4 +32,6 @@ import './profilepage.stories';
 import './backbutton.stories';
 import './profilelogo.stories';
 import './Messages.stories';
+import './calendarPage.stories';
+import './calendar.stories';
 

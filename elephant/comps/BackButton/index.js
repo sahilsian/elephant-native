@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { View, Text } from "react-native";
 
 const Container = styled.View`
-    width: 100%;
+    width: ${props=>props.headerJoin ? "60px" : "100%"};
     flex-direction: row;
     align-items: flex-start;
 `;
@@ -13,21 +13,21 @@ const Touch = styled.TouchableOpacity`
 `;
 
 const Arrow = styled.Image`
-
 `;
 
 const Texty = styled.Text`
     font-size: 20px;
     margin: 0px 8px;
+    display: ${props=>props.display ? "none" : "flex"};
 `;
 
 
-const BackButton = ({ onPress }) => {
+const BackButton = ({ onPress, headerJoin }) => {
     return (
-       <Container >
+       <Container headerJoin={headerJoin}>
            <Touch onPress={onPress}>
-            <Arrow source={require("../../assets/Back.png")}></Arrow>
-                <Texty>Back</Texty>
+            <Arrow source={require("../../assets/back2.png")}></Arrow>
+                <Texty display={headerJoin}>Back</Texty>
            </Touch>
        </Container>
     )
