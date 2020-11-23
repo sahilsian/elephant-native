@@ -44,6 +44,9 @@ const InterestContainer = styled.View`
 const HeaderContainer = styled.View`
     width: 90%;
     flex: 1;
+    height: 80px;
+    justify-content: center;
+    margin-top: 10px;
 `;
 
 var bgcolor = [
@@ -89,7 +92,7 @@ const HomePage = ({ history, match }) => {
 
   return (
     <Container>
-        <TopNavBar onPressLeft={() => history.push("/")}></TopNavBar>
+        <TopNavBar onPress={() => history.push("/")}></TopNavBar>
         <NavBar></NavBar>   
 
         <AdjustedWidth >
@@ -103,7 +106,9 @@ const HomePage = ({ history, match }) => {
                 }}
                 >
                 <HeaderContainer>
-                    <Header text={"Home"}>
+                    <Header text={"Home"} display onPress={() => {
+
+                    }}>
                     </Header>
                 </HeaderContainer>
                 

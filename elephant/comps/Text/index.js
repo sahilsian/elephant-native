@@ -11,9 +11,9 @@ const P = styled.Text`
 
 `;
 
-const TextComp = ({ text, fontSize, Margin, weight, color, decoration }) => {
+const TextComp = ({ text, fontSize, Margin, weight, color, decoration, numOfLines }) => {
   return (
-      <P textmargin={Margin} decoration={decoration} color={color} fontweight={weight} fontsize={fontSize}>{text}</P>
+      <P numberOfLines={numOfLines} textmargin={Margin} decoration={decoration} color={color} fontweight={weight} fontsize={fontSize}>{text}</P>
   );
 };
 

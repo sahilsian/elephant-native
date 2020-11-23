@@ -21,7 +21,8 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  margin: 10px 0;
+  max-height: 125px;
+  margin: 10px 0px;
 `;
 
 //default color of container

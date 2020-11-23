@@ -34,4 +34,6 @@ import './profilelogo.stories';
 import './Messages.stories';
 import './calendarPage.stories';
 import './calendar.stories';
+import './search.stories';
+import './searchResult.stories';
 
