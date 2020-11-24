@@ -36,4 +36,5 @@ import './calendarPage.stories';
 import './calendar.stories';
 import './search.stories';
 import './searchResult.stories';
+import './slider.stories';
 

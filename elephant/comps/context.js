@@ -5,13 +5,16 @@ const MyProvider = ({ children }) => {
 
     const [token, setToken] = useState("")
     const [currentCategory, setCurrentCategory] = useState("")
+    const [user, setUser] = useState("")
 
     return (
         <MyContext.Provider value={{
             token,
             setToken,
             currentCategory,
-            setCurrentCategory
+            setCurrentCategory,
+            setUser,
+            user
         }}>
             {children}
         </MyContext.Provider>
