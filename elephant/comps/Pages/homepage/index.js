@@ -68,6 +68,27 @@ const HomePage = ({ history, match }) => {
 
     useEffect(() => {
 
+        var profile = {
+            method: 'get',
+            url: 'http://elephantidsp.herokuapp.com/profile',
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${context.token}`
+            }
+        };
+
+        axios(profile)
+
+        .then(function(response) {
+            console.log(response.data, "own profile works");
+            context.setUser(response.data)
+        })
+
+        .catch(function (error) {
+            console.log(error);
+        });
+        
+
         var config = {
             method: 'get',
             url: 'http://elephantidsp.herokuapp.com/category/all',

@@ -104,7 +104,9 @@ const Search = ({match, history, location}) => {
                     name={o.name}
                     description={o.description}
                     onPress={() => {
-                        history.push(`/profile/${o._id}`)
+                        history.push(`/profile/${o._id}`, {
+                            subname: match.params.subname
+                        })
                     }}               
                     />
                 })}

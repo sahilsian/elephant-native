@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
 
-import { View, Text, Image} from "react-native";
+import { View, Text, Image, TouchableOpacity} from "react-native";
 
 
 const MainDiv = styled.View`
@@ -28,14 +28,16 @@ const MainDiv = styled.View`
   justify-content: space-around;
 `;
 
-const NavBar = ({}) => {
+const NavBar = ({history}) => {
   return (
       <MainDiv>
 
-        <Image source={require('../../assets/Home.png')} />
-        <Image source={require('../../assets/Search.png')}></Image>
-        <Image source={require('../../assets/calender.png')}></Image>
-        <Image source={require('../../assets/Chat.png')}></Image>
+        <TouchableOpacity onPress={() => {
+          history.push("/home")
+        }}><Image source={require('../../assets/Home.png')} /></TouchableOpacity>
+        <TouchableOpacity><Image source={require('../../assets/Search.png')}></Image></TouchableOpacity>
+        <TouchableOpacity><Image source={require('../../assets/calender.png')}></Image></TouchableOpacity>
+        <TouchableOpacity><Image source={require('../../assets/Chat.png')}></Image></TouchableOpacity>
       </MainDiv>
   );
 };

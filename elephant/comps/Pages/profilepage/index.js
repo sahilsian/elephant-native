@@ -125,22 +125,44 @@ const InterestsWrapper = styled.View`
     width: 100%;
 `;
 
-const ProfilePage = ({match}) => {
+const ProfilePage = ({match, history, location}) => {
 
 
     const [shadow, setShadow] = useState(false)
     const [open, setOpen] = useState(false);
     const [firstname, setFirstname] = useState("")
     const [interests, setInterests] = useState([])
-    const [connect, setConnect] = useState(false)
-    const handleClick = () => {
-        setOpen(!open);
-      };
+    const [connect, setConnect] = useState([])
+    // const handleClick = () => {
+    //     setOpen(!open);
+    // };
 
-    const handleConnect = () => {
+    const handleConnect = async() => {
+        
+        var Connect = {
+            method: 'post',
+            url: `http://elephantidsp.herokuapp.com/user/connect/${data.username}`,
+            headers: {
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${context.token}`
+            },
+            data : {
+                
+            }
+        };
 
+        axios(Connect)
+
+        .then(response => {
+            setConnect(response.data)
+            console.log(response.data, 'connect')
+
+        })
+
+        
     };
 
+    
       const [data, setData] = useState([]);
       const context = useContext(MyContext);
       //setup rendering here, only one cube will be visible. When array for interests
@@ -148,7 +170,7 @@ const ProfilePage = ({match}) => {
   
       useEffect(() => {
   
-          var config = {
+          var Profile = {
               method: 'get',
               url: `http://elephantidsp.herokuapp.com/user/findone/${match.params.user}`,
               headers: { 
@@ -157,24 +179,23 @@ const ProfilePage = ({match}) => {
               }
           };  
   
-          axios(config)
+          axios(Profile)
   
           .then(function (response) {
-              console.log(response.data)
+              console.log(response.data, 'profile')
               setData(response.data)
               setInterests(response.data.interests)
+            
+
           })
           .catch(function (error) {
               console.log(error);
           });
 
-
           
       }, [])
 
-        //name splitting
-        //.split(' ').slice(0, -1).join('')
-
+      
   return (
     <Container>
         {/* <LinearGradient 
@@ -196,7 +217,9 @@ const ProfilePage = ({match}) => {
                     >
                     <ItemContainer>
                         <Back>
-                            <BackButton></BackButton>
+                            <BackButton onPress={()=> {
+                                history.push(`/search/${location.state.subname}`)
+                            }}></BackButton>
                         </Back>
                         <Title>
                             <ProfileLogo></ProfileLogo>
@@ -232,16 +255,14 @@ const ProfilePage = ({match}) => {
                                 <RowView justifyContent={"flex-end"}>
                                     
                                     <Button 
-                                    BackgroundColor={"#CED9EB"} 
+                                    BackgroundColor={context.user.connected_users.includes(data.username) ? "#6C8DC3" : "#CED9EB"} 
                                     color={"#000"} 
                                     fontSize={"16px"} 
                                     marginTop={"0px"} 
-                                    buttonText={"Connect"} 
-                                    maxHeight={"35px"} 
+                                    buttonText={context.user.connected_users.includes(data.username) ? "Connected" : "Connect"} 
+                                    maxHeight={"35px"}
                                     MaxWidth={"120px"}
-                                    onPress={()=> {
-                                        
-                                    }}
+                                    onPress={handleConnect}
                                     >
 
                                     </Button>

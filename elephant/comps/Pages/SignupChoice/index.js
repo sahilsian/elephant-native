@@ -35,14 +35,19 @@ const GenericWrapper = styled.View`
   justify-content: space-around;
 `;
 
+const BackWrapper = styled.View`
+  width: 100%;
+`;
+
 const SignupChoice = ({ history }) => {
   return (
 
       <Frame>
 
         <FullWrapper>
-          <BackButton onPress={() => history.push("/login")}></BackButton>
-
+          <BackWrapper>
+            <BackButton onPress={() => history.push("/login")}></BackButton>
+          </BackWrapper>
           <GenericWrapper  height={"auto"}>
             <ElephantLogo Size={"150px"}></ElephantLogo>
             <WelcomeComp main={"Are you an"} fontSize={"48px"} Display={true} />
@@ -50,7 +55,9 @@ const SignupChoice = ({ history }) => {
           <GenericWrapper height={"45%"}>
           <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Educator"} />
           <TextComp text={"or"} fontSize={"28px"} />
-          <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Caregiver"} />
+          <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Caregiver"} onPress={()=> {
+            history.push("/caregiversignup")
+          }} />
           </GenericWrapper>
         </FullWrapper>
       </Frame>

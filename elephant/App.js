@@ -19,6 +19,10 @@ import MyProvider from './comps/context';
 import SubCategoryPage from './comps/Pages/subcategories'
 import Search from './comps/Pages/Search';
 import ProfilePage from './comps/Pages/profilepage';
+import CaregiverSignup from './comps/Pages/caregiverSignup';
+import CaregiverSignupTwo from './comps/Pages/caregiverSignupTwo';
+import CaregiverSignupThree from './comps/Pages/caregiverSignupThree';
+
 
 const App = () => {
   return (
@@ -34,6 +38,9 @@ const App = () => {
         <Route path={"/category/:name"} component={SubCategoryPage}></Route>
         <Route path={"/search/:subname"} component={Search}></Route>
         <Route path={"/profile/:user"} component={ProfilePage}></Route>
+        <Route path={"/caregiversignup"} component={CaregiverSignup}></Route>
+        <Route path={"/caregiversignuptwo"} component={CaregiverSignupTwo}></Route>
+        <Route path={"/caregiversignupthree"} component={CaregiverSignupThree}></Route>
         </Switch>
         {/* <Login></Login> */}
         {/* <SignupChoice></SignupChoice> */}

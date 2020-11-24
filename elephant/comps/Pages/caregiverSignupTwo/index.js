@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
@@ -7,6 +7,9 @@ import NextButton from "../../NextButton"
 import CustomTextInput from "../../CustomTextInput"
 import WelcomeComp from "../../Welcome";
 import RadioButtons from "../../radioButtons";
+import Slider from "../../slider";
+import style from "../../../storybook/stories/CenterView/style";
+import BackButton from "../../BackButton"
 
 const Frame = styled.View`
   width: 100%;
@@ -19,9 +22,8 @@ const Frame = styled.View`
 const FullWrapper = styled.View`
   width: 90%;
   flex-direction: column;
-  height: 80%;
+  height: 90%;
   align-items: center;
-  justify-content: space-between;
 
 `;
 
@@ -39,9 +41,8 @@ const TextWrapper = styled.View`
 const FormWrapper = styled.View`
   width: 80%;
   flex-direction: column;
-  margin-bottom: 10px;
-  height: 70%;
   justify-content: space-between;
+  height: 60%;
 `;
 
 const TextTitle = styled.View`
@@ -49,30 +50,107 @@ const TextTitle = styled.View`
     width: 100%;
     margin-bottom: 20px;
 `;
-const CaregiverSignupTwo = ({}) => {
+
+const SliderWrapper = styled.View`
+  width: 80%;
+  margin-bottom: 20px;
+`;
+
+const SliderContainer = styled.View`
+  width: 100%;
+  align-items: center;
+`;
+
+const SliderOptions = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const BackWrapper = styled.View`
+  width: 100%;
+  margin-bottom: 15px;
+`;
+
+
+const CaregiverSignupTwo = ({location, history}) => {
+  const [severity, setSeverity] = useState(0)
+  const [disorder, setDisorder] = useState([])
+  const [pressed, setPressed] = useState(false)
+  // const handlePress = e => {
+
+  // }
+
+  const DisorderArray = [
+    "Autism", 
+    "Down Syndrome", "ADD/ADHD", 
+    "Fragile X Syndrome", 
+    "Apert Syndrome", 
+    "Williams Syndrome", 
+    "Developmental Delays"
+]
+
+
   return (
 
         <Frame>
             <FullWrapper>
+              <BackWrapper>
+                <BackButton onPress={() => history.push("/signup")}></BackButton>
+              </BackWrapper>
               <TitleBody>
                 <TextWrapper>
                     <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
                 </TextWrapper>
                 <FormWrapper>
-                <TextComp weight={"bold"} fontSize={"20px"} text={"Type of Disorder"}></TextComp>
-                    {/* map start */}
-                    <RadioButtons text={"Autism"}></RadioButtons>
-                    <RadioButtons text={"Down Syndrome"}></RadioButtons>
-                    <RadioButtons text={"ADD/ADHD"}></RadioButtons>
-                    <RadioButtons text={"Fragile X Syndrome"}></RadioButtons>
-                    <RadioButtons text={"Apert Syndrome"}></RadioButtons>
-                    <RadioButtons text={"Williams Syndrome"}></RadioButtons>
-                    <RadioButtons text={"Developmental Delays"}></RadioButtons>
-                    {/* map end */}
+                <TextComp  weight={"bold"} fontSize={"20px"} text={"Type of Disorder"}></TextComp>
+                    {DisorderArray.map((e, i)=> {
+                      return <RadioButtons
+                        text={e}
+                        bgcolor={disorder.includes(e) ? "#5C80BC" : "#DDDDDD"}
+                        onPress={() => {
+                          setDisorder((disorder) => disorder.includes(e) ? disorder.filter(item => item !== e) : [...disorder, e])
+                          setPressed(!pressed)
+                        }}
+                      />
+
+                    })}
                 </FormWrapper>
               </TitleBody>
-
-                <NextButton></NextButton>
+              <SliderWrapper>
+                <TextComp weight={"bold"} fontSize={"20px"} text={"Level of Severity"}></TextComp>
+                <SliderContainer>
+                  <Slider
+                    onValueChange={value => {
+                      setSeverity(value)
+                      console.log(severity)
+                    }}
+                  >
+                  </Slider>
+                  <SliderOptions>
+                    <TextComp 
+                      text="Mild"
+                      
+                    />
+                    <TextComp 
+                      text="Moderate"
+                      
+                    />
+                    <TextComp 
+                      text="Severe"
+                      
+                    />
+                  </SliderOptions>
+                </SliderContainer>
+              </SliderWrapper>
+                <NextButton onPress={()=> {
+                  history.push("/caregiversignupthree", {
+                      firstname: location.state.firstname,
+                      lastname: location.state.lastname,
+                      disorders: disorder,
+                      severity: severity
+                  })
+                }}></NextButton>
             </FullWrapper>
         </Frame>
 

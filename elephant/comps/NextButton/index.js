@@ -9,7 +9,7 @@ const ButtonContainer = styled.View`
     align-items: center;
 `;
 
-const Button = styled.View`
+const Button = styled.TouchableOpacity`
     width: 100%;
     height: 100%;
     max-width: 80px;
@@ -36,16 +36,16 @@ const Arrow = styled.View`
     right: 0;
 `
 
-const NextButton = ({ onClick, text}) => {
+const NextButton = ({ onPress, text}) => {
     return (
        <ButtonContainer>
-           <Button>
+           <Button onPress={onPress}>
                <Arrow style={{
                    transform: [
                     { rotate: "-45deg" }
                    ]
                }}></Arrow>
-                <ButtonText onClick={onClick}>{text}</ButtonText>
+                <ButtonText>{text}</ButtonText>
            </Button>
         </ButtonContainer>
     )
