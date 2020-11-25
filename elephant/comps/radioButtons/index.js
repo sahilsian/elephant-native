@@ -6,7 +6,7 @@ import TextComp from "../Text";
 const Wrapper = styled.View`
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: ${props=>props.width ? props.width : "100%"};
     align-items: center;
     margin: 10px 0px;
 `;
@@ -16,14 +16,14 @@ const Button = styled.TouchableOpacity`
     width: 30px;
     height: 30px;
     border-radius: 100px;
-    margin-right: 20px;
+    margin-right: ${props=>props.marginRight ? props.marginRight : "20px"};
 `;
 
 
-const RadioButtons = ({ title, text, onPress, bgcolor }) => {
+const RadioButtons = ({ title, text, onPress, bgcolor, width, marginRight }) => {
   return (
-      <Wrapper>
-          <Button bgcolor={bgcolor} onPress={onPress}></Button>
+      <Wrapper width={width}>
+          <Button marginRight={marginRight} bgcolor={bgcolor} onPress={onPress}></Button>
           <TextComp text={text}></TextComp>
       </Wrapper>
   )
@@ -31,7 +31,7 @@ const RadioButtons = ({ title, text, onPress, bgcolor }) => {
 
 RadioButtons.defaultProps = {
     title: "Your Radio Buttons",
-    text: "Radio Button Option"
+    text: "Radio Button Option",
 };
 
 export default RadioButtons;

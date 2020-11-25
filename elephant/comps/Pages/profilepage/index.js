@@ -195,6 +195,10 @@ const ProfilePage = ({match, history, location}) => {
           
       }, [])
 
+      useEffect(()=> {
+          console.log(location.state)
+      })
+
       
   return (
     <Container>
@@ -218,7 +222,10 @@ const ProfilePage = ({match, history, location}) => {
                     <ItemContainer>
                         <Back>
                             <BackButton onPress={()=> {
-                                history.push(`/search/${location.state.subname}`)
+                                history.push(`/search/${location.state.subname}`, {
+                                category: location.state.category,
+                                subname: location.state.subname
+                            })
                             }}></BackButton>
                         </Back>
                         <Title>

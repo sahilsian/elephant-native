@@ -56,7 +56,9 @@ const SignupChoice = ({ history }) => {
           <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Educator"} />
           <TextComp text={"or"} fontSize={"28px"} />
           <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Caregiver"} onPress={()=> {
-            history.push("/caregiversignup")
+            history.push("/caregiversignup", {
+              iseducator: "false"
+            })
           }} />
           </GenericWrapper>
         </FullWrapper>

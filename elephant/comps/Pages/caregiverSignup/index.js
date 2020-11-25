@@ -55,7 +55,11 @@ const BackWrapper = styled.View`
 `;
 
 
-const CaregiverSignup = ({history}) => {
+const CaregiverSignup = ({history, location}) => {
+
+  useEffect(()=> {
+    console.log(location.state)
+  })
 
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
@@ -96,7 +100,8 @@ const CaregiverSignup = ({history}) => {
                   } else {
                     history.push("/caregiversignuptwo", {
                       firstname : firstname,
-                      lastname : lastname
+                      lastname : lastname,
+                      iseducator: location.state.iseducator
                     })
                   }
                   
