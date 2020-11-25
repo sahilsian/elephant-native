@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import styled, { css } from "styled-components/native";
 import { View, Text } from "react-native";
-
+import Button from "../../Button";
+import LottieView from 'lottie-react-native';
 //add image into folder to access it 
 
 //just replace this button with the one created
-import Buttons from "../../comps/Button1";
 
 const Contain = styled.View`
 display: flex;
@@ -34,7 +34,9 @@ font-size: 30px;
 `
 //button container
 const Btn = styled.View`
-padding-top: 70px;
+  width: 100%;
+  align-items: center;
+  margin-top: 30px;
 `;
 
 const Image = styled.Image`
@@ -48,20 +50,35 @@ padding-top: 50px;
 `
 
 
-export const Main = ({}) => {
+const FinishedSignup = ({}) => {
+
+  // useEffect(()=> {
+  //   animation.play()
+  // })
+
   return (
     <Contain>
       <Head>Congratulations!</Head>
       <SubHead>You’ve offically signed
         up with Elephant!</SubHead>
       <Btn>
-        <Buttons text="Let's get started" />
+        <Button buttonText={"Lets Get Started!"}  MaxWidth={"50%"}  />
       </Btn>
       <Img>
-        <Image source={require("./man.png")} />
+        {/* <LottieView
+        ref={animation => {
+          animation = animation;
+        }}
+         source={require('../../../assets/LottieJSON/greeting.json')} 
+         autoPlay loop
+         /> */}
       </Img>
     </Contain>
   );
 };
 
-export default Main;
+FinishedSignup.defaultProps = {
+
+}
+
+export default FinishedSignup;

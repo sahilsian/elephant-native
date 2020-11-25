@@ -56,6 +56,7 @@ const CustomTextInput = ({
   SubDisplay,
   TitleDisplay,
   MiniTitle,
+  onChangeText,
   MiniSeperation
  }) => {
   return (
@@ -75,10 +76,12 @@ const CustomTextInput = ({
         
         <TextyInput
           wrap="hard"
+          multiline={true}
           maxlength={250}
           bgColor={bgColor}
           placeholder={placeholder}
           rows={"3"}
+          onChangeText={onChangeText}
         ></TextyInput>
         </Wrapper>
       </CenterAlign>

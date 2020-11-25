@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
@@ -41,7 +41,11 @@ const FormWrapper = styled.View`
   align-items: center;
 `;
 
-const ApplicantInfo = ({}) => {
+const ApplicantInfo = ({history, location}) => {
+  const [about, setAbout] = useState("")
+  useEffect(()=> {
+    console.log(location.state)
+  })
   return (
 
         <Frame>
@@ -59,13 +63,26 @@ const ApplicantInfo = ({}) => {
                     SubDisplay={true}
                     placeholder={"Who are they? what are they like?"}
                     subtext={"(The more you can tell us the better!)"}
+                    onChangeText={(e)=> {
+                        setAbout(e)
+                    }}
                     >
 
                     </CustomTextInput>
                 </FormWrapper>
               </TitleBody>
 
-                <NextButton></NextButton>
+                <NextButton onPress={()=> {
+                  history.push("/applicantinfo", {
+                      firstname: location.state.firstname,
+                      lastname: location.state.lastname,
+                      disorders: location.state.disorder,
+                      severity: location.state.severity,
+                      interests: location.state.interest,
+                      about: about,
+                      iseducator: location.state.iseducator,
+                  })
+                }}></NextButton>
             </FullWrapper>
         </Frame>
 

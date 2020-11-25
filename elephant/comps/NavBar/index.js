@@ -4,7 +4,7 @@ import styled, { css } from "styled-components/native";
 import { View, Text, Image, TouchableOpacity} from "react-native";
 
 
-const MainDiv = styled.View`
+const MainDiv = styled.KeyboardAvoidingView`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -28,16 +28,15 @@ const MainDiv = styled.View`
   justify-content: space-around;
 `;
 
-const NavBar = ({history}) => {
+const NavBar = ({history, home, search, calendar, chat}) => {
   return (
-      <MainDiv>
+  
+      <MainDiv >
 
-        <TouchableOpacity onPress={() => {
-          history.push("/home")
-        }}><Image source={require('../../assets/Home.png')} /></TouchableOpacity>
-        <TouchableOpacity><Image source={require('../../assets/Search.png')}></Image></TouchableOpacity>
-        <TouchableOpacity><Image source={require('../../assets/calender.png')}></Image></TouchableOpacity>
-        <TouchableOpacity><Image source={require('../../assets/Chat.png')}></Image></TouchableOpacity>
+        <TouchableOpacity onPress={home}><Image source={require('../../assets/Home.png')} /></TouchableOpacity>
+        <TouchableOpacity onPress={search}><Image source={require('../../assets/Search.png')}></Image></TouchableOpacity>
+        <TouchableOpacity onPress={calendar}><Image source={require('../../assets/calender.png')}></Image></TouchableOpacity>
+        <TouchableOpacity onPress={chat}><Image source={require('../../assets/Chat.png')}></Image></TouchableOpacity>
       </MainDiv>
   );
 };

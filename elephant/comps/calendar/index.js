@@ -5,68 +5,46 @@ import styled from 'styled-components'
 const Wrapper = styled.View`
     width: 100%;
     flex: 1;
-    background-color: #fad;
+    background-color: #abc;
     justify-content: space-between;
     flex-direction: row;
+    flex-wrap: wrap;
 `;
 
-const Column = styled.View`
+const Date = styled.View`
     flex: 1;
-    background-color: #eee;
-    margin: 5px;
-    borderLeftColor: #000;
-    borderLeftWidth: ${props=>props.leftBool ? "0" : "1px"};
-    borderRightColor: #000;
-    borderRightWidth: ${props=>props.rightBool ? "0" : "1px"};
-`;
-
-const Row = styled.View`
-    flex: 1;
-    background-color: #abc;
     margin: 2px;
+    height: 100px;
+    min-width: 45px;
+    align-items: center;
 `;
 
-const Number = styled.View`
-    
-`
+const Number = styled.Text`
+    font-size: 16px;
+`;
 
-const Calendar = ({}) => {
+const Circle = styled.View`
+    width: 25px;
+    height: 25px;
+    background-color: ${props=>props.backgroundColor ? props.backgroundColor : "transparent"}
+    border-radius: 100px;
+    margin-top: 10px;
+`;
+
+
+const Calendar = ({number, backgroundColor}) => {
 
 
     return (
-        <Wrapper>
-            <Column leftBool>
-                <Row>
-                </Row>
-                <Row>
-                </Row>
-                <Row>
-                </Row>
-                <Row>
-                </Row>
-                <Row>
-                </Row>
-            </Column>
-
-            <Column>
-            </Column>
-
-            <Column>
-            </Column>
-
-            <Column>
-            </Column>
-            
-            <Column>
-            </Column>
-            
-            <Column>
-            </Column>
-
-            <Column rightBool>
-            </Column>
-        </Wrapper>
+            <Date>
+                <Number>{number}</Number>
+                <Circle backgroundColor={backgroundColor}></Circle>
+            </Date>
     )
+}
+
+Calendar.defaultProps = {
+    number: 1
 }
 
 export default Calendar

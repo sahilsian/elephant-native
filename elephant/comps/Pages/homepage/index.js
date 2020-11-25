@@ -54,6 +54,26 @@ var bgcolor = [
     "#AFD2E9", //light blue
     "#EBC1AD", //sand
     "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
     
   ];
 
@@ -113,8 +133,16 @@ const HomePage = ({ history, match }) => {
 
   return (
     <Container>
-        <TopNavBar onPress={() => history.push("/")}></TopNavBar>
-        <NavBar></NavBar>   
+        <TopNavBar></TopNavBar>
+        <NavBar home={()=> {
+            history.push("/home")
+        }} search={()=> {
+            history.push("/search/general")
+        }} calendar={()=> {
+            history.push("/calendarpage")
+        }} chat={()=> {
+
+        }}></NavBar>   
 
         <AdjustedWidth >
             <ScrollView
@@ -136,7 +164,7 @@ const HomePage = ({ history, match }) => {
                 <ItemContainer>
 
                     {data && data.map((o,i)=>{
-                        return <Categories text={o.name} onPress={() => {
+                        return <Categories MaxWidth={i%3 == 0} text={o.name} bgColor={bgcolor[i]} onPress={() => {
                             history.push(`/category/${o.name}`)
                         }}/>
                     })}

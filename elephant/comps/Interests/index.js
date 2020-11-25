@@ -1,20 +1,18 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 const Container = styled.View`
   width: auto;
   max-width: ${(props) => (props.maxwidth)};
   padding: 8px 14px;
-  background-color: ${(props) => (props.bgcolor ? "#5C80BC" : "#AFD2E9")};
+  background-color: ${props=>props.bgcolor};
   border-radius: 10px;
-
-  font-family: Quicksand;
   font-size: 16px;
   font-weight: 400;
   text-align: center;
-  color: ${(props) => (props.color ? "white" : "black")};
-
+  color: ${props=>props.color};
+  margin: 5px 5px;
   justify-content: center;
   align-items: center;
 `;
@@ -27,19 +25,20 @@ const InterestText = styled.Text`
 `;
 
 
-const Interests = ({ maxWidth, text, bgColor, color }) => {
+const Interests = ({ maxWidth, text, bgColor, color, onPress }) => {
   return (
-    <Container color={color} maxwidth={maxWidth} bgcolor={bgColor}>
-      <InterestText>{text}</InterestText>
-    </Container>
+    <TouchableOpacity onPress={onPress}>
+      <Container color={color} maxwidth={maxWidth} bgcolor={bgColor}>
+        <InterestText>{text}</InterestText>
+      </Container>
+    </TouchableOpacity>
   );
 };
 
 Interests.defaultProps = {
   maxWidth: "200px",
   text: "Sample Interest",
-  bgColor: false,
-  color: false
+  bgColor: false
 };
 
 export default Interests;

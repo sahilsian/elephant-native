@@ -22,7 +22,10 @@ import ProfilePage from './comps/Pages/profilepage';
 import CaregiverSignup from './comps/Pages/caregiverSignup';
 import CaregiverSignupTwo from './comps/Pages/caregiverSignupTwo';
 import CaregiverSignupThree from './comps/Pages/caregiverSignupThree';
-
+import ApplicantInfo from './comps/Pages/applicantInfo';
+import ContactForm from './comps/Pages/contactForm';
+import FinishedSignup from './comps/Pages/FinishedSignup';
+import CalendarPage from './comps/Pages/calendarPage';
 
 const App = () => {
   return (
@@ -41,6 +44,10 @@ const App = () => {
         <Route path={"/caregiversignup"} component={CaregiverSignup}></Route>
         <Route path={"/caregiversignuptwo"} component={CaregiverSignupTwo}></Route>
         <Route path={"/caregiversignupthree"} component={CaregiverSignupThree}></Route>
+        <Route path={"/applicantinfo"} component={ApplicantInfo}></Route>
+        <Route path={"/contactform"} component={ContactForm}></Route>
+        <Route path={"/finishedsignup"} component={FinishedSignup}></Route>
+        <Route path={"/calendarpage"} component={CalendarPage}></Route>
         </Switch>
         {/* <Login></Login> */}
         {/* <SignupChoice></SignupChoice> */}

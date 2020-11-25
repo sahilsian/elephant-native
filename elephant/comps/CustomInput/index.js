@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components/native";
+import styled, {css} from "styled-components/native";
 
 const InputWrapper = styled.View`
   width: 100%;
@@ -9,6 +9,8 @@ const InputWrapper = styled.View`
   padding-left: 0px;
   border-radius: 15px;
   margin-bottom: 12px;
+  borderWidth: ${props=>props.border ? "2px" : "0px"};
+  borderColor:  ${props=>props.border ? "#5C80BC" : "transparent"} ;
 `;
 
 const CInput = styled.TextInput`
@@ -18,7 +20,8 @@ const CInput = styled.TextInput`
   color: #292c42;
   font-weight: 400;
   font-size: 18px;
-  height: 40px;
+  
+  height: 30px;
   &::placeholder {
     font-weight: 500;
     color: #dce0fb;
@@ -39,11 +42,11 @@ const FullWrapper = styled.View`
 
 const InputTitle = styled.Text`
   color: ${(props) => (props.colorhighlight ? "#5c80bc " : "#000000")};
-  font-size: 26px;
-  margin-bottom: ${(props) => (props.subdisplay ? "8px" : "20px")};
+  font-size: 24px;
+  margin-bottom: ${(props) => (props.subdisplay ? "8px" : "15px")};
   display: ${(props) => (props.display ? "flex" : "none")};
   font-weight: 600;
-  margin-top:  ${(props) => (props.seperation ? "20px" : "0px")};
+  margin-top:  ${(props) => (props.seperation ? "15px" : "0px")};
 `;
 
 const InputMiniTitle = styled.Text`
@@ -74,7 +77,10 @@ const CustomInput = ({
   MiniTitle,
   Seperation,
   MiniSeperation,
-  onChange
+  onChange,
+  border,
+  onFocus,
+  value
 }) => {
   return (
     <FullWrapper>
@@ -93,15 +99,17 @@ const CustomInput = ({
       miniseperation={MiniSeperation}
       >{MiniTitle}</InputMiniTitle>
       <InputSubTitle subdisplay={SubDisplay}>{subtext}</InputSubTitle>
-      <InputWrapper>
+          
+      <InputWrapper border={border}>
         <CInput
           id="searchinput"
           type="text"
           onChangeText={onChange}
           placeholder={placeholder}
-          onFocus={() => {}}
+          onFocus={onFocus}
           onBlur={() => {}}
           onKeyUp={() => {}}
+          value={value}
         ></CInput>
       </InputWrapper>
     </FullWrapper>

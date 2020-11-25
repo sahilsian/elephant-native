@@ -75,7 +75,7 @@ const BackWrapper = styled.View`
 
 const CaregiverSignupTwo = ({location, history}) => {
   const [severity, setSeverity] = useState(0)
-  const [disorder, setDisorder] = useState([])
+  const [disorder, setDisorder] = useState("")
   const [pressed, setPressed] = useState(false)
   // const handlePress = e => {
 
@@ -90,6 +90,10 @@ const CaregiverSignupTwo = ({location, history}) => {
     "Developmental Delays"
 ]
 
+  useEffect(()=> {
+    console.log(disorder)
+    console.log(location.state)
+  })
 
   return (
 
@@ -109,8 +113,7 @@ const CaregiverSignupTwo = ({location, history}) => {
                         text={e}
                         bgcolor={disorder.includes(e) ? "#5C80BC" : "#DDDDDD"}
                         onPress={() => {
-                          setDisorder((disorder) => disorder.includes(e) ? disorder.filter(item => item !== e) : [...disorder, e])
-                          setPressed(!pressed)
+                          setDisorder(e)
                         }}
                       />
 
@@ -147,6 +150,7 @@ const CaregiverSignupTwo = ({location, history}) => {
                   history.push("/caregiversignupthree", {
                       firstname: location.state.firstname,
                       lastname: location.state.lastname,
+                      iseducator: location.state.iseducator,
                       disorders: disorder,
                       severity: severity
                   })

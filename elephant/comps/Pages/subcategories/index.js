@@ -42,6 +42,34 @@ const HeaderContainer = styled.View`
     margin-top: 10px;
 `;
 
+var bgcolor = [
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    "#5C80BC", //dark blue
+    "#AFD2E9", //light blue
+    "#EBC1AD", //sand
+    "#4D5061", //black
+    
+  ];
+
 const SubCategoryPage = ({match, history}) => {
     const [data, setData] = useState([]);
     const [children, setChildren] = useState([]);
@@ -99,7 +127,7 @@ const SubCategoryPage = ({match, history}) => {
 
                 <ItemContainer>
                 {children.map((o,i)=>{
-                    return <SubCategories text={o.name} onPress={() => {
+                    return <SubCategories text={o.name} bgColor={bgcolor[i]} onPress={() => {
                         history.push(`/search/${o.name}`, {
                             category: match.params.name
                         })

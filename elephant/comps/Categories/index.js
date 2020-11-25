@@ -33,7 +33,7 @@ const theme = {
 
 const HomeText = styled.Text`
   text-align: center;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 400;
   color: ${(props) => (props.color ? "white" : "black")};
 `;

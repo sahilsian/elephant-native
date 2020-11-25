@@ -10,7 +10,7 @@ import Header from "../../Header";
 import {MyContext} from '../../context'
 import axios from 'axios';
 import SearchResult from "../../searchResult";
-
+import PopularSearch from "../../popularSearch"
 
 const Container = styled.View`
     width: 100%;
@@ -28,6 +28,11 @@ const AdjustedWidth = styled.View`
 const ItemContainer = styled.View`
     width: 80%;
     flex: 1;
+
+`;
+
+const ItemBlanket = styled.View`
+    width: 100%;
     align-items: center;
 `;
 
@@ -39,11 +44,33 @@ const HeaderContainer = styled.View`
     margin-top: 10px;
 `;
 
+const popular = [
+    "Dance",
+    "Social Activity",
+    "Video Games",
+    "Art"
+]
+
 const Search = ({match, history, location}) => {
 
-  const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
     const [children, setChildren] = useState([]);
     const context = useContext(MyContext);
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
+    const handleChange = event => {
+        setSearchTerm(event);
+      };
+
+    useEffect(() => {
+        const results = data.filter(person =>
+            person.name.includes(searchTerm)
+        );
+        
+        setSearchResults(results);
+    }, [searchTerm]);
     //setup rendering here, only one cube will be visible. When array for interests
     // in api is mapped, more items will be shown.
 
@@ -67,12 +94,21 @@ const Search = ({match, history, location}) => {
         .catch(function (error) {
             console.log(error);
         });
+
+    }, [])
+
+    useEffect(()=> {
+        console.log(data)
     }, [])
 
   return (
+
+    
     <Container>
         <TopNavBar ></TopNavBar>
-        <NavBar></NavBar>   
+        <NavBar home={()=> {
+            history.push("/home")
+        }}></NavBar>   
 
         <AdjustedWidth >
             <ScrollView
@@ -83,40 +119,86 @@ const Search = ({match, history, location}) => {
                     width: "100%",
                 }}
                 >
-
+                
                 <HeaderContainer>
-                    <Header
+                {match.params.subname === "general"
+
+                ?
+                <CustomInput placeholder={"Search"} border={true} onChange={handleChange} value={searchTerm}>
+                </CustomInput>
+                :
+
+                <Header
                         text={match.params.subname}
                         padding
                         marginBottom={"0px"}
                         onPress={()=> {
                             history.push(`/category/${location.state.category}`)
                         }}
-                    > 
-                    </Header>
+                > 
+                </Header>
+                }
                 </HeaderContainer>
                 
-                <ItemContainer>
+                {match.params.subname === "general"
+                ?
+                <ItemBlanket>
+                    {searchTerm === ""
 
+                    ?
+
+                    <ItemContainer>
+                        <TextComp text={"Popular Searches"} weight={"bold"} fontSize={"18px"}></TextComp>
+                        {popular.map((o)=> {
+                            return <PopularSearch 
+                            text={o} 
+                            fontSize={"25px"}
+                            onPress={() => setSearchTerm(o)}
+                        ></PopularSearch>
+                        })
+                        
+                        }
+                    </ItemContainer>
+
+                    :
+                    <ItemContainer>
+                    
+                    {data && searchResults.map((o, i)=> {
+                        return <SearchResult
+                        name={o.name}
+                        description={o.description}
+                        onPress={() => {
+                            history.push(`/profile/${o._id}`, {
+                                category: location.state.category,
+                                subname: match.params.subname
+                            })
+                        }}               
+                        />
+                    })}
+                    </ItemContainer>
+
+                    }
+                </ItemBlanket>
                 
+                :
+                <ItemContainer>
                 {data && data.map((o, i)=> {
                     return <SearchResult
                     name={o.name}
                     description={o.description}
                     onPress={() => {
                         history.push(`/profile/${o._id}`, {
+                            category: location.state.category,
                             subname: match.params.subname
                         })
                     }}               
                     />
                 })}
-
                 </ItemContainer>
+                }
             </ScrollView>
         </AdjustedWidth>
-
     </Container>
-
 
 
   );
