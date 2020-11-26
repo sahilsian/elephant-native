@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import NextButton from "../../NextButton"
 import CustomTextInput from "../../CustomTextInput"
 import WelcomeComp from "../../Welcome";
@@ -165,6 +165,20 @@ useEffect(()=> {
                 </InterestWrapper>
               
                 <NextButton onPress={()=> {
+                  if(interest.length < 1) {
+                    Alert.alert(
+                      'Elephant',
+                      'Please select atleast one interest.',
+                      [
+                        {
+                          text: 'Ok',
+                          onPress: () => console.log("ok")
+                        }
+                      ],
+                      { cancelable: true }
+                    
+                    )
+                  } else {
                   history.push("/applicantinfo", {
                       firstname: location.state.firstname,
                       lastname: location.state.lastname,
@@ -180,6 +194,7 @@ useEffect(()=> {
                       phonenumber: location.state.phonenumber,
                       interests: interest
                   })
+                }
                 }}></NextButton>
             </FullWrapper>
         </Frame>

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import NextButton from "../../NextButton"
 import CustomTextInput from "../../CustomTextInput"
 import BackButton from "../../BackButton"
@@ -88,7 +88,7 @@ const ApplicantInfo = ({history, location}) => {
                     Seperation={true}
                     TitleDisplay={true}
                     SubDisplay={true}
-                    placeholder={"Who are they? what are they like?"}
+                    placeholder={"Who are they? what are they like? (Min: 6 characters)"}
                     subtext={"(The more you can tell us the better!)"}
                     onChangeText={(e)=> {
                         setAbout(e)
@@ -101,6 +101,20 @@ const ApplicantInfo = ({history, location}) => {
               </TitleBody>
 
                 <NextButton onPress={()=> {
+                  if(about.length < 6) {
+                    Alert.alert(
+                      'Elephant',
+                      'Please type atleast more than 6 characters. ',
+                      [
+                        {
+                          text: 'Ok',
+                          onPress: () => console.log("ok")
+                        }
+                      ],
+                      { cancelable: true }
+                    
+                    )
+                  } else {
                   history.push("/contactform", {
                       firstname: location.state.firstname,
                       lastname: location.state.lastname,
@@ -116,6 +130,7 @@ const ApplicantInfo = ({history, location}) => {
                       age: location.state.age,
                       phonenumber: location.state.phonenumber,
                   })
+                }
                 }}></NextButton>
             </FullWrapper>
         </Frame>
