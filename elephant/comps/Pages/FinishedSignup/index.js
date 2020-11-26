@@ -1,8 +1,10 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState, useContext} from "react";
 import styled, { css } from "styled-components/native";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import Button from "../../Button";
 import LottieView from 'lottie-react-native';
+import axios from 'axios';
+import { MyContext } from "../../context"
 //add image into folder to access it 
 
 //just replace this button with the one created
@@ -50,11 +52,56 @@ padding-top: 50px;
 `
 
 
-const FinishedSignup = ({}) => {
+const FinishedSignup = ({history, location}) => {
 
-  // useEffect(()=> {
-  //   animation.play()
-  // })
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const context = useContext(MyContext);
+
+  useEffect(()=> {
+    console.log(location.state.username)
+    console.log(location.state.password)
+
+    setUsername(location.state.username)
+    setPassword(location.state.password)
+  })
+
+  const HandleLogin = async(username, password) => {
+
+    history.push('/login')
+
+    //  axios.post(`http://elephantidsp.herokuapp.com/auth/login`, {
+    //    username : username,
+    //    password : password,
+    //    headers:{'content-type': 'application/json'}
+    //  })
+
+    //  .then(response => {
+    //     //await AsyncStorage.setItem('token', response.token);
+    //    context.setToken(response.data.access_token)
+    //    console.log(context.token)
+    //    history.push('/home')
+    //  })
+
+    //  .catch(error => {
+    //    console.log(error, "this is an error")
+    //    console.log(username, password)
+
+    //    Alert.alert(
+    //      'Elephant',
+    //      'Error',
+    //      [
+    //        {
+    //          text: 'Okay',
+    //          onPress: () => console.log('Ok Pressed')
+    //   }
+    //      ],
+    //      { cancelable: false }
+    //    );
+
+    //  })
+  }
+
 
   return (
     <Contain>
@@ -62,7 +109,9 @@ const FinishedSignup = ({}) => {
       <SubHead>You’ve offically signed
         up with Elephant!</SubHead>
       <Btn>
-        <Button buttonText={"Lets Get Started!"}  MaxWidth={"50%"}  />
+        <Button buttonText={"Lets Get Started!"}  MaxWidth={"50%"} onPress={()=> {
+          HandleLogin(username, password)
+        }} />
       </Btn>
       <Img>
         {/* <LottieView

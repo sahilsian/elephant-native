@@ -52,7 +52,6 @@ const Login = ({ history }) => {
 
   const HandleLogin = async(username, password) => {
 
-
     axios.post(`http://elephantidsp.herokuapp.com/auth/login`, {
       username : username,
       password : password,

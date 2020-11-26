@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView, View, StyleSheet, Text } from 'react-native';
+import { ScrollView, View, StyleSheet, Alert } from 'react-native';
 import NextButton from "../../NextButton"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
@@ -189,7 +189,18 @@ const ProfilePage = ({match, history, location}) => {
 
           })
           .catch(function (error) {
-              console.log(error);
+              console.log(error.message)
+            Alert.alert(
+                'Elephant',
+                error.message,
+                [
+                  {
+                    text: 'Okay',
+                    onPress: () => console.log('Ok Pressed')
+                  }
+                ],
+                { cancelable: false }
+              );
           });
 
           
@@ -207,9 +218,16 @@ const ProfilePage = ({match, history, location}) => {
         style={styles.linearGradient}
         > */}
 
-            <TopNavBar Shadow={shadow}></TopNavBar>
-            <NavBar></NavBar>   
+        <TopNavBar></TopNavBar>
+        <NavBar home={()=> {
+            history.push("/home")
+        }} search={()=> {
+            history.push("/search/general")
+        }} calendar={()=> {
+            history.push("/calendarpage")
+        }} chat={()=> {
 
+        }}></NavBar>    
             <AdjustedWidth >
                 <ScrollView
                     contentContainerStyle={{

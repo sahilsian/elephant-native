@@ -91,16 +91,37 @@ const CaregiverSignupTwo = ({location, history}) => {
 ]
 
   useEffect(()=> {
-    console.log(disorder)
     console.log(location.state)
-  })
+
+    if(location.state.disorders !== undefined) {
+      setDisorder(location.state.disorders)
+
+    }
+    if(location.state.severity !== 0) {
+      setSeverity(location.state.severity)
+    }
+  }, [])
 
   return (
 
         <Frame>
             <FullWrapper>
               <BackWrapper>
-                <BackButton onPress={() => history.push("/signup")}></BackButton>
+                <BackButton onPress={() => history.push("/caregiversignup", {
+                  firstname: location.state.firstname,
+                  lastname: location.state.lastname,
+                  iseducator: location.state.iseducator,
+                  disorders: disorder,
+                  severity: severity,
+                  about: location.state.about,
+                  email: location.state.email,
+                  password: location.state.password,
+                  username: location.state.username,
+                  userGender: location.state.userGender, 
+                  age: location.state.age,
+                  phonenumber: location.state.phonenumber,
+                  interests: location.state.interests
+                })}></BackButton>
               </BackWrapper>
               <TitleBody>
                 <TextWrapper>
@@ -128,6 +149,7 @@ const CaregiverSignupTwo = ({location, history}) => {
                       setSeverity(value)
                       console.log(severity)
                     }}
+                    value={location.state.severity ? location.state.severity : 0}
                   >
                   </Slider>
                   <SliderOptions>
@@ -148,11 +170,19 @@ const CaregiverSignupTwo = ({location, history}) => {
               </SliderWrapper>
                 <NextButton onPress={()=> {
                   history.push("/caregiversignupthree", {
-                      firstname: location.state.firstname,
-                      lastname: location.state.lastname,
-                      iseducator: location.state.iseducator,
-                      disorders: disorder,
-                      severity: severity
+                    firstname: location.state.firstname,
+                    lastname: location.state.lastname,
+                    iseducator: location.state.iseducator,
+                    disorders: disorder,
+                    severity: severity,
+                    about: location.state.about,
+                    email: location.state.email,
+                    password: location.state.password,
+                    username: location.state.username,
+                    userGender: location.state.userGender, 
+                    age: location.state.age,
+                    phonenumber: location.state.phonenumber,
+                    interests: location.state.interests
                   })
                 }}></NextButton>
             </FullWrapper>

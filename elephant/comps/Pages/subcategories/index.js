@@ -104,7 +104,15 @@ const SubCategoryPage = ({match, history}) => {
   return (
     <Container>
         <TopNavBar></TopNavBar>
-        <NavBar></NavBar>
+        <NavBar home={()=> {
+            history.push("/home")
+        }} search={()=> {
+            history.push("/search/general")
+        }} calendar={()=> {
+            history.push("/calendarpage")
+        }} chat={()=> {
+
+        }}></NavBar>   
      
         <AdjustedWidth >
             <ScrollView

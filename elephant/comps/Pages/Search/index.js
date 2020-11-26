@@ -105,10 +105,16 @@ const Search = ({match, history, location}) => {
 
     
     <Container>
-        <TopNavBar ></TopNavBar>
+        <TopNavBar></TopNavBar>
         <NavBar home={()=> {
             history.push("/home")
-        }}></NavBar>   
+        }} search={()=> {
+            history.push("/search/general")
+        }} calendar={()=> {
+            history.push("/calendarpage")
+        }} chat={()=> {
+
+        }}></NavBar>    
 
         <AdjustedWidth >
             <ScrollView
