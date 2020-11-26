@@ -95,7 +95,11 @@ const CaregiverSignupThree = ({location, history}) => {
 useEffect(()=> {
   console.log(interest)
   console.log(location.state)
-})
+  if(location.state.interests !== undefined) {
+    setInterest(location.state.interests)
+    console.log("yes")
+  }
+}, [])
 
 
   return (
@@ -103,7 +107,21 @@ useEffect(()=> {
         <Frame>
             <FullWrapper>
               <BackWrapper>
-                <BackButton onPress={() => history.push("/signup")}></BackButton>
+                <BackButton onPress={() => history.push("/caregiversignuptwo", {
+                  firstname: location.state.firstname,
+                  lastname: location.state.lastname,
+                  disorders: location.state.disorders,
+                  severity: location.state.severity,
+                  iseducator: location.state.iseducator,
+                  about: location.state.about,
+                  email: location.state.email,
+                  password: location.state.password,
+                  username: location.state.username,
+                  userGender: location.state.userGender, 
+                  age: location.state.age,
+                  phonenumber: location.state.phonenumber,
+                  interests: interest
+                })}></BackButton>
               </BackWrapper>
               <TitleBody>
                 <TextWrapper>
@@ -147,12 +165,19 @@ useEffect(()=> {
                 </InterestWrapper>
               
                 <NextButton onPress={()=> {
-                  history.push("/contactform", {
+                  history.push("/applicantinfo", {
                       firstname: location.state.firstname,
                       lastname: location.state.lastname,
                       disorders: location.state.disorders,
                       severity: location.state.severity,
                       iseducator: location.state.iseducator,
+                      about: location.state.about,
+                      email: location.state.email,
+                      password: location.state.password,
+                      username: location.state.username,
+                      userGender: location.state.userGender, 
+                      age: location.state.age,
+                      phonenumber: location.state.phonenumber,
                       interests: interest
                   })
                 }}></NextButton>

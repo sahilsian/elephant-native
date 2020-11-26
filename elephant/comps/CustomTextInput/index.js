@@ -57,7 +57,8 @@ const CustomTextInput = ({
   TitleDisplay,
   MiniTitle,
   onChangeText,
-  MiniSeperation
+  MiniSeperation,
+  value
  }) => {
   return (
 
@@ -82,6 +83,7 @@ const CustomTextInput = ({
           placeholder={placeholder}
           rows={"3"}
           onChangeText={onChangeText}
+          value={value}
         ></TextyInput>
         </Wrapper>
       </CenterAlign>

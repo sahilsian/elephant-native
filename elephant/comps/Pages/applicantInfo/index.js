@@ -5,6 +5,7 @@ import TextComp from "../../Text"
 import { ScrollView } from 'react-native';
 import NextButton from "../../NextButton"
 import CustomTextInput from "../../CustomTextInput"
+import BackButton from "../../BackButton"
 
 const Frame = styled.View`
   width: 100%;
@@ -19,7 +20,6 @@ const FullWrapper = styled.View`
   flex-direction: column;
   height: 80%;
   align-items: center;
-  justify-content: space-between;
 
 `;
 
@@ -37,19 +37,46 @@ const TextWrapper = styled.View`
 const FormWrapper = styled.View`
   width: 100%;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 150px;
   align-items: center;
+`;
+
+
+const BackWrapper = styled.View`
+  width: 100%;
+  margin-bottom: 15px;
 `;
 
 const ApplicantInfo = ({history, location}) => {
   const [about, setAbout] = useState("")
   useEffect(()=> {
     console.log(location.state)
-  })
+    if(location.state.about != "") {
+      setAbout(location.state.about)
+    }
+  }, [])
   return (
 
         <Frame>
             <FullWrapper>
+            <BackWrapper>
+              <BackButton onPress={() => history.push("/caregiversignupthree", {
+                firstname: location.state.firstname,
+                lastname: location.state.lastname,
+                disorders: location.state.disorders,
+                severity: location.state.severity,
+                about: about,
+                iseducator: location.state.iseducator,
+                email: location.state.email,
+                password: location.state.password,
+                username: location.state.username,
+                userGender: location.state.userGender, 
+                age: location.state.age,
+                phonenumber: location.state.phonenumber,
+                interests: location.state.interests
+
+              })}></BackButton>
+          </BackWrapper>
               <TitleBody>
                 <TextWrapper>
                     <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
@@ -66,6 +93,7 @@ const ApplicantInfo = ({history, location}) => {
                     onChangeText={(e)=> {
                         setAbout(e)
                     }}
+                    value={about}
                     >
 
                     </CustomTextInput>
@@ -73,14 +101,20 @@ const ApplicantInfo = ({history, location}) => {
               </TitleBody>
 
                 <NextButton onPress={()=> {
-                  history.push("/applicantinfo", {
+                  history.push("/contactform", {
                       firstname: location.state.firstname,
                       lastname: location.state.lastname,
-                      disorders: location.state.disorder,
+                      disorders: location.state.disorders,
                       severity: location.state.severity,
-                      interests: location.state.interest,
+                      interests: location.state.interests,
                       about: about,
                       iseducator: location.state.iseducator,
+                      email: location.state.email,
+                      password: location.state.password,
+                      username: location.state.username,
+                      userGender: location.state.userGender, 
+                      age: location.state.age,
+                      phonenumber: location.state.phonenumber,
                   })
                 }}></NextButton>
             </FullWrapper>

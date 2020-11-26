@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import NextButton from "../../NextButton"
 import CustomTextInput from "../../CustomTextInput"
 import WelcomeComp from "../../Welcome";
@@ -59,10 +59,15 @@ const CaregiverSignup = ({history, location}) => {
 
   useEffect(()=> {
     console.log(location.state)
-  })
 
-  const [firstname, setFirstname] = useState(null);
-  const [lastname, setLastname] = useState(null);
+    if(location.state.firstname && location.state.lastname != "") {
+      setLastname(location.state.lastname)
+      setFirstname(location.state.firstname)
+    }
+  }, [])
+
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
 
   return (
         <Frame>
@@ -70,7 +75,25 @@ const CaregiverSignup = ({history, location}) => {
               
               <TitleBody>
               <BackWrapper>
-                <BackButton onPress={() => history.push("/signup")}></BackButton>
+                <BackButton onPress={() =>  
+                  Alert.alert(
+                    'Are you sure you want to continue?',
+                    'Any information added will be lost.',
+                    [
+                      {
+                        text: 'Cancel',
+                        onPress: () => console.log("cancelled")
+                      },
+                      {
+                        text: 'Ok',
+                        onPress: () => history.push("/signup")
+                      }
+                    ],
+                    { cancelable: true }
+                  
+                  )}
+
+                  ></BackButton>
               </BackWrapper>
                 <TextWrapper>
                     <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
@@ -81,27 +104,49 @@ const CaregiverSignup = ({history, location}) => {
                 <FormWrapper>
                     <CustomInput 
                     placeholder={"First Name"}
-                    onChange={firstname => setFirstname(firstname)}
+                    onChange={firstname => {
+                          setFirstname(firstname)
+                      }
+                    }
+                    value={
+                      firstname
+                    }
                     >
                     </CustomInput>
                     <CustomInput 
                     placeholder={"Last Name"}
-                    onChange={lastname => setLastname(lastname)}
+                    onChange={lastname => {
+                        setLastname(lastname)
+                    }
+                  }
+                    value={
+                      lastname
+                    }
                     >
                     </CustomInput>
                 </FormWrapper>
               </TitleBody>
 
                 <NextButton onPress={()=> {
-                  if(firstname == null) {
+                  if(firstname == "" ){
 
-                  } else if (lastname == null){
+                  } else if (lastname == ""){
                     
                   } else {
                     history.push("/caregiversignuptwo", {
                       firstname : firstname,
                       lastname : lastname,
-                      iseducator: location.state.iseducator
+                      iseducator: location.state.iseducator,
+                      disorders: location.state.disorders,
+                      severity: location.state.severity,
+                      about: location.state.about,
+                      email: location.state.email,
+                      password: location.state.password,
+                      username: location.state.username,
+                      userGender: location.state.userGender, 
+                      age: location.state.age,
+                      phonenumber: location.state.phonenumber,
+                      interests: location.state.interests
                     })
                   }
                   

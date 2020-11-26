@@ -2,10 +2,11 @@ import React, {useEffect, useState, useContext} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import NextButton from "../../NextButton"
 import axios from 'axios';
 import RadioButtons from "../../radioButtons";
+import BackButton from "../../BackButton"
 
 const Frame = styled.View`
   width: 100%;
@@ -39,8 +40,14 @@ const GenderWrapper = styled.View`
   justify-content: space-between;
 `;
 
+
+const BackWrapper = styled.View`
+  width: 100%;
+  margin-bottom: 15px;
+`;
+
 const ContactForm = ({location, history}) => {
-  const [userGender, setUserGender] = useState("")
+  const[userGender, setUserGender] = useState("")
   const[username, setUsername] = useState("")
   const[password, setPassword] = useState("")
   const[age, setAge] = useState()
@@ -60,40 +67,83 @@ const ContactForm = ({location, history}) => {
   var iseducator = location.state.iseducator
   var firstname = location.state.firstname
   var disorders = location.state.disorders
-  var severity = location.state.severity
+  var severity = Math.ceil(location.state.severity)
   var interests = location.state.interests
 
-  const HandleClick = async() => {
+  const HandleClick = async(caregiverName,
+    email,
+    password,
+    username,
+    userGender, 
+    age,
+    phonenumber,
+    iseducator, 
+    firstname, 
+    disorders, 
+    severity, 
+    interests) => {
 
-    axios.post("http://elephantidsp.herokuapp.com/user/create-student", {
-      name: caregiverName,
-      email: email,
-      password: password,
-      username: username,
-      gender: userGender, 
-      age: parseInt(age),
-      phone_number: phonenumber,
-      is_educator: iseducator, 
-      student_name: firstname, 
-      disability_name: disorders, 
-      disability_spectrum: severity, 
-      interests: interests,
-    })
+    var data = JSON.stringify({"name": caregiverName, "email": email, "password": password, "username": username, "gender": userGender, "age": parseInt(age), "phone_number": phonenumber,"is_educator": iseducator,"student_name": firstname,"disability_name": disorders,"disability_spectrum": parseInt(severity),"interests": interests})
+
+    var Connect = {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios("http://elephantidsp.herokuapp.com/user/create-student", Connect)
     .then(response => {
         console.log(response.data, 'success')
-        history.push("/finishedsignup")
+        history.push("/finishedsignup", {
+          username: username,
+          password: password
+        })
     })
     .catch(error => {
-      console.log(error, "somethings wrong")
+      Alert.alert(
+        'Elephant',
+        error.message,
+        [
+          {
+            text: 'Okay',
+            onPress: () => console.log('Ok Pressed')
+          }
+        ],
+        { cancelable: false }
+      );
     });
 
   }
+
+  useEffect(()=> {
+    
+  }, [])
 
   return (
       <ScrollView style={{width: "100%", height: "100%"}}>
 
       <Frame>
       <FullWrapper>
+        <BackWrapper>
+          <BackButton onPress={() => history.push("/applicantinfo", {
+            firstname: location.state.firstname,
+            lastname: location.state.lastname,
+            disorders: location.state.disorders,
+            severity: location.state.severity,
+            iseducator: location.state.iseducator,
+            email: email,
+            password: password,
+            username: username,
+            userGender: userGender, 
+            age: age,
+            phonenumber: phonenumber,
+            interests: location.state.interests,
+            about: location.state.about
+
+          })}></BackButton>
+        </BackWrapper>
       <TextWrapper>
         <TextComp fontSize={"20px"} text={"Please fill out the following with the Your information"}></TextComp>
       </TextWrapper>
@@ -105,10 +155,12 @@ const ContactForm = ({location, history}) => {
             onChange={(e)=> {
               setUsername(e)
             }}
+            value={username}
           ></CustomInput>
           <CustomInput placeholder={"Password"} onChange={(e)=> {
               setPassword(e)
-            }}></CustomInput>
+            }}
+            value={password}></CustomInput>
           <CustomInput
             DisplayIt={true}
             Title={"Personal"}
@@ -116,13 +168,15 @@ const ContactForm = ({location, history}) => {
             onChange={(e)=> {
               setCaregiverName(e)
             }}
+            value={caregiverName}
             
             
           ></CustomInput>
           
           <CustomInput placeholder={"Last Name"} onChange={(e)=> {
               setCaregiverLastName(e)
-            }}></CustomInput>
+            }}
+            value={caregiverLastName}></CustomInput>
             <CustomInput placeholder={"Age"} onChange={(e)=> {
               setAge(e)
             }}></CustomInput>  
@@ -136,6 +190,7 @@ const ContactForm = ({location, history}) => {
                 onPress={()=> {
                   setUserGender(e)
                 }}
+                
               >
               </RadioButtons>
 
@@ -181,7 +236,7 @@ const ContactForm = ({location, history}) => {
             }}
           ></CustomInput>
         </FormWrapper>
-        <NextButton onPress={HandleClick}></NextButton>
+        <NextButton onPress={()=> HandleClick(caregiverName, email, password, username, userGender, age, phonenumber, iseducator, firstname, disorders, severity, interests)}></NextButton>
       </FullWrapper>
       </Frame>
       </ScrollView>
