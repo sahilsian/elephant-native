@@ -26,7 +26,7 @@ const Number = styled.Text`
 const Circle = styled.View`
     width: 25px;
     height: 25px;
-    background-color: ${props=>props.backgroundColor ? props.backgroundColor : "transparent"}
+    background-color: ${props=>props.backgroundColor ? "#5C80BC" : "transparent"}
     border-radius: 100px;
     margin-top: 10px;
 `;

@@ -38,10 +38,11 @@ const Wrapper = styled.View`
 
 const Dates = styled.View`
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     height: 50px;
     align-items: center;
+    
 `;
 
 const Date = [
@@ -54,10 +55,16 @@ const Date = [
     "Sun"
 ]
 
+const DateWrapper = styled.View`
+    
+`;
+
 const CalendarPage = ({history}) => {
 
     const context = useContext(MyContext);
     const [data, setData] = useState([]);
+    const [date, setDate] = useState([]);
+    const [activitydate, setActivitydate] = useState([]);
     //setup rendering here, only one cube will be visible. When array for interests
     // in api is mapped, more items will be shown.
 
@@ -65,7 +72,7 @@ const CalendarPage = ({history}) => {
 
         var profile = {
             method: 'get',
-            url: 'http://elephantidsp.herokuapp.com/profile',
+            url: 'http://elephantidsp.herokuapp.com/activity/all',
             headers: { 
                 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${context.token}`
@@ -75,13 +82,20 @@ const CalendarPage = ({history}) => {
         axios(profile)
 
         .then(function(response) {
-            console.log(response.data, "connections");
             setData(response.data)
+            
+        
         })
 
         .catch(function (error) {
             console.log(error);
         });
+
+        setDate(Array.from({ length: 35 }, (_, i) => i + 1));
+        setActivitydate([])
+        var t_arr = data.map(e=>e.start_time.split(/[-T:.]/));
+        setActivitydate(activitydate.concat(t_arr));
+        console.log(activitydate)
         
     }, [])
 
@@ -106,12 +120,19 @@ const CalendarPage = ({history}) => {
                 <ItemContainer>
                 <Dates>
                     {Date.map((o, i) => {
-                    return <TextComp text={o}></TextComp>
+                    return <DateWrapper>
+                        <TextComp text={o}></TextComp> 
+                        </DateWrapper>
                     }) 
                     }
                 </Dates>
                 <Wrapper>
-                    <Calendar></Calendar>
+                    {date && date.map((b, i)=> {
+                        
+                        return <Calendar number={b < 32 ?  b: ""}></Calendar>
+
+                    })}
+
                 </Wrapper>
 
                 </ItemContainer>

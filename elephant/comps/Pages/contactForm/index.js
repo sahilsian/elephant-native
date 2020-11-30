@@ -236,7 +236,40 @@ const ContactForm = ({location, history}) => {
             }}
           ></CustomInput>
         </FormWrapper>
-        <NextButton onPress={()=> HandleClick(caregiverName, email, password, username, userGender, age, phonenumber, iseducator, firstname, disorders, severity, interests)}></NextButton>
+        <NextButton onPress={()=> {
+          if (caregiverName || email || password || username || userGender || age || phonenumber || iseducator || firstname || disorders || severity || interests === "") {
+            Alert.alert(
+              'Elephant',
+              'Please fill in all appropriate blanks.',
+              [
+                {
+                  text: 'Ok',
+                  onPress: () => console.log("ok")
+                }
+              ],
+              { cancelable: true }
+            
+            )
+          } else if(password.length <= 4) {
+            Alert.alert(
+              'Elephant',
+              'Password must be more than 3 characters',
+              [
+                {
+                  text: 'Ok',
+                  onPress: () => console.log("ok")
+                }
+              ],
+              { cancelable: true }
+            
+            )
+          } else {
+
+          HandleClick(caregiverName, email, password, username, userGender, age, phonenumber, iseducator, firstname, disorders, severity, interests)
+          }
+        }}
+          
+          ></NextButton>
       </FullWrapper>
       </Frame>
       </ScrollView>

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import NextButton from "../../NextButton"
 import CustomTextInput from "../../CustomTextInput"
 import WelcomeComp from "../../Welcome";
@@ -169,6 +169,21 @@ const CaregiverSignupTwo = ({location, history}) => {
                 </SliderContainer>
               </SliderWrapper>
                 <NextButton onPress={()=> {
+                  if(disorder === "") {
+                    Alert.alert(
+                      'Elephant',
+                      'Please select a disability.',
+                      [
+                        {
+                          text: 'Ok',
+                          onPress: () => console.log("ok")
+                        }
+                      ],
+                      { cancelable: true }
+                    
+                    )
+                  } else {
+
                   history.push("/caregiversignupthree", {
                     firstname: location.state.firstname,
                     lastname: location.state.lastname,
@@ -184,6 +199,8 @@ const CaregiverSignupTwo = ({location, history}) => {
                     phonenumber: location.state.phonenumber,
                     interests: location.state.interests
                   })
+                  }
+
                 }}></NextButton>
             </FullWrapper>
         </Frame>

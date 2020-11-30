@@ -9,7 +9,7 @@
 import React from 'react';
 import MyTestComp from './comps/Test';
 // import Active from './comps/Pages/activeMessages'
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Animated, useWindowDimensions, SafeAreaView} from 'react-native';
 import { NativeRouter, Switch, Route } from 'react-router-native'
 import Start from './comps/Pages/Start';
 import Login from './comps/Pages/Login';
@@ -26,20 +26,21 @@ import ApplicantInfo from './comps/Pages/applicantInfo';
 import ContactForm from './comps/Pages/contactForm';
 import FinishedSignup from './comps/Pages/FinishedSignup';
 import CalendarPage from './comps/Pages/calendarPage';
+import AnimatedStack from 'react-router-native-animate-stack';
 
 const App = () => {
+  // const enterAnimKit = new Animated.Value(0);
+  // const exitAnimKit = new Animated.Value(0);
+  // const width = useWindowDimensions().width;
   return (
     <MyProvider>
-
+    <SafeAreaView style={styles.container}>
     <NativeRouter>
       <View style={styles.container}>
-        <Switch>
         <Route exact path="/" component={Start}></Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/signup" component={SignupChoice}></Route>
-        <Route path="/home" component={HomePage}></Route>
         <Route path={"/category/:name"} component={SubCategoryPage}></Route>
-        <Route path={"/search/:subname"} component={Search}></Route>
         <Route path={"/profile/:user"} component={ProfilePage}></Route>
         <Route path={"/caregiversignup"} component={CaregiverSignup}></Route>
         <Route path={"/caregiversignuptwo"} component={CaregiverSignupTwo}></Route>
@@ -47,13 +48,67 @@ const App = () => {
         <Route path={"/applicantinfo"} component={ApplicantInfo}></Route>
         <Route path={"/contactform"} component={ContactForm}></Route>
         <Route path={"/finishedsignup"} component={FinishedSignup}></Route>
-        <Route path={"/calendarpage"} component={CalendarPage}></Route>
-        </Switch>
+        {/* <AnimatedStack
+            swipeCancelSpeed={50}
+            swipeable={true}
+            onMountAnimate={() => {
+              Animated.timing(enterAnimKit, {
+                toValue: 1,
+                duration: 100
+              }).start();
+            }}
+            onTransitionAnimate={({ location, action, isNestedRoute }) => {
+              if (isNestedRoute) return;
+              // Enter and exit or one only
+              enterAnimKit.setValue(0);
+              exitAnimKit.setValue(0);
+  
+              Animated.timing(enterAnimKit, {
+                toValue: 1,
+                duration: 500,
+                delay: 200
+              }).start();
+  
+              Animated.timing(exitAnimKit, {
+                toValue: 1,
+                duration: 500
+              }).start();
+            }}
+            activedViewStyleHandler={({ location, action, isNestedRoute }) => {
+              return {
+                transform: [
+                  {
+                    translateX: enterAnimKit.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [width, 0]
+                    })
+                  }
+                ]
+              };
+            }}
+            deactivedViewStyleHandler={({ location, action, isNestedRoute }) => {
+              return {
+                transform: [
+                  {
+                    translateX: exitAnimKit.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, -width]
+                    })
+                  }
+                ]
+              };
+            }}
+        > */}
+          <Route path="/home" component={HomePage}></Route>
+          <Route path={"/search/:subname"} component={Search}></Route>
+          <Route path={"/calendarpage"} component={CalendarPage}></Route>
+        {/* </AnimatedStack> */}
+
         {/* <Login></Login> */}
         {/* <SignupChoice></SignupChoice> */}
       </View>
     </NativeRouter>
-
+    </SafeAreaView>
     </MyProvider>
 
   )
@@ -62,9 +117,11 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: "100%",
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    width: "100%"
   }
 })
 

@@ -91,7 +91,8 @@ const CaregiverSignup = ({history, location}) => {
                     ],
                     { cancelable: true }
                   
-                  )}
+                  )
+                }
 
                   ></BackButton>
               </BackWrapper>
@@ -129,9 +130,31 @@ const CaregiverSignup = ({history, location}) => {
 
                 <NextButton onPress={()=> {
                   if(firstname == "" ){
-
-                  } else if (lastname == ""){
+                    Alert.alert(
+                      'Elephant',
+                      'Please fill in all text boxes.',
+                      [
+                        {
+                          text: 'Ok',
+                          onPress: () => console.log("ok")
+                        }
+                      ],
+                      { cancelable: true }
                     
+                    )
+                  } else if (lastname == ""){
+                    Alert.alert(
+                      'Elephant',
+                      'Please fill in all text boxes.',
+                      [
+                        {
+                          text: 'Ok',
+                          onPress: () => console.log("ok")
+                        }
+                      ],
+                      { cancelable: true }
+                    
+                    )
                   } else {
                     history.push("/caregiversignuptwo", {
                       firstname : firstname,
