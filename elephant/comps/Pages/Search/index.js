@@ -22,7 +22,7 @@ const Container = styled.View`
 
 const AdjustedWidth = styled.View`
     width: 100%;
-    flex: 0.81;
+    flex: 0.85;
 `;
 
 const ItemContainer = styled.View`
@@ -110,10 +110,15 @@ const Search = ({match, history, location}) => {
             history.push("/home")
         }} search={()=> {
             history.push("/search/general")
-        }} calendar={()=> {
+        }} 
+        searchicon={require('../../../assets/Search.png')}
+        calendar={()=> {
             history.push("/calendarpage")
-        }} chat={()=> {
-
+        }} account={()=> {
+            history.push(`/profile/${"ownprofile"}`, {
+                ownprofile: true,
+                page: "search/general"
+            })
         }}></NavBar>    
 
         <AdjustedWidth >

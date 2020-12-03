@@ -20,7 +20,7 @@ const Container = styled.View`
 
 const AdjustedWidth = styled.View`
     width: 100%;
-    flex: 0.81;
+    flex: 0.85;
 `;
 
 const ItemContainer = styled.View`
@@ -104,7 +104,18 @@ const CalendarPage = ({history}) => {
         <TopNavBar></TopNavBar>
         <NavBar home={()=> {
             history.push("/home")
-        }}></NavBar>   
+        }} search={()=> {
+            history.push("/search/general")
+        }} 
+        calendaricon={require('../../../assets/calender.png')}
+        calendar={()=> {
+            history.push("/calendarpage")
+        }} account={()=> {
+            history.push(`/profile/${"ownprofile"}`, {
+                ownprofile: true,
+                page: "calendarpage"
+            })
+        }}></NavBar> 
 
         <AdjustedWidth >
             <ScrollView

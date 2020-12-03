@@ -53,7 +53,11 @@ const SignupChoice = ({ history }) => {
             <WelcomeComp main={"Are you an"} fontSize={"48px"} Display={true} />
           </GenericWrapper>
           <GenericWrapper height={"45%"}>
-          <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Educator"} />
+          <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Educator"} onPress={()=> {
+            history.push("/applicantinfo", {
+              iseducator: "true"
+            })
+          }} />
           <TextComp text={"or"} fontSize={"28px"} />
           <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Caregiver"} onPress={()=> {
             history.push("/caregiversignup", {

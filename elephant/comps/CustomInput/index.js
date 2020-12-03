@@ -7,8 +7,8 @@ const InputWrapper = styled.View`
   background-color: #F5F5F5;
   padding: 5px;
   padding-left: 0px;
+  margin-bottom: 3px;
   border-radius: 15px;
-  margin-bottom: 12px;
   borderWidth: ${props=>props.border ? "2px" : "0px"};
   borderColor:  ${props=>props.border ? "#5C80BC" : "transparent"} ;
 `;
@@ -33,11 +33,19 @@ const CInput = styled.TextInput`
   }
 `;
 
+const Small = styled.Text`
+  color: #AFAFAF;
+  margin-left: 15px;
+  display: ${props=>props.smalldisplay ? "flex" : "none"}
+`;
+
 const FullWrapper = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 12px;
+
 `;
 
 const InputTitle = styled.Text`
@@ -80,7 +88,10 @@ const CustomInput = ({
   onChange,
   border,
   onFocus,
-  value
+  value,
+  password,
+  small,
+  smalldisplay
 }) => {
   return (
     <FullWrapper>
@@ -102,6 +113,7 @@ const CustomInput = ({
           
       <InputWrapper border={border}>
         <CInput
+          secureTextEntry={password}
           id="searchinput"
           type="text"
           onChangeText={onChange}
@@ -112,6 +124,10 @@ const CustomInput = ({
           value={value}
         ></CInput>
       </InputWrapper>
+      <Small smalldisplay={smalldisplay}>
+        
+        {small}
+      </Small>
     </FullWrapper>
   );
 };
@@ -126,7 +142,8 @@ CustomInput.defaultProps = {
   TitleDisplay: false,
   MiniTitle: "Mini Title",
   Seperation: false,
-  MiniSeperation: false
+  MiniSeperation: false,
+  smalldisplay: false
 };
 
 export default CustomInput;

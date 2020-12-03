@@ -106,13 +106,18 @@ const SubCategoryPage = ({match, history}) => {
         <TopNavBar></TopNavBar>
         <NavBar home={()=> {
             history.push("/home")
-        }} search={()=> {
+        }}
+        homeicon={require('../../../assets/Home.png')}
+        search={()=> {
             history.push("/search/general")
         }} calendar={()=> {
             history.push("/calendarpage")
-        }} chat={()=> {
-
-        }}></NavBar>   
+        }} account={()=> {
+            history.push(`/profile/${"ownprofile"}`, {
+                ownprofile: true,
+                page: "home"
+            })
+        }}></NavBar>    
      
         <AdjustedWidth >
             <ScrollView

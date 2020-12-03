@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@mdi/font": "^5.8.55",
+    "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-community/cookies": "^5.0.1",
     "@react-native-community/slider": "^3.0.3",
     "@react-navigation/native": "^5.8.6",
@@ -22,6 +23,7 @@
     "lottie-react-native": "^3.5.0",
     "react": "16.13.1",
     "react-native": "0.63.3",
+    "react-native-global-props": "^1.1.5",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-vector-icons": "^7.1.0",
     "react-router-native": "^5.2.0",

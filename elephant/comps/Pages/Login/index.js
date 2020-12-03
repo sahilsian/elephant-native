@@ -112,14 +112,13 @@ const Login = ({ history }) => {
             <CustomInput placeholder={"Username"}
             onChange={username => setUsername(username)}
             />
-            <CustomInput placeholder={"Password"}
+            <CustomInput password={true} placeholder={"Password"}
             onChange={password => setPassword(password)}
             />
           </GenericWrapper>
           <Button buttonText={"Login"} onPress={() => HandleLogin(username, password)}/>
           <TextComp Margin={"20px"} text={"Don’t have an account?"}></TextComp>
           <Button buttonText={"Sign Up"} onPress={() => history.push("/signup")} />
-          
         </FullWrapper>
         
         }

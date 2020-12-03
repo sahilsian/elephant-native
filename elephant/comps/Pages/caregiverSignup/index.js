@@ -97,10 +97,10 @@ const CaregiverSignup = ({history, location}) => {
                   ></BackButton>
               </BackWrapper>
                 <TextWrapper>
-                    <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
+                    <TextComp fontSize={"20px"} text={"The information you will be providing is for your applicant."}></TextComp>
                 </TextWrapper>
                 <TextTitle>
-                <WelcomeComp Display={true} fontSize={"32px"} main={"Lets start with the applicants name!"}></WelcomeComp>
+                <WelcomeComp Display={true} fontSize={"32px"} main={"Lets start with your applicants name!"}></WelcomeComp>
                 </TextTitle>    
                 <FormWrapper>
                     <CustomInput 
@@ -169,7 +169,10 @@ const CaregiverSignup = ({history, location}) => {
                       userGender: location.state.userGender, 
                       age: location.state.age,
                       phonenumber: location.state.phonenumber,
-                      interests: location.state.interests
+                      interests: location.state.interests,
+                      caregiverName: location.state.caregiverName,
+                      caregiverLastName: location.state.caregiverLastName,
+                      city: location.state.city
                     })
                   }
                   

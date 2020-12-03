@@ -20,11 +20,11 @@ const Button = styled.TouchableOpacity`
 `;
 
 
-const RadioButtons = ({ title, text, onPress, bgcolor, width, marginRight }) => {
+const RadioButtons = ({ title, mright, text, onPress, bgcolor, width, marginRight }) => {
   return (
       <Wrapper width={width}>
           <Button marginRight={marginRight} bgcolor={bgcolor} onPress={onPress}></Button>
-          <TextComp text={text}></TextComp>
+          <TextComp mright={mright} text={text}></TextComp>
       </Wrapper>
   )
 };

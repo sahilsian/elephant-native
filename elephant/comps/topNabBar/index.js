@@ -2,7 +2,6 @@ import React from "react";
 import styled, { css } from "styled-components/native";
 import { View, Text, Image, TouchableHighlight, TouchableOpacity} from "react-native";
 
-
 const MainDiv = styled.View`
   width: 100%;
   height: 100%;
@@ -10,7 +9,7 @@ const MainDiv = styled.View`
   top: 0;
   left: 0;
   right: 0;
-  max-height: 68px;
+  max-height: 55px;
   shadowColor: #000;
   shadowOffset: {
     width: 0;
@@ -21,7 +20,7 @@ const MainDiv = styled.View`
   elevation: ${props=>props.shadow ? "24" : "0"};
   background-color: #fff;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: space-between;
   border-bottom-width: 1px;
@@ -30,17 +29,18 @@ const MainDiv = styled.View`
 `;
 
 const Img = styled.Image`
-  margin: 0px 20px;
+  flex: 1;
+  aspectRatio: 0.5;
+  resizeMode: contain;
+  margin-right: 5%;
 `;
 
-const TopNavBar = ({Shadow, history, onPressLeft}) => {
+
+const TopNavBar = ({Shadow, history, onPress}) => {
   return (
       <MainDiv shadow={Shadow}>
-        <TouchableOpacity onPress={onPressLeft}>
+        <TouchableOpacity onPress={onPress}>
           <Img source={require('../../assets/settings.png')} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Img source={require('../../assets/User.png')} />
         </TouchableOpacity>
       </MainDiv>
   );
