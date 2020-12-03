@@ -120,7 +120,10 @@ useEffect(()=> {
                   userGender: location.state.userGender, 
                   age: location.state.age,
                   phonenumber: location.state.phonenumber,
-                  interests: interest
+                  interests: interest,
+                  caregiverName: location.state.caregiverName,
+                  caregiverLastName: location.state.caregiverLastName,
+                  city: location.state.city
                 })}></BackButton>
               </BackWrapper>
               <TitleBody>
@@ -192,7 +195,9 @@ useEffect(()=> {
                       userGender: location.state.userGender, 
                       age: location.state.age,
                       phonenumber: location.state.phonenumber,
-                      interests: interest
+                      interests: interest,
+                      caregiverName: location.state.caregiverName,
+                      caregiverLastName: location.state.caregiverLastName,
                   })
                 }
                 }}></NextButton>

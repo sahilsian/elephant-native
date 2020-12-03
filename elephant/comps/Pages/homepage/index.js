@@ -21,7 +21,7 @@ const Container = styled.View`
 
 const AdjustedWidth = styled.View`
     width: 100%;
-    flex: 0.81;
+    flex: 0.85;
 `;
 
 const ItemContainer = styled.View`
@@ -74,7 +74,6 @@ var bgcolor = [
     "#AFD2E9", //light blue
     "#EBC1AD", //sand
     "#4D5061", //black
-    
   ];
 
 
@@ -133,15 +132,22 @@ const HomePage = ({ history, match }) => {
 
   return (
     <Container>
-        <TopNavBar></TopNavBar>
+        <TopNavBar onPress={()=> {
+            history.push("/settings")
+        }}></TopNavBar>
         <NavBar home={()=> {
             history.push("/home")
-        }} search={()=> {
+        }}
+        homeicon={require('../../../assets/Home.png')}
+        search={()=> {
             history.push("/search/general")
         }} calendar={()=> {
             history.push("/calendarpage")
-        }} chat={()=> {
-
+        }} account={()=> {
+            history.push(`/profile/${"ownprofile"}`, {
+                ownprofile: true,
+                page: "home"
+            })
         }}></NavBar>   
 
         <AdjustedWidth >

@@ -27,8 +27,23 @@ import ContactForm from './comps/Pages/contactForm';
 import FinishedSignup from './comps/Pages/FinishedSignup';
 import CalendarPage from './comps/Pages/calendarPage';
 import AnimatedStack from 'react-router-native-animate-stack';
+import SettingsPage from './comps/Pages/settingsPage';
+import {
+  setCustomText,
+} from 'react-native-global-props';
+
+const customTextProps = {
+  style: {
+    fontSize: 16,
+    fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue' : 'Quicksand',
+    color: 'black'
+  }
+};
 
 const App = () => {
+
+  setCustomText(customTextProps);
+
   // const enterAnimKit = new Animated.Value(0);
   // const exitAnimKit = new Animated.Value(0);
   // const width = useWindowDimensions().width;
@@ -48,6 +63,7 @@ const App = () => {
         <Route path={"/applicantinfo"} component={ApplicantInfo}></Route>
         <Route path={"/contactform"} component={ContactForm}></Route>
         <Route path={"/finishedsignup"} component={FinishedSignup}></Route>
+        <Route path={"/settings"} component={SettingsPage}></Route>
         {/* <AnimatedStack
             swipeCancelSpeed={50}
             swipeable={true}
@@ -121,9 +137,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    width: "100%"
+    width: "100%",
+    fontFamily: "Quicksand"
   }
 })
+
+
 
 export default App;
 

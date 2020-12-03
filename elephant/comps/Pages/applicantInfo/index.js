@@ -73,35 +73,85 @@ const ApplicantInfo = ({history, location}) => {
                 userGender: location.state.userGender, 
                 age: location.state.age,
                 phonenumber: location.state.phonenumber,
-                interests: location.state.interests
+                interests: location.state.interests,
+                caregiverName: location.state.caregiverName,
+                caregiverLastName: location.state.caregiverLastName,
+                city: location.state.city
 
               })}></BackButton>
           </BackWrapper>
               <TitleBody>
-                <TextWrapper>
-                    <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
-                </TextWrapper>
+                {location.state.iseducator
+                  ?
+                    <TextWrapper>
+                      <TextComp fontSize={"20px"} text={"Please fill out the following with your information."}></TextComp>
+                    </TextWrapper>
+                  :
+                    <TextWrapper>
+                      <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
+                    </TextWrapper>
+                }
+                
+                {location.state.iseducator
+                
+                ?
                 <FormWrapper>
-                    <CustomTextInput 
-                    MiniTitle={"Tell us about them! "}
-                    MiniSeperation={true}
-                    Seperation={true}
-                    TitleDisplay={true}
-                    SubDisplay={true}
-                    placeholder={"Who are they? what are they like? (Min: 6 characters)"}
-                    subtext={"(The more you can tell us the better!)"}
-                    onChangeText={(e)=> {
-                        setAbout(e)
-                    }}
-                    value={about}
-                    >
+                  <CustomTextInput 
+                  MiniTitle={"Tell us about you! "}
+                  MiniSeperation={true}
+                  Seperation={true}
+                  TitleDisplay={true}
+                  SubDisplay={true}
+                  placeholder={"Tell us about who you are, what you do (Min: 6 characters)"}
+                  subtext={"(The more you can tell us the better!)"}
+                  onChangeText={(e)=> {
+                      setAbout(e)
+                  }}
+                  value={about}
+                  >
 
-                    </CustomTextInput>
+                  </CustomTextInput>
                 </FormWrapper>
+
+                :
+                <FormWrapper>
+                  <CustomTextInput 
+                  MiniTitle={"Tell us about them! "}
+                  MiniSeperation={true}
+                  Seperation={true}
+                  TitleDisplay={true}
+                  SubDisplay={true}
+                  placeholder={"Who are they? what are they like? (Min: 6 characters)"}
+                  subtext={"(The more you can tell us the better!)"}
+                  onChangeText={(e)=> {
+                      setAbout(e)
+                  }}
+                  value={about}
+                  >
+
+                  </CustomTextInput>
+                </FormWrapper>
+
+                }
+               
               </TitleBody>
 
                 <NextButton onPress={()=> {
-                  if(about.length < 6) {
+                  if (about === undefined){
+                    Alert.alert(
+                      'Elephant',
+                      'Please fill in all the blanks. ',
+                      [
+                        {
+                          text: 'Ok',
+                          onPress: () => console.log("ok")
+                        }
+                      ],
+                      { cancelable: true }
+                    
+                    )
+                  
+                  }else if(about.length < 6) {
                     Alert.alert(
                       'Elephant',
                       'Please type atleast more than 6 characters. ',
@@ -129,6 +179,9 @@ const ApplicantInfo = ({history, location}) => {
                       userGender: location.state.userGender, 
                       age: location.state.age,
                       phonenumber: location.state.phonenumber,
+                      caregiverName: location.state.caregiverName,
+                      caregiverLastName: location.state.caregiverLastName,
+                      city: location.state.city
                   })
                 }
                 }}></NextButton>

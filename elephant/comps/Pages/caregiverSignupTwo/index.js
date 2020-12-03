@@ -120,7 +120,10 @@ const CaregiverSignupTwo = ({location, history}) => {
                   userGender: location.state.userGender, 
                   age: location.state.age,
                   phonenumber: location.state.phonenumber,
-                  interests: location.state.interests
+                  interests: location.state.interests,
+                  caregiverName: location.state.caregiverName,
+                  caregiverLastName: location.state.caregiverLastName,
+                  city: location.state.city
                 })}></BackButton>
               </BackWrapper>
               <TitleBody>
@@ -197,7 +200,9 @@ const CaregiverSignupTwo = ({location, history}) => {
                     userGender: location.state.userGender, 
                     age: location.state.age,
                     phonenumber: location.state.phonenumber,
-                    interests: location.state.interests
+                    interests: location.state.interests,
+                    caregiverName: location.state.caregiverName,
+                    caregiverLastName: location.state.caregiverLastName,
                   })
                   }
 

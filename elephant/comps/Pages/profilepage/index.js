@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
-import { ScrollView, View, StyleSheet, Alert } from 'react-native';
+import { ScrollView, View, StyleSheet, Alert, Text } from 'react-native';
 import NextButton from "../../NextButton"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
@@ -26,7 +26,7 @@ const Container = styled.View`
 
 const AdjustedWidth = styled.View`
     width: 100%;
-    flex: 0.81;
+    flex: 0.85;
 `;
 
 const ItemContainer = styled.View`
@@ -169,7 +169,9 @@ const ProfilePage = ({match, history, location}) => {
       // in api is mapped, more items will be shown.
   
       useEffect(() => {
-  
+          console.log(location.state.ownprofile)
+        if (location.state.ownprofile !== true) {
+
           var Profile = {
               method: 'get',
               url: `http://elephantidsp.herokuapp.com/user/findone/${match.params.user}`,
@@ -202,6 +204,40 @@ const ProfilePage = ({match, history, location}) => {
                 { cancelable: false }
               );
           });
+        } else {
+            var Profile = {
+                method: 'get',
+                url: `http://elephantidsp.herokuapp.com/profile`,
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': `Bearer ${context.token}`
+                }
+            };  
+    
+            axios(Profile)
+    
+            .then(function (response) {
+                console.log(response.data, 'profile')
+                setData(response.data)
+                setInterests(response.data.interests)
+              
+  
+            })
+            .catch(function (error) {
+                console.log(error.message)
+              Alert.alert(
+                  'Elephant',
+                  error.message,
+                  [
+                    {
+                      text: 'Okay',
+                      onPress: () => console.log('Ok Pressed')
+                    }
+                  ],
+                  { cancelable: false }
+                );
+            });
+        }
 
           
       }, [])
@@ -225,9 +261,9 @@ const ProfilePage = ({match, history, location}) => {
             history.push("/search/general")
         }} calendar={()=> {
             history.push("/calendarpage")
-        }} chat={()=> {
-
-        }}></NavBar>    
+        }}
+        accounticon={require('../../../assets/User.png')}
+        ></NavBar>    
             <AdjustedWidth >
                 <ScrollView
                     contentContainerStyle={{
@@ -239,12 +275,20 @@ const ProfilePage = ({match, history, location}) => {
                     >
                     <ItemContainer>
                         <Back>
-                            <BackButton onPress={()=> {
-                                history.push(`/search/${location.state.subname}`, {
-                                category: location.state.category,
-                                subname: location.state.subname
-                            })
-                            }}></BackButton>
+                            {location.state.ownprofile === true
+                                ?
+                                <BackButton onPress={()=> {
+                                    history.push(`/${location.state.page}`)
+                                }}></BackButton>
+                                :
+                                <BackButton onPress={()=> {
+                                    history.push(`/search/${location.state.subname}`, {
+                                    category: location.state.category,
+                                    subname: location.state.subname
+                                })
+                                }}></BackButton>
+                            }
+                            
                         </Back>
                         <Title>
                             <ProfileLogo></ProfileLogo>
@@ -278,7 +322,10 @@ const ProfilePage = ({match, history, location}) => {
                             </Row>
                             <Row align="flex-end" marginLeft={"10px"}>
                                 <RowView justifyContent={"flex-end"}>
-                                    
+                                    {location.state.ownprofile === true
+                                    ?
+                                    <Text></Text>
+                                    :
                                     <Button 
                                     BackgroundColor={context.user.connected_users.includes(data.username) ? "#6C8DC3" : "#CED9EB"} 
                                     color={"#000"} 
@@ -291,6 +338,8 @@ const ProfilePage = ({match, history, location}) => {
                                     >
 
                                     </Button>
+                                    }
+                                    
                                     
                                 </RowView>
                             </Row>

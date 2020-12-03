@@ -7,20 +7,21 @@ const P = styled.Text`
   color: ${props=>props.color ? props.color : "#000"};
   margin-top: ${props=>props.textmargin};
   font-weight: ${props=>props.fontweight ? props.fontweight : "normal"};
-  text-decoration: ${props=>props.decoration ? props.decoration : "none"}
-
+  text-decoration: ${props=>props.decoration ? props.decoration : "none"};
+  margin-right: ${props=>props.mright};
 `;
 
-const TextComp = ({ text, fontSize, Margin, weight, color, decoration, numOfLines }) => {
+const TextComp = ({ text, mright, fontSize, Margin, weight, color, decoration, numOfLines }) => {
   return (
-      <P numberOfLines={numOfLines} textmargin={Margin} decoration={decoration} color={color} fontweight={weight} fontsize={fontSize}>{text}</P>
+      <P mright={mright} numberOfLines={numOfLines} textmargin={Margin} decoration={decoration} color={color} fontweight={weight} fontsize={fontSize}>{text}</P>
   );
 };
 
 TextComp.defaultProps = {
   text: "This is a Sample Text Paragraph.",
   Margin: "0px",
-  weight: false
+  weight: false,
+  mright: "0px"
 };
 
 export default TextComp;

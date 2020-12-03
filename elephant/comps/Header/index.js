@@ -15,7 +15,6 @@ const HeadTitle = styled.Text`
     font-weight: ${props=>props.fontweight ? "normal" : "bold"};
     color: ${props=>props.color ? props.color : "#000"};
     padding: ${props=>props.padding ? "0px" : "5px"};
-    margin-bottom: ${props=>props.marginBottom ? props.marginBottom : "5px"};
 `;
 
 const Header = ({color, margin, text, marginBottom, height, fontweight, padding, display, onPress}) => {
