@@ -137,34 +137,34 @@ const ApplicantInfo = ({history, location}) => {
               </TitleBody>
 
                 <NextButton onPress={()=> {
-                  if (about === undefined){
-                    Alert.alert(
-                      'Elephant',
-                      'Please fill in all the blanks. ',
-                      [
-                        {
-                          text: 'Ok',
-                          onPress: () => console.log("ok")
-                        }
-                      ],
-                      { cancelable: true }
+                  // if (about === undefined){
+                  //   Alert.alert(
+                  //     'Elephant',
+                  //     'Please fill in all the blanks. ',
+                  //     [
+                  //       {
+                  //         text: 'Ok',
+                  //         onPress: () => console.log("ok")
+                  //       }
+                  //     ],
+                  //     { cancelable: true }
                     
-                    )
+                  //   )
                   
-                  }else if(about.length < 6) {
-                    Alert.alert(
-                      'Elephant',
-                      'Please type atleast more than 6 characters. ',
-                      [
-                        {
-                          text: 'Ok',
-                          onPress: () => console.log("ok")
-                        }
-                      ],
-                      { cancelable: true }
+                  // }else if(about.length < 6) {
+                  //   Alert.alert(
+                  //     'Elephant',
+                  //     'Please type atleast more than 6 characters. ',
+                  //     [
+                  //       {
+                  //         text: 'Ok',
+                  //         onPress: () => console.log("ok")
+                  //       }
+                  //     ],
+                  //     { cancelable: true }
                     
-                    )
-                  } else {
+                  //   )
+                  // } else {
                   history.push("/contactform", {
                       firstname: location.state.firstname,
                       lastname: location.state.lastname,
@@ -183,7 +183,7 @@ const ApplicantInfo = ({history, location}) => {
                       caregiverLastName: location.state.caregiverLastName,
                       city: location.state.city
                   })
-                }
+                // }
                 }}></NextButton>
             </FullWrapper>
         </Frame>

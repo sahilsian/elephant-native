@@ -54,7 +54,7 @@ const SignupChoice = ({ history }) => {
           </GenericWrapper>
           <GenericWrapper height={"45%"}>
           <Button fontSize={"32px"} maxHeight={"65px"} MaxWidth={"230px"} buttonText={"Educator"} onPress={()=> {
-            history.push("/applicantinfo", {
+            history.push("/caregiversignupthree", {
               iseducator: "true"
             })
           }} />

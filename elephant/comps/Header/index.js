@@ -13,9 +13,11 @@ const HeadBox = styled.View`
 const HeadTitle = styled.Text`
     font-size: 32px;
     font-weight: ${props=>props.fontweight ? "normal" : "bold"};
-    color: ${props=>props.color ? props.color : "#000"};
+    color: ${props=>props.color ? props.color : "#797b80"};
     padding: ${props=>props.padding ? "0px" : "5px"};
 `;
+
+
 
 const Header = ({color, margin, text, marginBottom, height, fontweight, padding, display, onPress}) => {
     return <View>

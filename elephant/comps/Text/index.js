@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 
 const P = styled.Text`
   font-size: ${props=>props.fontsize ? props.fontsize : "16px"};
-  color: ${props=>props.color ? props.color : "#000"};
+  color: ${props=>props.color ? props.color : "#797b80"};
   margin-top: ${props=>props.textmargin};
   font-weight: ${props=>props.fontweight ? props.fontweight : "normal"};
   text-decoration: ${props=>props.decoration ? props.decoration : "none"};
