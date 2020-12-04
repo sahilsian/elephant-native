@@ -5,7 +5,6 @@ import styled from 'styled-components'
 const Wrapper = styled.View`
     width: 100%;
     flex: 1;
-    background-color: #abc;
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;

@@ -83,6 +83,26 @@ var bgcolor = [
     "#4D5061", //black
   ];
 
+  //  if(o.name == "Dance") {
+    //      require("../../../assets/CategoryIcons/dance.png")
+    //      console.log("Yo")
+    //  } else if(o.name == "Outdoor Activities") {
+    //      require("../../../assets/CategoryIcons/outdoor.png")
+    //  } else if(o.name == "Math") {
+    //      require("../../../assets/CategoryIcons/math.png")
+    //  } else if(o.name == "Sports") {
+    //      require("../../../assets/CategoryIcons/sports.png")
+    //  } else if(o.name == "Video Games") {
+    //      require("../../../assets/CategoryIcons/video-game.png")
+    //  } else if(o.name == "Social Activity") {
+    //      require("../../../assets/CategoryIcons/social.png")
+    //  } else if(o.name == "Art") {
+    //      require("../../../assets/CategoryIcons/art.png")
+    //  } else if(o.name == "Spelling") {
+    //      require("../../../assets/CategoryIcons/spelling.png")
+    //  } else if(o.name == "Language") {
+    //      require("../../../assets/CategoryIcons/language.png")
+    //  }
 
 const HomePage = ({ history, match }) => {
 
@@ -147,7 +167,9 @@ const HomePage = ({ history, match }) => {
         }}
         homeicon={require('../../../assets/Home.png')}
         search={()=> {
-            history.push("/search/general")
+            history.push("/search/general", {
+                notcategory: true
+            })
         }} calendar={()=> {
             history.push("/calendarpage")
         }} account={()=> {
@@ -176,28 +198,9 @@ const HomePage = ({ history, match }) => {
                 <Button fontSize={"16px"} buttonText={"View All" } maxHeight={"30px"}></Button>
                 </Title>
                 <ItemContainer>
+                    
                     {data && data.map((o,i)=>{
-                        return <Categories source={()=> {
-                            if(o.name === "Dance") {
-                                require("../../../assets/CategoryIcons/Dance.png")
-                            } else if(o.name === "Outdoor Activities") {
-                                require("../../../assets/CategoryIcons/Outdoor-Activities.png")
-                            } else if(o.name === "Math") {
-                                require("../../../assets/CategoryIcons/Math.png")
-                            } else if(o.name === "Sports") {
-                                require("../../../assets/CategoryIcons/Sports.png")
-                            } else if(o.name === "Video Games") {
-                                require("../../../assets/CategoryIcons/Video-Games.png")
-                            } else if(o.name === "Social Activity") {
-                                require("../../../assets/CategoryIcons/Social-Activity.png")
-                            } else if(o.name === "Art") {
-                                require("../../../assets/CategoryIcons/Art.png")
-                            } else if(o.name === "Spelling") {
-                                require("../../../assets/CategoryIcons/Spelling.png")
-                            } else if(o.name === "Language") {
-                                require("../../../assets/CategoryIcons/Language.png")
-                            }
-                        }} MaxWidth={i%3 == 0} text={o.name} bgColor={bgcolor[i]} onPress={() => {
+                        return <Categories MaxWidth={i%3 == 0} text={o.name} bgColor={bgcolor[i]} onPress={() => {
                             history.push(`/category/${o.name}`)
                         }}/>
                     })}

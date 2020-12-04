@@ -258,7 +258,9 @@ const ProfilePage = ({match, history, location}) => {
         <NavBar home={()=> {
             history.push("/home")
         }} search={()=> {
-            history.push("/search/general")
+            history.push("/search/general", {
+                notcategory: true
+            })
         }} calendar={()=> {
             history.push("/calendarpage")
         }}

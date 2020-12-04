@@ -17,13 +17,14 @@ const Button = styled.TouchableOpacity`
     height: 30px;
     border-radius: 100px;
     margin-right: ${props=>props.marginRight ? props.marginRight : "20px"};
+    margin-left: ${props=>props.marginLeft ? props.marginLeft : "0px"};
 `;
 
 
-const RadioButtons = ({ title, mright, text, onPress, bgcolor, width, marginRight }) => {
+const RadioButtons = ({ title, mright, text, onPress, bgcolor, width, marginRight, marginLeft }) => {
   return (
       <Wrapper width={width}>
-          <Button marginRight={marginRight} bgcolor={bgcolor} onPress={onPress}></Button>
+          <Button marginLeft={marginLeft} marginRight={marginRight} bgcolor={bgcolor} onPress={onPress}></Button>
           <TextComp mright={mright} text={text}></TextComp>
       </Wrapper>
   )

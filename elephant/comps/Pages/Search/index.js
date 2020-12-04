@@ -66,7 +66,7 @@ const Search = ({match, history, location}) => {
 
     useEffect(() => {
         const results = data.filter(person =>
-            person.name.includes(searchTerm)
+            person.student_name.includes(searchTerm)
         );
         
         setSearchResults(results);
@@ -118,9 +118,7 @@ const Search = ({match, history, location}) => {
 
     }, [])
 
-    useEffect(()=> {
-        console.log(data)
-    }, [])
+   
 
   return (
 
@@ -200,8 +198,11 @@ const Search = ({match, history, location}) => {
                         name={o.name}
                         description={o.description}
                         onPress={() => {
-                            history.push(`/profile/${o._id}`, {
+                            history.push(`/profile/${o._id}`, location.state.category === false ? {
+                                
                                 category: location.state.category,
+                                subname: match.params.subname
+                            } : {
                                 subname: match.params.subname
                             })
                         }}               
