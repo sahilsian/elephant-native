@@ -2,7 +2,7 @@ import React from "react";
 import styled, {css} from "styled-components/native";
 
 const InputWrapper = styled.View`
-  width: 100%;
+  width: ${props=>props.MaxWidth ? props.MaxWidth : "100%"};
   height: auto;
   background-color: #F5F5F5;
   padding: 5px;
@@ -91,7 +91,8 @@ const CustomInput = ({
   value,
   password,
   small,
-  smalldisplay
+  smalldisplay,
+  MaxWidth
 }) => {
   return (
     <FullWrapper>
@@ -111,8 +112,9 @@ const CustomInput = ({
       >{MiniTitle}</InputMiniTitle>
       <InputSubTitle subdisplay={SubDisplay}>{subtext}</InputSubTitle>
           
-      <InputWrapper border={border}>
+      <InputWrapper border={border} MaxWidth={MaxWidth}>
         <CInput
+          MaxWidth={MaxWidth}
           secureTextEntry={password}
           id="searchinput"
           type="text"

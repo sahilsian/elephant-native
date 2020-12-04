@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState, useContext, useEffect, Component} from "react";
 import styled from "styled-components/native";
 import CustomInput from "../../CustomInput";
 import TextComp from "../../Text"
@@ -10,6 +10,8 @@ import Calendar from "../../calendar"
 import { MyContext } from "../../context"
 import axios from "axios"
 import Button from "../../Button";
+import RadioButtons from "../../radioButtons";
+import DatePicker from 'react-native-datepicker';
 
 const Container = styled.View`
     width: 100%;
@@ -46,6 +48,37 @@ const Dates = styled.View`
     
 `;
 
+const AddEvent = styled.View`
+    margin: 20px 0;
+    width: 100%;
+    height: 40px;
+    align-items: flex-end;
+`;
+
+const Popup = styled.View`
+    width: 350px;
+    height: 60%;
+    background-color: rgba(215, 232, 244, 0.96);
+    position: absolute;
+    elevation: 8;
+    border-radius: 10px;
+    padding: 25px;
+    top: ${props=>props.popup ? "150px" : "-600px"}
+`;
+
+const Row = styled.View`
+    height: 90px;
+    width: 100%;
+    justify-content: space-between;
+`;
+
+const FlexRow = styled.View`
+    flex-direction: row;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+`;
+
 const Date = [
     "Mon",
     "Tue",
@@ -66,6 +99,10 @@ const CalendarPage = ({history}) => {
     const [data, setData] = useState([]);
     const [date, setDate] = useState([]);
     const [activitydate, setActivitydate] = useState([]);
+    const [allday, setAllday] = useState(false)
+    const [value, onChange] = useState('2:00');
+
+    const [open, setOpen] = useState(false);
     //setup rendering here, only one cube will be visible. When array for interests
     // in api is mapped, more items will be shown.
 
@@ -85,6 +122,7 @@ const CalendarPage = ({history}) => {
         .then(function(response) {
             setData(response.data)
             
+            
         })
 
         .catch(function (error) {
@@ -95,18 +133,44 @@ const CalendarPage = ({history}) => {
         
         console.log(activitydate)
 
-        var t_arr = data.map(e=>e.start_time.split(/[-T:.]/)[2]);
-        setActivitydate(t_arr);
+        
         
     }, [])
 
+    useEffect(()=> {
+        var t_arr = data.map(e=>e.start_time.split(/[-T:.]/)[2]);
+        setActivitydate(t_arr);
+    }, [data])
+
+    
   return (
     <Container>
+        <Popup popup={open}>
+            <Row>
+                
+            </Row>
+            <Row>
+                <TextComp color={"#4D5061"} fontSize={"20px"} text={"Event Name"}></TextComp>
+                <CustomInput placeholder={"Event Name"}></CustomInput>
+            </Row>
+            <FlexRow>
+                <TextComp color={"#4D5061"} fontSize={"20px"} text={"All-Day"}></TextComp>
+                <RadioButtons marginLeft={"20px"} text={""} bgcolor={allday ? "#5C80BC" : "#AFD2E9"}></RadioButtons>
+            </FlexRow>
+            <FlexRow>
+                <TextComp mright={"20px"} color={"#4D5061"} fontSize={"20px"} text={"Start Date"}></TextComp>
+                <DatePicker
+                 />    
+            </FlexRow>
+            
+        </Popup>
         <TopNavBar></TopNavBar>
         <NavBar home={()=> {
             history.push("/home")
         }} search={()=> {
-            history.push("/search/general")
+            history.push("/search/general", {
+                notcategory: true
+            })
         }} 
         calendaricon={require('../../../assets/calender.png')}
         calendar={()=> {
@@ -130,8 +194,14 @@ const CalendarPage = ({history}) => {
                 >
                 
                 <ItemContainer>
+                <AddEvent>
+                    <Button onPress={()=> {
+                        setOpen(!open);
+                    }} buttonText={open ? "Close" : "Add Event"} MaxWidth={"120px"} />
+                </AddEvent>
                 <Dates>
                     {Date.map((o, i) => {
+
                     return <DateWrapper>
                         <TextComp color={"#5C80BC"} text={o}></TextComp> 
                         </DateWrapper>
@@ -140,8 +210,10 @@ const CalendarPage = ({history}) => {
                 </Dates>
                 <Wrapper>
                     {date && date.map((b, i)=> {
-                        
-                        return <Calendar backgroundColor={activitydate.indexOf(b) !== -1} number={b < 32 ?  b: ""}></Calendar>
+                        //console.log("b: ", b, "activitydate: ", activitydate.indexOf(b) !== "-1")
+                        //backgroundColor={activitydate.indexOf(b) !== -1}
+                        console.log(activitydate)
+                        return <Calendar backgroundColor={activitydate.indexOf(b+"") !== -1}  number={b < 32 ?  b: ""}></Calendar>
 
                     })}
 
