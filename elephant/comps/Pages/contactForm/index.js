@@ -81,10 +81,10 @@ const ContactForm = ({location, history}) => {
     firstname, 
     disorders, 
     severity, 
-    interests,
-    description) => {
+    interests
+    ) => {
     
-
+``
     var data = JSON.stringify({"name": caregiverName, "email": email, "password": password, "username": username, "gender": userGender, "description": description, "age": parseInt(age), "phone_number": phonenumber, "is_educator": iseducator,"student_name": firstname,"disability_name": disorders,"disability_spectrum": parseInt(severity),"interests": interests})
 
     var Connect = {
@@ -95,6 +95,7 @@ const ContactForm = ({location, history}) => {
       data: data
     };
 
+    console.log(data)
     axios("http://elephantidsp.herokuapp.com/user/create-student", Connect)
     .then(response => {
         console.log(response.data, 'success')
@@ -124,14 +125,15 @@ const ContactForm = ({location, history}) => {
     email,
     password,
     username,
-    userGender, 
+    userGender,
+    description,
     age,
     phonenumber,
     iseducator,
-    description) => {
+    interests) => {
     
 
-    var data = JSON.stringify({"name": caregiverName, "email": email, "password": password, "username": username, "gender": userGender, "description": description, "age": parseInt(age), "phone_number": phonenumber, "is_educator": iseducator, "is_verified": true, "educator_rating": 3})
+    var data = JSON.stringify({"name": caregiverName, "email": email, "password": password, "username": username, "gender": userGender, "description": description, "age": parseInt(age), "phone_number": phonenumber, "is_educator": iseducator, "is_verified": true, "educator_rating": 3, "interests": interests})
 
     var Connect = {
       method: 'POST',
@@ -150,6 +152,7 @@ const ContactForm = ({location, history}) => {
         })
     })
     .catch(error => {
+      console.log(error.message)
       Alert.alert(
         'Elephant',
         error.message,
@@ -167,38 +170,39 @@ const ContactForm = ({location, history}) => {
   }
 
   useEffect(()=> {
-    console.log(location.state)
+    console.log(JSON.stringify({"name": caregiverName, "email": email, "password": password, "username": username, "gender": userGender, "description": description, "age": parseInt(age), "phone_number": phonenumber, "is_educator": iseducator,"student_name": firstname,"disability_name": disorders,"disability_spectrum": parseInt(severity),"interests": interests}))
+  })
 
-    if(location.state.username != "") {
-      setUsername(location.state.username)
-    }
-    if(location.state.password != "") {
-      setPassword(location.state.password)
-    }
-    if(location.state.caregiverName != "") {
-      setCaregiverName(location.state.caregiverName)
-    }
-    if(location.state.caregiverLastName != "") {
-      setCaregiverLastName(location.state.caregiverLastName)
-    }
+  // useEffect(()=> {
+  //   console.log(location.state)
 
-  }, [])
+  //   if(location.state.username != "") {
+  //     setUsername(location.state.username)
+  //   }
+  //   if(location.state.password != "") {
+  //     setPassword(location.state.password)
+  //   }
+  //   if(location.state.caregiverName != "") {
+  //     setCaregiverName(location.state.caregiverName)
+  //   }
+  //   if(location.state.caregiverLastName != "") {
+  //     setCaregiverLastName(location.state.caregiverLastName)
+  //   }
+  //   if(location.state.age != "") {
+  //     setAge(location.state.age)
+  //   }
+  //   if(location.state.userGender != undefined) {
+  //     setUserGender(location.state.userGender)
+  //   }
+  //   if(location.state.phonenumber != "") {
+  //     setPhonenumber(location.state.phonenumber)
+  //   }
+  //   if(location.state.email != "") {
+  //     setEmail(location.state.email)
+  //   }
 
-  useEffect(()=> {
-    
-    if(location.state.age != "") {
-      setAge(location.state.age)
-    }
-    if(location.state.userGender != undefined) {
-      setUserGender(location.state.userGender)
-    }
-    if(location.state.phonenumber != "") {
-      setPhonenumber(location.state.phonenumber)
-    }
-    if(location.state.email != "") {
-      setEmail(location.state.email)
-    }
-  }, [])
+  // }, [])
+
 
   return (
       <ScrollView style={{width: "100%", height: "100%"}}>
@@ -317,41 +321,42 @@ const ContactForm = ({location, history}) => {
           ></CustomInput>
         </FormWrapper>
         <NextButton onPress={()=> {
-           if (caregiverName === "" || email === "" || password === "" || username === "" || userGender === "" || age === "" || phonenumber === "" || iseducator === "" || firstname === "" || disorders === "" || severity === "" || interests === "") {
-             Alert.alert(
-               'Elephant',
-               'Please fill in all appropriate blanks.',
+            if (caregiverName === "" || email === "" || password === "" || username === "" || userGender === "" || age === "" || phonenumber === "" || iseducator === "" || firstname === "" || disorders === "" || severity === "" || interests === "") {
+              Alert.alert(
+                'Elephant',
+                'Please fill in all appropriate blanks.',
                [
-                 {
+                  {
                    text: 'Ok',
-                   onPress: () => console.log("ok")
-                 }
-               ],
-               { cancelable: true }
+                    onPress: () => console.log("ok")
+                  }
+                ],
+                { cancelable: true }
             
-             )
-           } else if(password.length <= 3) {
-             Alert.alert(
-               'Elephant',
-               'Password must be more than 3 characters',
-               [
-                 {
-                   text: 'Ok',
-                   onPress: () => console.log("ok")
-                 }
-               ],
-               { cancelable: true }
+              )
+            } else if(password.length <= 3) {
+              Alert.alert(
+                'Elephant',
+                'Password must be more than 3 characters',
+                [
+                  {
+                    text: 'Ok',
+                    onPress: () => console.log("ok")
+                  }
+                ],
+                { cancelable: true }
             
-             )
-           } else {
+              )
+            } else {
           
-          if (iseducator === false ) {
-            HandleClick(description, caregiverName, email, password, username, userGender, age, phonenumber, iseducator, firstname, disorders, severity, interests)
+          if (location.state.iseducator == "false" ) {
+            console.log("Hello does this work")
+            HandleClick(caregiverName, email, password, username, userGender, age, phonenumber, iseducator, firstname, disorders, severity, interests)
           } else {
             console.log("work plz")
-            HandleEducatorClick(description, caregiverName, email, password, username, userGender, age, phonenumber, iseducator)
+            HandleEducatorClick(caregiverName, email, password, username, userGender, description, age, phonenumber, iseducator, interests)
           }
-          }
+           }
         }}
           
           ></NextButton>

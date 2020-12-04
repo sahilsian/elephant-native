@@ -14,16 +14,24 @@ var bgcolor = [
 
 const Container = styled.View`
   display: flex;
-  max-width: ${(props) => (props.maxwidth ? "160px" : "125px")};
-  width: 100%;
-  min-height: 125px;
-  max-height: 125px;
+  width: 70px;
+  min-height: 70px;
+  max-height: 70px;
   background-color: ${(props) => (props.bgcolor ? props.bgcolor : "#4D5061")};
-  border-radius: 10px;
+  border-radius: 20px;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  margin: 10px 0;
+  shadowColor: #000;
+  shadowOffset: {
+    width: 0;
+    height: 2;
+  }
+  shadowOpacity: 0.25;
+  shadowRadius: 3.84;
+
+  elevation: 5;
+  
 `;
 
 //default color of container
@@ -33,9 +41,10 @@ const theme = {
 
 const HomeText = styled.Text`
   text-align: center;
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 400;
-  color: ${(props) => (props.color ? "white" : "black")};
+  color: black;
+  margin-top: 8px;
 `;
 
 const Click = styled.TouchableOpacity`
@@ -45,14 +54,29 @@ const Click = styled.TouchableOpacity`
   justify-content: center;  
 `;
 
-const Categories = ({ MaxWidth, text, theme, Color, bgColor, onPress }) => {
-  return (
+const TextandBox = styled.View`
+  width: 70px;
+  height: 120px;
+  margin: 11px;
+`;
 
+const Img = styled.Image`
+  max-width: 50px;
+  max-height: 50px;
+`;
+
+const Categories = ({ MaxWidth, text, theme, Color, bgColor, onPress, source }) => {
+  return (
+    <TextandBox>
       <Container maxwidth={MaxWidth} bgcolor={bgColor}>
         <Click onPress={onPress}>
-          <HomeText color={Color}>{text}</HomeText>
+          <Img source={source}></Img>
         </Click>
       </Container>
+      <HomeText color={Color}>{text}</HomeText>
+
+    </TextandBox>
+      
 
 
   );

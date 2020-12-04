@@ -14,7 +14,7 @@ const Wrapper = styled.View`
 const Date = styled.View`
     flex: 1;
     margin: 2px;
-    height: 100px;
+    height: 80px;
     min-width: 45px;
     align-items: center;
 `;

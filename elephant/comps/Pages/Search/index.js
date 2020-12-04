@@ -75,25 +75,46 @@ const Search = ({match, history, location}) => {
     // in api is mapped, more items will be shown.
 
     useEffect(() => {
-
-        var config = {
-            method: 'get',
-            url: `http://elephantidsp.herokuapp.com/user/educators`,
-            headers: { 
-                'Content-Type': 'application/json', 
-                'Authorization': `Bearer ${context.token}`
-            }
-        };  
-
-        axios(config)
-
-        .then(function (response) {
-            console.log(response.data)
-            setData(response.data)
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        if (context.user.is_educator === false) {
+            var config = {
+                method: 'get',
+                url: `http://elephantidsp.herokuapp.com/user/educators`,
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': `Bearer ${context.token}`
+                }
+            };  
+    
+            axios(config)
+    
+            .then(function (response) {
+                console.log(response.data)
+                setData(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        } else if (context.user.is_educator === true) {
+            var config = {
+                method: 'get',
+                url: `http://elephantidsp.herokuapp.com/user/students`,
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Authorization': `Bearer ${context.token}`
+                }
+            };  
+    
+            axios(config)
+    
+            .then(function (response) {
+                console.log(response.data)
+                setData(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+        
 
     }, [])
 

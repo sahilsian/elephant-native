@@ -9,6 +9,7 @@ import NavBar from "../../NavBar";
 import Calendar from "../../calendar"
 import { MyContext } from "../../context"
 import axios from "axios"
+import Button from "../../Button";
 
 const Container = styled.View`
     width: 100%;
@@ -84,7 +85,6 @@ const CalendarPage = ({history}) => {
         .then(function(response) {
             setData(response.data)
             
-        
         })
 
         .catch(function (error) {
@@ -92,10 +92,11 @@ const CalendarPage = ({history}) => {
         });
 
         setDate(Array.from({ length: 35 }, (_, i) => i + 1));
-        setActivitydate([])
-        var t_arr = data.map(e=>e.start_time.split(/[-T:.]/));
-        setActivitydate(activitydate.concat(t_arr));
+        
         console.log(activitydate)
+
+        var t_arr = data.map(e=>e.start_time.split(/[-T:.]/)[2]);
+        setActivitydate(t_arr);
         
     }, [])
 
@@ -132,7 +133,7 @@ const CalendarPage = ({history}) => {
                 <Dates>
                     {Date.map((o, i) => {
                     return <DateWrapper>
-                        <TextComp text={o}></TextComp> 
+                        <TextComp color={"#5C80BC"} text={o}></TextComp> 
                         </DateWrapper>
                     }) 
                     }
@@ -140,12 +141,14 @@ const CalendarPage = ({history}) => {
                 <Wrapper>
                     {date && date.map((b, i)=> {
                         
-                        return <Calendar number={b < 32 ?  b: ""}></Calendar>
+                        return <Calendar backgroundColor={activitydate.indexOf(b) !== -1} number={b < 32 ?  b: ""}></Calendar>
 
                     })}
 
                 </Wrapper>
-
+                {/* <Button onPress={()=> {
+                    console.log(activitydate)
+                }} /> */}
                 </ItemContainer>
             </ScrollView>
         </AdjustedWidth>

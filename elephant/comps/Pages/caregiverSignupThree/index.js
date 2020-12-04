@@ -127,13 +127,30 @@ useEffect(()=> {
                 })}></BackButton>
               </BackWrapper>
               <TitleBody>
-                <TextWrapper>
-                    <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
-                </TextWrapper>
-                <FormWrapper>
-                <TextComp  weight={"bold"} fontSize={"20px"} text={"What are their Interests?"}></TextComp>
-                <TextComp fontSize={"20px"} color={"#B1B1B1"} text={"Select from popular categories below."}></TextComp>   
-                </FormWrapper>
+              {location.state.iseducator
+                  ?
+                    <TextWrapper>
+                      <TextComp fontSize={"20px"} text={"Please fill out the following with your information."}></TextComp>
+                    </TextWrapper>
+                  :
+                    <TextWrapper>
+                      <TextComp fontSize={"20px"} text={"Please fill out the following with the applicants information."}></TextComp>
+                    </TextWrapper>
+                }
+
+                {location.state.iseducator
+                  ?
+                    <FormWrapper>
+                    <TextComp  weight={"bold"} fontSize={"20px"} text={"What are your Interests?"}></TextComp>
+                    <TextComp fontSize={"20px"} color={"#B1B1B1"} text={"Select from popular categories below."}></TextComp>   
+                    </FormWrapper>
+                  :
+                    <FormWrapper>
+                    <TextComp  weight={"bold"} fontSize={"20px"} text={"What are their Interests?"}></TextComp>
+                    <TextComp fontSize={"20px"} color={"#B1B1B1"} text={"Select from popular categories below."}></TextComp>   
+                    </FormWrapper>
+                }
+                
               </TitleBody>
                 <InterestWrapper>
                   <ScrollView contentContainerStyle={{
@@ -181,7 +198,8 @@ useEffect(()=> {
                       { cancelable: true }
                     
                     )
-                  } else {
+                  } else if(location.state.iseducator === "false") {
+                   
                   history.push("/applicantinfo", {
                       firstname: location.state.firstname,
                       lastname: location.state.lastname,
@@ -199,6 +217,21 @@ useEffect(()=> {
                       caregiverName: location.state.caregiverName,
                       caregiverLastName: location.state.caregiverLastName,
                   })
+                } else {
+                  history.push("/applicantinfo", {
+                    iseducator: location.state.iseducator,
+                    about: location.state.about,
+                    email: location.state.email,
+                    password: location.state.password,
+                    username: location.state.username,
+                    userGender: location.state.userGender, 
+                    age: location.state.age,
+                    phonenumber: location.state.phonenumber,
+                    interests: interest,
+                    caregiverName: location.state.caregiverName,
+                    caregiverLastName: location.state.caregiverLastName,
+                    interests: interest,
+                })
                 }
                 }}></NextButton>
             </FullWrapper>

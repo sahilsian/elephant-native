@@ -10,6 +10,7 @@ import NavBar from "../../NavBar";
 import Categories from "../../Categories";
 import axios from 'axios';
 import { MyContext } from "../../context"
+import Button from "../../Button";
 
 const Container = styled.View`
     width: 100%;
@@ -24,13 +25,19 @@ const AdjustedWidth = styled.View`
     flex: 0.85;
 `;
 
-const ItemContainer = styled.View`
+const Title = styled.View`
     width: 90%;
+    height: 50px;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+const ItemContainer = styled.View`
+    width: 95%;
     flex: 1;
     align-items: center;
     flexDirection: row;
     flex-wrap: wrap;
-    justify-content: space-around;
 `;
 
 const InterestContainer = styled.View`
@@ -38,15 +45,15 @@ const InterestContainer = styled.View`
     flexDirection: row;
     justify-content: center;
     padding-top: 50;
-    justify-content: space-evenly;
+    
 `;
 
 const HeaderContainer = styled.View`
     width: 90%;
     flex: 1;
-    height: 80px;
     justify-content: center;
     margin-top: 10px;
+    height: 120px;
 `;
 
 var bgcolor = [
@@ -161,16 +168,36 @@ const HomePage = ({ history, match }) => {
                 }}
                 >
                 <HeaderContainer>
-                    <Header text={"Home"} display onPress={() => {
-
-                    }}>
-                    </Header>
+                    <TextComp text={"Hey there,"} fontSize={"32"} weight={"bold"} />
+                    <TextComp text={"Choose an Interest and get connected with an educator."}></TextComp>
                 </HeaderContainer>
-                
+                <Title>
+                <TextComp text={"All Interests"} fontSize={"26"} weight={"bold"} />
+                <Button fontSize={"16px"} buttonText={"View All" } maxHeight={"30px"}></Button>
+                </Title>
                 <ItemContainer>
-
                     {data && data.map((o,i)=>{
-                        return <Categories MaxWidth={i%3 == 0} text={o.name} bgColor={bgcolor[i]} onPress={() => {
+                        return <Categories source={()=> {
+                            if(o.name === "Dance") {
+                                require("../../../assets/CategoryIcons/Dance.png")
+                            } else if(o.name === "Outdoor Activities") {
+                                require("../../../assets/CategoryIcons/Outdoor-Activities.png")
+                            } else if(o.name === "Math") {
+                                require("../../../assets/CategoryIcons/Math.png")
+                            } else if(o.name === "Sports") {
+                                require("../../../assets/CategoryIcons/Sports.png")
+                            } else if(o.name === "Video Games") {
+                                require("../../../assets/CategoryIcons/Video-Games.png")
+                            } else if(o.name === "Social Activity") {
+                                require("../../../assets/CategoryIcons/Social-Activity.png")
+                            } else if(o.name === "Art") {
+                                require("../../../assets/CategoryIcons/Art.png")
+                            } else if(o.name === "Spelling") {
+                                require("../../../assets/CategoryIcons/Spelling.png")
+                            } else if(o.name === "Language") {
+                                require("../../../assets/CategoryIcons/Language.png")
+                            }
+                        }} MaxWidth={i%3 == 0} text={o.name} bgColor={bgcolor[i]} onPress={() => {
                             history.push(`/category/${o.name}`)
                         }}/>
                     })}

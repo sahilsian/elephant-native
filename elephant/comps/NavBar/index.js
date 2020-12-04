@@ -26,12 +26,14 @@ const MainDiv = styled.KeyboardAvoidingView`
   align-items: center;
   z-index: 1;
   justify-content: space-around;
+  
 `;
 
 const Img = styled.Image`
   flex: 1;
   aspectRatio: 0.6;
   resizeMode: contain;
+  
 `;
 
 const NavBar = ({history, home, search, calendar, chat, account, homeicon, searchicon, calendaricon, accounticon}) => {
