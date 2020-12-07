@@ -317,7 +317,7 @@ const ProfilePage = ({match, history, location}) => {
                                         <TextComp 
 
                                         
-                                        text={data.is_educator ? "" : "In Dev"}
+                                        text={data.is_educator ? "Educator" : "Burnaby, BC"}
                                         fontSize={"24px"} 
                                         /> 
                                 </RowView>

@@ -21,13 +21,6 @@ const AuthLoginBox = styled.View`
     border-radius: 5px;
     width: 100%;
     height: 100%;
-    shadowColor: #000;
-    shadowOffset: {
-        width: 0;
-        height: 3;
-    }
-    shadowOpacity: 0.27;
-    shadowRadius: 4.65;
     elevation: 6;
     position: relative;
 `;

@@ -90,6 +90,10 @@ const NotificationWrapper = styled.View`
   margin-bottom: 30px;
 `;
 
+const LogoutWrapper = styled.View`
+  width: 100%;
+  height: 100px;
+`;
 
 const SettingsPage = ({ history, match }) => {
 
@@ -382,7 +386,12 @@ const SettingsPage = ({ history, match }) => {
                       })}
 
                     </NotificationWrapper>
-                      
+                    <LogoutWrapper>
+                      <Button buttonText={"Logout"} onPress={()=> {
+                        context.setToken("")
+                        history.push("/login")
+                      }}></Button>
+                    </LogoutWrapper>
                 </ItemContainer>
                 
             </ScrollView>

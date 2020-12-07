@@ -40,11 +40,12 @@ const NavBar = ({history, home, search, calendar, chat, account, homeicon, searc
   return (
   
       <MainDiv >
-
+        
         <TouchableOpacity onPress={home}><Img source={homeicon} /></TouchableOpacity>
         <TouchableOpacity onPress={search}><Img source={searchicon}></Img></TouchableOpacity>
         <TouchableOpacity onPress={calendar}><Img source={calendaricon}></Img></TouchableOpacity>
         <TouchableOpacity onPress={account}><Img source={accounticon}></Img></TouchableOpacity>
+        
       </MainDiv>
   );
 };

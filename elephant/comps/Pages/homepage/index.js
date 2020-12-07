@@ -8,6 +8,7 @@ import Header from "../../Header"
 import TopNavBar from "../../topNabBar";
 import NavBar from "../../NavBar";
 import Categories from "../../Categories";
+import CategoriesTwo from "../../categoriestwo";
 import axios from 'axios';
 import { MyContext } from "../../context"
 import Button from "../../Button";
@@ -38,6 +39,14 @@ const ItemContainer = styled.View`
     align-items: center;
     flexDirection: row;
     flex-wrap: wrap;
+`;
+
+const ItemContainerTwo = styled.View`
+    width: 95%;
+    flex: 1;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 `;
 
 const InterestContainer = styled.View`
@@ -109,6 +118,8 @@ const HomePage = ({ history, match }) => {
     const [shadow, setShadow] = useState(false)
     const context = useContext(MyContext);
     const [data, setData] = useState([]);
+    const [viewall, setViewall] = useState(4)
+    const [text, setText] = useState("View All")
     //setup rendering here, only one cube will be visible. When array for interests
     // in api is mapped, more items will be shown.
 
@@ -192,31 +203,43 @@ const HomePage = ({ history, match }) => {
                 <HeaderContainer>
                     <TextComp text={"Hey there,"} fontSize={"32"} weight={"bold"} />
                     <TextComp text={"Choose an Interest and get connected with an educator."}></TextComp>
-                </HeaderContainer>
+                    </HeaderContainer>
+                    <Title>
+                <TextComp text={"Popular Interests"} fontSize={"26"} weight={"bold"} />
+                
+                </Title>
+                <ItemContainerTwo>
+                    
+                    {data && data.slice(3, 6).map((o,i)=> {
+                        return <CategoriesTwo MaxWidth={i%3 == 0} text={o.name} bgColor={bgcolor[i]} onPress={() => {
+                            history.push(`/category/${o.name}`)
+                        }}/>
+                    })}
+
+
+                </ItemContainerTwo>
+
+
+
                 <Title>
                 <TextComp text={"All Interests"} fontSize={"26"} weight={"bold"} />
-                <Button fontSize={"16px"} buttonText={"View All" } maxHeight={"30px"}></Button>
+                <Button onPress={()=> {
+                    setViewall(viewall === 4 ? 10 : 4 || viewall === 10 ? 4 : 10)
+                    if(text === "View All") {
+                        setText("View Less")
+                    } else {
+                        setText("View All")
+                    }
+                }} fontSize={"16px"} buttonText={text} maxHeight={"30px"}></Button>
                 </Title>
                 <ItemContainer>
                     
-                    {data && data.map((o,i)=>{
+                    {data && data.slice(0, viewall).map((o,i)=>{
                         return <Categories MaxWidth={i%3 == 0} text={o.name} bgColor={bgcolor[i]} onPress={() => {
                             history.push(`/category/${o.name}`)
                         }}/>
                     })}
 
-                    {/* <Categories bgColor={bgcolor[0]} MaxWidth text="Outdoor Activities"/>
-                    <Categories bgColor={bgcolor[1]} Color={false} text="Math"/>
-
-                    <Categories bgColor={bgcolor[2]} Color={false} text="Sports"/>
-                    <Categories bgColor={bgcolor[3]} MaxWidth text="Video Games"/>
-
-                    <Categories bgColor={bgcolor[0]} MaxWidth text="Socializing" />
-                    <Categories bgColor={bgcolor[1]} Color={false} text="Art"/>
-
-                    <Categories  bgColor={bgcolor[2]} Color={false} text="Spelling"/>
-                    <Categories bgColor={bgcolor[3]} MaxWidth text="Language"/> */}
-                    
 
                 </ItemContainer>
                 
